@@ -1,0 +1,7 @@
+{
+  "name": "clozet",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
