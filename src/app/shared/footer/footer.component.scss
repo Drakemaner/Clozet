@@ -1,0 +1,37 @@
+.block li a{
+    font-family: 'Lato';
+    font-style: italic;
+    font-weight: 700; /* Adapte conforme necessário (300, 700, etc.) */
+    src: url('/src/assets/Lato/Lato-BlackItalic.ttf') format('truetype'); /* Ajuste o caminho conforme necessário */
+    font-size: 12px;
+    text-decoration: none;
+    text-align: center;
+    color: #161A29;
+}
+
+.block{
+
+    border: 1px #161A29 solid;
+    border-radius: 20px;
+    margin: 15px;
+    height: 100%;
+  
+}
+  
+.block li{
+    margin-top: 10px;
+    height: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 100px;
+}
+  
+.block p{
+    margin-top: 1px;
+}
+
+.block img{
+    width: 60px;
+  }
+  
