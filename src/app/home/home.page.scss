@@ -6,47 +6,44 @@
 }
 
 
+main{
+  background-color: #F7F7F7;
+  height: 100vh;
+}
 
 #container {
-  text-align: center;
-
-  position: absolute;
-  left: 0;
-  right: 0;
-  top: 50%;
-  transform: translateY(-50%);
+  
+  border: 1px #161A29 solid;
+  border-radius: 20px;
+  margin: 15px 15px 0 15px;
+  
+  height: 78%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-#container strong {
-  font-size: 20px;
-  line-height: 26px;
-}
-
-#container p {
-  font-size: 16px;
-  line-height: 22px;
-
-  color: #801717;
-
-  margin: 0;
-}
 
 #container a {
   text-decoration: none;
 }
 
-/* header.component.css */
-header {
-  background-color: #ba8e8e;
-  padding: 10px;
-  text-align: center;
+.ion-content{
+  margin-top: 0;
+  
+  height: 100%;
 }
-
 .logo-container {
   display: flex;
   justify-content: center;
-  background-color: #161A29;
-  height: 100px;
+
+  background-color: #F7F7F7;
+  height: auto;
+}
+
+.logo-container a{
+    text-decoration: none;
+    color: #161A29;
 }
 
 .logo-container h1{
@@ -55,6 +52,24 @@ header {
   font-weight: 1000; /* Adapte conforme necessário (300, 700, etc.) */
   src: url('/src/assets/Lato/Lato-BlackItalic.ttf') format('truetype'); /* Ajuste o caminho conforme necessário */
   font-size: 40px;
+}
+
+.block{
+  
+  border: 1px #161A29 solid;
+  border-radius: 20px;
+  margin: 15px;
+  height: 100%;
+  
+}
+
+.block li{
+  
+  height: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 100px;
 }
 
 
