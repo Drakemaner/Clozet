@@ -1,0 +1,20 @@
+.logo-container {
+  display: flex;
+  justify-content: center;
+
+  background-color: #F7F7F7;
+  height: auto;
+}
+
+.logo-container a{
+  text-decoration: none;
+  color: #161A29;
+}
+
+.logo-container h1{
+  font-family: 'Lato';
+  font-style: italic;
+  font-weight: 1000; /* Adapte conforme necessário (300, 700, etc.) */
+  src: url('/src/assets/Lato/Lato-BlackItalic.ttf') format('truetype'); /* Ajuste o caminho conforme necessário */
+  font-size: 40px;
+}

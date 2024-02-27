@@ -12,11 +12,11 @@ main{
 }
 
 #container {
-  
+
   border: 1px #161A29 solid;
   border-radius: 20px;
   margin: 15px 15px 0 15px;
-  
+
   height: 78%;
   display: flex;
   justify-content: center;
@@ -30,41 +30,21 @@ main{
 
 .ion-content{
   margin-top: 0;
-  
+
   height: 100%;
-}
-.logo-container {
-  display: flex;
-  justify-content: center;
-
-  background-color: #F7F7F7;
-  height: auto;
-}
-
-.logo-container a{
-    text-decoration: none;
-    color: #161A29;
-}
-
-.logo-container h1{
-  font-family: 'Lato';
-  font-style: italic;
-  font-weight: 1000; /* Adapte conforme necessário (300, 700, etc.) */
-  src: url('/src/assets/Lato/Lato-BlackItalic.ttf') format('truetype'); /* Ajuste o caminho conforme necessário */
-  font-size: 40px;
 }
 
 .block{
-  
+
   border: 1px #161A29 solid;
   border-radius: 20px;
   margin: 15px;
   height: 100%;
-  
+
 }
 
 .block li{
-  
+
   height: 100px;
   display: flex;
   justify-content: center;
