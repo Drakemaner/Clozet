@@ -3,23 +3,30 @@
     <div id="container">
       <div class="outfit" >
         <div class="skeleton">
-         
+
         </div>
         <div class="roupas">
           <div class="head">
             <img src="/assets/head.png" alt="">
           </div>
-          <div class="tee">
-            <img src="/assets/tee.png" alt="">
+          @for (roupa of roupas; track $index) {
+            <div [class]="roupa.tipo" [style]="roupa.display">
+              <img src="{{roupa.imagem}}" alt="roupa">
+            </div>
+          }
+          <div class="buttons-tee">
+            <button class="btn" (click)="mudarRoupa('tee-left')"><ion-icon name="caret-back-outline" size="large"></ion-icon></button>
+            <button class="btn" (click)="mudarRoupa('tee-right')"><ion-icon name="caret-forward-outline" size="large"></ion-icon></button>
           </div>
-          <div class="pants">
-            <img src="/assets/calca.png" alt="">
+          <div class="buttons-pants">
+            <button class="btn" (click)="mudarRoupa('pants-left')"><ion-icon name="caret-back-outline" size="large"></ion-icon></button>
+            <button class="btn" (click)="mudarRoupa('pants-right')"><ion-icon name="caret-forward-outline" size="large"></ion-icon></button>
           </div>
-          <div class="shoes">
-            <img src="/assets/tenis.png" alt="">
+          <div class="buttons-shoes">
+            <button class="btn" (click)="mudarRoupa('shoes-left')"><ion-icon name="caret-back-outline" size="large"></ion-icon></button>
+            <button class="btn" (click)="mudarRoupa('shoes-right')"><ion-icon name="caret-forward-outline" size="large"></ion-icon></button>
           </div>
         </div>
-       
       </div>
     </div>
   </div>

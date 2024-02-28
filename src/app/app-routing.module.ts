@@ -11,6 +11,10 @@ const routes: Routes = [
     redirectTo: 'home',
     pathMatch: 'full'
   },
+  {
+    path: 'meuPerfil',
+    loadChildren: () => import('./meu-perfil/meu-perfil.module').then( m => m.MeuPerfilModule)
+  }
 ];
 
 @NgModule({

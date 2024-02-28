@@ -18,7 +18,7 @@ main{
   border: 1px #161A29 solid;
   border-radius: 20px;
   margin: 15px 15px 0 15px;
-  
+
   height: 85%;
   display: flex;
   justify-content: center;
@@ -28,8 +28,8 @@ main{
 
 #container a {
   text-decoration: none;
-  
-  
+
+
 }
 
 .block img{
@@ -69,10 +69,12 @@ main{
 
 
 .roupas{
- 
   margin-top: 30px;
+  display: flex;
+  flex-direction: column;
   width: 85%;
   height: 550px;
+  position: relative;
 }
 
 
@@ -80,9 +82,8 @@ main{
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 100%;
   height: 15%;
-  
+
 }
 
 .head img{
@@ -94,22 +95,52 @@ main{
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 100%;
   height: 30%;
-  
+  order: 1;
 }
 
 .tee img{
   height: 100%;
   width: 70%;
 }
+
+.buttons-tee {
+  transform: translateY(100%);
+  position: absolute;
+  display: flex;
+  top: 20%;
+  gap: 350px;
+  align-self: center;
+}
+
+.buttons-pants {
+  transform: translateY(100%);
+  position: absolute;
+  display: flex;
+  top: 50%;
+  gap: 350px;
+  align-self: center;
+}
+
+.buttons-shoes {
+  transform: translateY(100%);
+  position: absolute;
+  display: flex;
+  top: 80%;
+  gap: 350px;
+  align-self: center;
+}
+
+.btn {
+  background-color: transparent;
+}
+
 .pants{
-  
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 100%;
   height: 37%;
+  order: 2;
 }
 
 .pants img{
@@ -121,8 +152,8 @@ main{
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 100%;
   height: 13%;
+  order: 3;
 }
 
 .shoes img{
