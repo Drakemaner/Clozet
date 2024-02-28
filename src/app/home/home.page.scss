@@ -45,9 +45,6 @@ main{
 
 
 .outfit{
-  
-  background-image: url('/assets/skeleton.png');
-  background-size: cover;
   height: 550px;
   width: 300px;
   display: flex;
@@ -56,40 +53,42 @@ main{
 }
 
 .outfit img{
-  width: 100px;
+  width: 280px;
+
 }
 
-/*
+
 .roupas{
   background-color: red;
-  width: 100%;
+  opacity: 50%;
+  width: 60%;
   height: 550px;
 }
-*/
+
 
 .head{
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 100%;
-  height: 20%;
+  width: 100px;
+  height: 15%;
 }
 
 .tee{
   width: 100%;
-  height: 30%;
+  height: 35%;
   background-color: #8f8d8d;
 }
 
 .pants{
   background-color: #b3afaf;
   width: 100%;
-  height: 30%;
+  height: 37%;
 }
 
 .shoes{
   background-color: #8f6b6b;
   width: 100%;
-  height: 20%;
+  height: 13%;
 }
 
