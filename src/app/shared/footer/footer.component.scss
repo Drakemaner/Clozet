@@ -15,16 +15,16 @@
     border-radius: 20px;
     margin: 15px;
     height: 100%;
-  
+    margin-bottom: 20px;
 }
   
 .block li{
     margin-top: 10px;
-    height: 100px;
+    height: 80px;
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 100px;
+    gap: 85px;
 }
   
 .block p{
@@ -32,6 +32,6 @@
 }
 
 .block img{
-    width: 60px;
+    width: 50px;
   }
   
