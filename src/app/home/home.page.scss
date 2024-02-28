@@ -74,7 +74,10 @@ main{
   flex-direction: column;
   width: 85%;
   height: 550px;
-  position: relative;
+}
+
+.roupas img {
+  cursor: pointer;
 }
 
 
@@ -102,37 +105,6 @@ main{
 .tee img{
   height: 100%;
   width: 70%;
-}
-
-.buttons-tee {
-  transform: translateY(100%);
-  position: absolute;
-  display: flex;
-  top: 20%;
-  gap: 350px;
-  align-self: center;
-}
-
-.buttons-pants {
-  transform: translateY(100%);
-  position: absolute;
-  display: flex;
-  top: 50%;
-  gap: 350px;
-  align-self: center;
-}
-
-.buttons-shoes {
-  transform: translateY(100%);
-  position: absolute;
-  display: flex;
-  top: 80%;
-  gap: 350px;
-  align-self: center;
-}
-
-.btn {
-  background-color: transparent;
 }
 
 .pants{

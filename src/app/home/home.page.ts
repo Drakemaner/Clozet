@@ -38,110 +38,55 @@ export class HomePage {
   constructor() {}
 
   mudarRoupa(tipo : string){
-    if(tipo.includes('tee')){
+    console.log(tipo)
+    if(tipo == 'tee'){
+      console.log("Oiee")
       let tees = this.roupas.filter(roupa => roupa.tipo == 'tee')
-      if(tipo.includes('right')){
-        for(let i = 0; i < tees.length; i++){
-          console.log(tees.length)
-          if(tees[i].display == 'display: flex'){
-            if(i + 1 < tees.length){
-              console.log('cheguei')
-              tees[i].display = 'display: none'
-              tees[i + 1].display = 'display: flex'
-              return
-            }
-            else{
-              console.log('cheguei outro')
-              tees[i].display = 'display: none'
-              tees[0].display = 'display: flex'
-              return 
-            }
+      for(let i = 0; i < tees.length; i++){
+        if(tees[i].display == 'display: flex'){
+          if(i + 1 < tees.length){
+            tees[i].display = 'display: none'
+            tees[i + 1].display = 'display: flex'
+            return
           }
-        }
-      }
-      else if(tipo.includes('left')){
-        for(let i = 0; i < tees.length; i++){
-          if(tees[i].display == 'display: flex'){
-            if(i != 0){
-              tees[i].display = 'display: none'
-              tees[i - 1].display = 'display: flex'
-              return
-            }
-            else{
-              tees[tees.length - 1].display = 'display: flex'
-              tees[0].display = 'display: none'
-              return
-            }
+          else{
+            tees[i].display = 'display: none'
+            tees[0].display = 'display: flex'
+            return 
           }
         }
       }
     }
-    else if(tipo.includes('pants')){
+    else if(tipo == 'pants'){
       let tees = this.roupas.filter(roupa => roupa.tipo == 'pants')
-      if(tipo.includes('right')){
-        for(let i = 0; i < tees.length; i++){
-          if(tees[i].display == 'display: flex'){
-            if(i + 1 < tees.length){
-              tees[i].display = 'display: none'
-              tees[i + 1].display = 'display: flex'
-              return
-            }
-            else{
-              tees[i].display = 'display: none'
-              tees[0].display = 'display: flex'
-              return
-            }
+      for(let i = 0; i < tees.length; i++){
+        if(tees[i].display == 'display: flex'){
+          if(i + 1 < tees.length){
+            tees[i].display = 'display: none'
+            tees[i + 1].display = 'display: flex'
+            return
           }
-        }
-      }
-      else if(tipo.includes('left')){
-        for(let i = 0; i < tees.length; i++){
-          if(tees[i].display == 'display: flex'){
-            if(i != 0){
-              tees[i].display = 'display: none'
-              tees[i - 1].display = 'display: flex'
-              return
-            }
-            else{
-              tees[tees.length - 1].display = 'display: flex'
-              tees[0].display = 'display: none'
-              return
-            }
+          else{
+            tees[i].display = 'display: none'
+            tees[0].display = 'display: flex'
+            return
           }
         }
       }
     }
     else {
       let tees = this.roupas.filter(roupa => roupa.tipo == 'shoes')
-      if(tipo.includes('right')){
-        for(let i = 0; i < tees.length; i++){
-          if(tees[i].display == 'display: flex'){
-            if(i + 1 < tees.length){
-              tees[i].display = 'display: none'
-              tees[i + 1].display = 'display: flex'
-              return
-            }
-            else{
-              tees[i].display = 'display: none'
-              tees[0].display = 'display: flex'
-              return
-            }
+      for(let i = 0; i < tees.length; i++){
+        if(tees[i].display == 'display: flex'){
+          if(i + 1 < tees.length){
+            tees[i].display = 'display: none'
+            tees[i + 1].display = 'display: flex'
+            return
           }
-        }
-      }
-      else if(tipo.includes('left')){
-        for(let i = 0; i < tees.length; i++){
-          if(tees[i].display == 'display: flex'){
-            if(i != 0){
-              tees[i].display = 'display: none'
-              tees[i - 1].display = 'display: flex'
-              return
-            }
-            else{
-              tees[tees.length - 1].display = 'display: flex'
-              tees[0].display = 'display: none'
-              return
-            }
+          else{
+            tees[i].display = 'display: none'
+            tees[0].display = 'display: flex'
+            return
           }
         }
       }
