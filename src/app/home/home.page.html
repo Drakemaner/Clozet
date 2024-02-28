@@ -10,7 +10,7 @@
             <img src="/assets/head.png" alt="">
           </div>
           @for (roupa of roupas; track $index) {
-            @if (roupa.display === 'display: flex') {
+            @defer (when roupa.display === 'display: flex') {
               <div [class]="roupa.tipo" [style]="roupa.display">
                 <img (click)="mudarRoupa(roupa.tipo)" src="{{roupa.imagem}}" alt="roupa">
               </div>
