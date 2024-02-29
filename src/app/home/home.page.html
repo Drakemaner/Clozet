@@ -12,7 +12,9 @@
           @for (roupa of roupas; track $index) {
             @defer (when roupa.display === 'display: flex') {
               <div [class]="roupa.tipo" [style]="roupa.display">
-                <img (click)="mudarRoupa(roupa.tipo)" src="{{roupa.imagem}}" alt="roupa">
+                <ion-item>
+                  <img (click)="mudarRoupa(roupa.tipo)" src="{{roupa.imagem}}" alt="roupa">
+                </ion-item>
               </div>
             }
           }
