@@ -1,19 +1,32 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Roupas } from 'src/app/pseudoBanco/roupas';
 import { CameraService } from 'src/app/services/camera/camera.service';
 import { ActionSheetController } from '@ionic/angular';
+import { Router } from '@angular/router';
+import { StorageService } from 'src/app/services/storage/storage.service';
 
 @Component({
   selector: 'app-footer',
   templateUrl: './footer.component.html',
   styleUrls: ['./footer.component.scss'],
 })
-export class FooterComponent   {
+export class FooterComponent implements OnInit  {
 
+
+  logado = false
   tipoRoupa = ''
   roupas = Roupas
 
-  constructor(private cameraService : CameraService, private actionSheet : ActionSheetController) { }
+  constructor(private cameraService : CameraService, private storageService : StorageService , private actionSheet : ActionSheetController, private router : Router) { }
+
+  ngOnInit(): void {
+    if(localStorage.getItem('logado')){
+      this.logado = true
+    }
+    if(this.storageService.getObject('logado') != null){
+      this.logado = true
+    }
+  }
 
   showActions = async () => {
     const result = await this.actionSheet.create({
@@ -49,6 +62,27 @@ export class FooterComponent   {
     this.tipoRoupa = tipo
     
     this.cameraService.takePicture(this.roupas, this.tipoRoupa)
+  }
+
+  navigate() {
+    this.storageService.setObject()
+    if(localStorage.getItem('logado')){
+      this.router.navigate(['/meuPerfil'])
+    }
+    else{
+      this.router.navigate(['/login'])
+    }
+    this.storageService.getObject('logado').
+      then(res => {
+        if(typeof(res) == 'object'){
+          this.router.navigate(['/meuPerfil'])
+        }
+        else{
+          console.log(typeof(res))
+          this.router.navigate(['/login'])
+        }
+      }).
+      catch((error)=>console.log("error: " + error))
   }
 
 }

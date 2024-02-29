@@ -8,6 +8,12 @@
         <string>clozet</string>
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
+	<key>WKAppBoundDomains</key>
+	<array>
+	  <string>www.mydomain.com</string>
+	  <string>api.mydomain.com</string>
+	  <string>www.myothercooldomain.com</string>
+	</array>
 	<key>NSCameraUsageDescription</key>
 	<string>Privacy - Camera Usage Description</string>
 	<key>NSPhotoLibraryAddUsageDescription</key>
