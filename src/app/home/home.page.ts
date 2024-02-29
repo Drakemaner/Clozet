@@ -1,4 +1,7 @@
 import { Component } from '@angular/core';
+import { CameraService } from '../services/camera/camera.service';
+import { CameraPluginPermissions } from '@capacitor/camera';
+import { ActionSheetController } from '@ionic/angular';
 
 
 @Component({
@@ -7,6 +10,10 @@ import { Component } from '@angular/core';
   styleUrls: ['home.page.scss'],
 })
 export class HomePage {
+
+  tipoRoupa = ''
+
+  takePhoto = false
 
   roupas = [
     {
@@ -35,7 +42,46 @@ export class HomePage {
     }
   ]
 
-  constructor() {}
+  constructor(public cameraService : CameraService, private actionSheet : ActionSheetController) {}
+
+  showActions = async () => {
+    const result = await this.actionSheet.create({
+      header: 'Tipo da Roupa',
+      buttons: [
+        {
+          text: 'Tee',
+          handler: () => this.tirarFoto('tee')
+            
+          
+        },
+        {
+          text: 'Calça',
+          handler: () => this.tirarFoto('pants')
+            
+        },
+        {
+          text: 'Tênis',
+          handler: () => this.tirarFoto('shoes')
+        },
+        {
+          text: 'Cancelar',
+          role: 'cancel'
+        }
+      ],
+
+    
+    })
+    
+    await result.present();
+
+    console.log('Action Sheet result:', result);
+  }
+
+  tirarFoto(tipo : string){
+    this.tipoRoupa = tipo
+    
+    this.cameraService.takePicture(this.roupas, this.tipoRoupa)
+  }
 
   mudarRoupa(tipo : string){
     console.log(tipo)
