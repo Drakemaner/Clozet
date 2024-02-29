@@ -1,18 +1,15 @@
 <ion-footer>
   <div class="menu-navigation">
-    <ion-fab-button (click)="showActions()">
-      <ion-icon name="camera"></ion-icon>
-    </ion-fab-button>
+    
     <div class="block">
       <li>
         <a [routerLink]="['/home']">
           <img src="/assets/icon/closet.png" alt="home">
           
         </a>
-        <a href="">
-          <img src="/assets/icon/camera.png" alt="camera">
-          
-        </a>
+        <ion-fab-button (click)="showActions()">
+          <ion-icon name="camera"></ion-icon>
+        </ion-fab-button>
         <a [routerLink]="['/meuPerfil']">
           <img src="/assets/icon/perfil.png" alt="perfil">
           
