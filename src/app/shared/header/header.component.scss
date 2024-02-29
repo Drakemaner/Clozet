@@ -1,8 +1,11 @@
+
 .logo-container {
   display: flex;
   justify-content: center;
   align-items: center;
   height: 100px;
+  width: 250px;
+  
 }
 
 nav{
@@ -11,12 +14,12 @@ nav{
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 80px;
+  padding-top: 70px;
 }
 
 
 
-.logo-container a{
+.logo-container h1{
   text-decoration: none;
   color: #161A29;
   letter-spacing: -2.1px;
@@ -29,3 +32,14 @@ nav{
   src: url('/src/assets/Lato/Lato-BlackItalic.ttf') format('truetype'); /* Ajuste o caminho conforme necessário */
   font-size: 40px;
 }
+
+.add{
+  
+  width: 40px;
+}
+
+.sinal{
+  
+  width: 40px;
+}
+
