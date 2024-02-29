@@ -49,7 +49,7 @@ export class CameraService {
     }).catch(async (error) => {
        if(error.errorMessage.includes('denied access to photos')){
         const alert = await this.alertController.create({
-          header: 'Acesso a Galeria Desativada',
+          header: 'Acesso a Galeria Não Permitida',
           message: 'Para permitir acesso vá a Ajustes > Privacidade e Segurança > Fotos',
           buttons: ['Continuar']
         })
@@ -58,7 +58,7 @@ export class CameraService {
        }
        else if(error.errorMessage.includes('denied access to camera')){
         const alert = await this.alertController.create({
-          header: 'Acesso a Câmera Desativada',
+          header: 'Acesso a Câmera Não Permitida',
           message: 'Para permitir acesso vá a Ajustes > Privacidade e Segurança > Câmera',
           buttons: ['Continuar']
         })
