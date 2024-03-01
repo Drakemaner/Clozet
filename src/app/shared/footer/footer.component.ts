@@ -4,6 +4,8 @@ import { CameraService } from 'src/app/services/camera/camera.service';
 import { ActionSheetController } from '@ionic/angular';
 import { Router } from '@angular/router';
 import { StorageService } from 'src/app/services/storage/storage.service';
+import { Platform } from '@ionic/angular';
+
 
 @Component({
   selector: 'app-footer',
@@ -17,7 +19,7 @@ export class FooterComponent implements OnInit  {
   tipoRoupa = ''
   roupas = Roupas
 
-  constructor(private cameraService : CameraService, private storageService : StorageService , private actionSheet : ActionSheetController, private router : Router) { }
+  constructor(private platform : Platform, private cameraService : CameraService, private storageService : StorageService , private actionSheet : ActionSheetController, private router : Router) { }
 
   ngOnInit(): void {
     if(localStorage.getItem('logado')){
@@ -65,24 +67,25 @@ export class FooterComponent implements OnInit  {
   }
 
   navigate() {
-    this.storageService.setObject()
-    if(localStorage.getItem('logado')){
-      this.router.navigate(['/meuPerfil'])
-    }
-    else{
-      this.router.navigate(['/login'])
-    }
-    this.storageService.getObject('logado').
-      then(res => {
-        if(typeof(res) == 'object'){
+    if(this.platform.is('mobile')){
+      this.storageService.getObject('logado').then(value => {
+        if(typeof(value) == 'string'){
           this.router.navigate(['/meuPerfil'])
         }
-        else{
-          console.log(typeof(res))
-          this.router.navigate(['/login'])
+        else {
+          this.router.navigate(["/login"])
         }
-      }).
-      catch((error)=>console.log("error: " + error))
+      })
+    }
+    else {
+      if(localStorage.getItem('logado')){
+        this.router.navigate(['/meuPerfil'])
+      }
+      else{
+        
+        this.router.navigate(['/login'])
+      }
+    }
   }
 
 }
