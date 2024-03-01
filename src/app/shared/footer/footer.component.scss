@@ -35,10 +35,17 @@
     width: 50px;
 }
 
-.ion-button{
-    background-color: red;
+
+.button-inner{
+    background-color: #161A29;
 }
 
 .ion-camera{
-    background-color: blue;
+    width: 70px;
+    height: 70px;
 }
+
+.ion-camera span{
+    --ion-background-color: red;
+}
+
