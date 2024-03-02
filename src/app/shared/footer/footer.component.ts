@@ -35,15 +35,16 @@ export class FooterComponent implements OnInit  {
       header: 'Tipo da Roupa',
       buttons: [
         {
+          text: 'Head',
+          handler: () => this.tirarFoto('head')
+        },
+        {
           text: 'Tee',
           handler: () => this.tirarFoto('tee')
-            
-          
         },
         {
           text: 'Calça',
-          handler: () => this.tirarFoto('pants')
-            
+          handler: () => this.tirarFoto('pants')  
         },
         {
           text: 'Tênis',

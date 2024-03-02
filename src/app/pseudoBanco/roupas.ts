@@ -1,5 +1,11 @@
 export var Roupas = [
     {
+      nome: 'cabeça avatar',
+      tipo:'head',
+      imagem:'/assets/head.png',
+      display: 'display: flex'
+    },
+    {
       nome: 'camisa Branca',
       tipo:'tee',
       imagem:'/assets/tee.png',
