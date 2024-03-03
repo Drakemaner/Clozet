@@ -35,16 +35,22 @@ export class CameraService {
     const image = await Camera.getPhoto({
       quality: 100,
       allowEditing: false,
+      saveToGallery: true,
       resultType: CameraResultType.Uri,
       promptLabelPicture: 'Tirar Foto',
       promptLabelPhoto: 'Escolher Foto da Galeria'
     }).then((image)=> {
+      fotos.forEach(a=> {
+        if(a.tipo == tipo && a.display == 'display: flex'){
+          a.display = 'display: none'
+        }
+      })
       fotos.push({
-        nome: 'Foto Qualquer',
+        nome: image.dataUrl,
         tipo: tipo,
         imagem: image.webPath,
         base64: image.base64String,
-        display: 'display: none'
+        display: 'display: flex'
       })
     }).catch(async (error) => {
        if(error.errorMessage.includes('denied access to photos')){

@@ -36,34 +36,51 @@ export class HomePage {
       }
     }
     else if(tipo == 'pants'){
-      let tees = this.roupas.filter(roupa => roupa.tipo == 'pants')
-      for(let i = 0; i < tees.length; i++){
-        if(tees[i].display == 'display: flex'){
-          if(i + 1 < tees.length){
-            tees[i].display = 'display: none'
-            tees[i + 1].display = 'display: flex'
+      let pants = this.roupas.filter(roupa => roupa.tipo == 'pants')
+      for(let i = 0; i < pants.length; i++){
+        if(pants[i].display == 'display: flex'){
+          if(i + 1 < pants.length){
+            pants[i].display = 'display: none'
+            pants[i + 1].display = 'display: flex'
             return
           }
           else{
-            tees[i].display = 'display: none'
-            tees[0].display = 'display: flex'
+            pants[i].display = 'display: none'
+            pants[0].display = 'display: flex'
             return
           }
         }
       }
     }
-    else {
-      let tees = this.roupas.filter(roupa => roupa.tipo == 'shoes')
-      for(let i = 0; i < tees.length; i++){
-        if(tees[i].display == 'display: flex'){
-          if(i + 1 < tees.length){
-            tees[i].display = 'display: none'
-            tees[i + 1].display = 'display: flex'
+    else if(tipo == 'shoes'){
+      let shoes = this.roupas.filter(roupa => roupa.tipo == 'shoes')
+      for(let i = 0; i < shoes.length; i++){
+        if(shoes[i].display == 'display: flex'){
+          if(i + 1 < shoes.length){
+            shoes[i].display = 'display: none'
+            shoes[i + 1].display = 'display: flex'
             return
           }
           else{
-            tees[i].display = 'display: none'
-            tees[0].display = 'display: flex'
+            shoes[i].display = 'display: none'
+            shoes[0].display = 'display: flex'
+            return
+          }
+        }
+      }
+    }
+    else{
+      let head = this.roupas.filter(roupa => roupa.tipo == 'head')
+      for(let i = 0; i < head.length; i++){
+        if(head[i].display == 'display: flex'){
+          if(i + 1 < head.length){
+            head[i].display = 'display: none'
+            head[i + 1].display = 'display: flex'
+            return
+          }
+          else{
+            head[i].display = 'display: none'
+            head[0].display = 'display: flex'
             return
           }
         }

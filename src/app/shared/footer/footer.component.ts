@@ -12,23 +12,14 @@ import { Platform } from '@ionic/angular';
   templateUrl: './footer.component.html',
   styleUrls: ['./footer.component.scss'],
 })
-export class FooterComponent implements OnInit  {
+export class FooterComponent   {
 
-
-  logado = false
   tipoRoupa = ''
   roupas = Roupas
 
   constructor(private platform : Platform, private cameraService : CameraService, private storageService : StorageService , private actionSheet : ActionSheetController, private router : Router) { }
 
-  ngOnInit(): void {
-    if(localStorage.getItem('logado')){
-      this.logado = true
-    }
-    if(this.storageService.getObject('logado') != null){
-      this.logado = true
-    }
-  }
+  
 
   showActions = async () => {
     const result = await this.actionSheet.create({
