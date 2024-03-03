@@ -10,8 +10,8 @@
 }
 
 .block{
-
     
+    padding: 10px;
     border-radius: 20px;
     margin: 15px;
     height: 100%;
@@ -24,7 +24,9 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 85px;
+    gap: 65px;
+    
+    width: 100%;
 }
   
 .block p{
@@ -32,7 +34,7 @@
 }
 
 .block img{
-    width: 45px;
+    width: 70px;
 }
 
 
