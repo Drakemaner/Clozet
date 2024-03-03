@@ -16,9 +16,8 @@ export class HomePage {
 
 
   mudarRoupa(tipo : string){
-    console.log(tipo)
+    
     if(tipo == 'tee'){
-      console.log("Oiee")
       let tees = this.roupas.filter(roupa => roupa.tipo == 'tee')
       for(let i = 0; i < tees.length; i++){
         if(tees[i].display == 'display: flex'){

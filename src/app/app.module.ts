@@ -13,8 +13,8 @@ import { AppRoutingModule } from './app-routing.module';
 import {SharedModule} from "./shared/shared.module";
 import {CommonModule} from "@angular/common";
 import { CameraService } from './services/camera/camera.service';
-import { environment } from 'src/environments/environment';
 import { getAnalytics } from 'firebase/analytics';
+import { fireBaseConfig } from 'src/environments/environment.firebase';
 
 @NgModule({
   declarations: [AppComponent],
@@ -25,7 +25,7 @@ import { getAnalytics } from 'firebase/analytics';
     IonicModule.forRoot(), 
     AppRoutingModule, 
     SharedModule,
-    AngularFireModule.initializeApp(environment.fireBaseConfig),
+    AngularFireModule.initializeApp(fireBaseConfig),
     AngularFireAuthModule,
     AngularFireAnalyticsModule
   ],
