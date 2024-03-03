@@ -11,7 +11,7 @@
 
 .block{
 
-    border: 1px #161A29 solid;
+    
     border-radius: 20px;
     margin: 15px;
     height: 100%;
@@ -32,7 +32,7 @@
 }
 
 .block img{
-    width: 50px;
+    width: 40px;
 }
 
 
@@ -40,12 +40,14 @@
     background-color: #161A29;
 }
 
-.ion-camera{
+.custom-fab-buttom button{
+   
+    --box-shadow: none;
     width: 70px;
     height: 70px;
 }
 
-.ion-camera span{
-    --ion-background-color: red;
+.ion-footer-custom{
+    
+    box-shadow: none;
 }
-

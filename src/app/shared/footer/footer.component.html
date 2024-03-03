@@ -1,19 +1,25 @@
-<ion-footer>
+<ion-footer class="ion-footer-custom">
   <div class="menu-navigation">
     
     <div class="block">
       <li>
         <a [routerLink]="['/home']">
-          <img src="/assets/icon/closet.png" alt="home">
+          <img src="/assets/icon/home.svg" alt="home">
           
         </a>
         
-        <ion-fab-button (click)="showActions()" class="ion-camera">
-          <div class="camera"><img src="/assets/icon/camera.png" alt=""></div>
+        
+        <ion-fab-button (click)="showActions()" class="custom-fab-button">
+          <div class="camera"><img src="/assets/icon/camera.svg" alt=""></div>
         </ion-fab-button>
 
+        <a [routerLink]="['/home']">
+          <img src="/assets/icon/shop.svg" alt="home">
+          
+        </a>
+
         <a (click)="navigate()">
-          <img src="/assets/icon/perfil.png" alt="perfil">
+          <img src="/assets/icon/perfil.svg" alt="perfil">
           
         </a>
       </li>
