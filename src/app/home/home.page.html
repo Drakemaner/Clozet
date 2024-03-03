@@ -9,9 +9,9 @@
           @for (roupa of roupas; track $index) {
             @defer (when roupa.display === 'display: flex') {
               <div [class]="roupa.tipo" [style]="roupa.display">
-                <ion-item class="ion-item-custom">
+                <div class="ion-item-custom">
                   <img (click)="mudarRoupa(roupa.tipo)" src="{{roupa.imagem}}" alt="roupa">
-                </ion-item>
+                </div>
               </div>
             }
           }

@@ -63,7 +63,7 @@ main{
   
   display: flex;
   flex-direction: column;
-  width: auto;
+ 
   height: auto;
   
 }
@@ -78,7 +78,8 @@ main{
   justify-content: center;
   align-items: center;
   height: 25%;
-
+  
+  
 }
 
 .head img{
@@ -132,8 +133,11 @@ main{
 }
 
 .ion-item-custom{
-  --ion-background-color: #F7F7F7;
-  width: 230px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+ 
+  width: 80%;
 }
 
 
