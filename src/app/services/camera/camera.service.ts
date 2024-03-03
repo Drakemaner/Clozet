@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Camera, CameraResultType, CameraPermissionType, CameraSource } from '@capacitor/camera';
+import { Camera, CameraResultType, CameraPermissionType, CameraSource, Photo } from '@capacitor/camera';
 import { AlertController } from '@ionic/angular';
 
 @Injectable({
@@ -35,16 +35,24 @@ export class CameraService {
     const image = await Camera.getPhoto({
       quality: 100,
       allowEditing: false,
+      width: 300,
+      height: 400,
       resultType: CameraResultType.Uri,
       promptLabelPicture: 'Tirar Foto',
       promptLabelPhoto: 'Escolher Foto da Galeria'
-    }).then((image)=> {
+    }).then((image : Photo)=> {
+
+      fotos.forEach(a=> {
+        if(a.tipo == tipo && a.display == 'display: flex'){
+          a.display = 'display: none'
+        }
+      })
       fotos.push({
-        nome: 'Foto Qualquer',
+        nome: 'foto',
         tipo: tipo,
         imagem: image.webPath,
         base64: image.base64String,
-        display: 'display: none'
+        display: 'display: flex'
       })
     }).catch(async (error) => {
        if(error.errorMessage.includes('denied access to photos')){
