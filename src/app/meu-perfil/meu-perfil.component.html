@@ -3,24 +3,25 @@
     <div class="container">
 
       <div class="pf">
-        <div class="foto"><img src="/assets/icon/perfil.svg" alt=""></div>
         <div class="status">
           <div class="block">
-            <li>
-              <h4>seguidores</h4>
-              <h4>seguindo</h4>
-              <h4>publicacao</h4>
-            </li>
+            <div class="foto"><img src="/assets/icon/perfil.svg" alt=""></div>
           </div>
-          <div class="config"><img src="/assets/icon/config.svg" alt=""></div>
         </div>
       </div>
       <div class="bio">
         <p>eu sou o vitor e essa é minha bio</p>
       </div>
+      
       <div class="looks">
-
-      </div>
+        <div class="grid">
+          <div class="block">look1</div>
+          <div class="block">look2</div>
+          <div class="block">look3</div>
+          <div class="block">look4</div>
+        </div>
+     </div>
+     
       <div class="btn-login">
         <ion-button (click)="deslogar()">deslogar</ion-button>
         <a [routerLink]="['/cadastro']">Não tem uma conta se cadastre</a>

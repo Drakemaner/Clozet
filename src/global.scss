@@ -28,6 +28,10 @@
 
 a{
     cursor: pointer;
+    font-family: 'Lato';
+    font-style: normal;
+    font-weight: 400; /* Adapte conforme necessário (300, 700, etc.) */
+    src: url('/assets/Lato/Lato-BlackItalic.ttf') format('truetype'); /* Ajuste o caminho conforme necessário */
 }
 
 *{
