@@ -1,11 +1,16 @@
 <ion-content class="ion-content-custom" [fullscreen]="true">
   <div class="ion-content">
     <div class="container">
-
-      <div class="btn-login">
-        <ion-button (click)="logar()">Login</ion-button>
-        <a [routerLink]="['/cadastro']">Não tem uma conta se cadastre</a>
-      </div>
+      <form [formGroup]="formGroup">
+        <ion-label for="email">E-mail</ion-label>
+        <ion-input id="email" type="email" formControlName="email" placeholder="email@email.com"></ion-input>
+        <ion-label for="senha">Senha</ion-label>
+        <ion-input id="email" type="password" formControlName="senha" placeholder="Digite Sua Senha"></ion-input>
+        <div class="btn-login">
+          <ion-button (click)="logar()">Login</ion-button>
+          <a [routerLink]="['/cadastro']">Não tem uma conta se cadastre</a>
+        </div>
+      </form>
     </div>
   </div>
 </ion-content>

@@ -1,11 +1,21 @@
-<ion-content [fullscreen]="true">
+<ion-content>
   
   <ion-title>Cadastro</ion-title>
   <ion-text>Faz o LLLLL</ion-text>
   <div class="container">
-    <div class="cadastro-link">
-      <a (click)="Cadastrar()">Cadastrar</a>
-    </div>
+    <form [formGroup]="formGroup">
+      <ion-label for="nomeCompleto">Nome Completo</ion-label>
+      <ion-input id="nomeCompleto" type="text" formControlName="nomeCompleto" placeholder="Digite seu Nome"></ion-input>
+      <ion-label for="nomeUsuario">Nome Usuario</ion-label>
+      <ion-input id="nomeUsuario" type="text" formControlName="nomeUsuario" placeholder="Digite seu Nome de Usuário"></ion-input>
+      <ion-label for="email">E-mail</ion-label>
+      <ion-input id="email" type="email" formControlName="email" placeholder="email@email.com"></ion-input>
+      <ion-label for="senha">Senha</ion-label>
+      <ion-input id="email" type="password" formControlName="senha" placeholder="Digite Sua Senha"></ion-input>
+      <div class="cadastro-link">
+        <a (click)="Cadastrar()">Cadastrar</a>
+      </div>
+    </form> 
   </div>
   
 </ion-content>
