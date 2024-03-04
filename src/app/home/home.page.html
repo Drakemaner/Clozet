@@ -1,8 +1,10 @@
 <ion-content class="ion-content-custom" [fullscreen]="true">
   <div class="ion-content">
     <div id="container">
+      <div class="tl"><img src="/assets/icon/tl-home.svg" alt=""></div>
       <div class="outfit" >
         <div class="roupas">
+          
           @for (roupa of roupas; track $index) {
             @defer (when roupa.display === 'display: flex') {
               <div [class]="roupa.tipo" [style]="roupa.display">

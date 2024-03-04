@@ -1,25 +1,20 @@
 .btn-login{
     background-color: #c87e7e;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 80%;
-    height: 80%;
+    
 }
 
 .container {
-    height: 75%;
-    display: flex;
-    width: 90%;
-    justify-content: center;
-    align-items: center;
+    height: 72%;
+    
+    width: 95%;
+    padding: 20px;
     border: 1px solid black;
     border-radius: 20px;
     background-color: #F7F7F7;
 }
 
 .ion-content{
-  background-color: red;
+  
   width: 100%;
   height: 100%;
   display: flex;
@@ -28,9 +23,28 @@
 }
 
 .ion-content-custom{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100%;
+   
+    
     --ion-background-color: #F7F7F7;
+}
+
+.pf{
+    width: 100%;
+    background-color: red;
+    height: 20%;
+    display: flex;
+}
+
+.foto{
+    background-color: #c87e7e;
+    width: 30%;
+}
+
+.foto img{
+    width: 100%;
+    height: 100%;
+}
+.status{
+    background-color: yellow;
+    width: 70%;
 }

@@ -37,7 +37,7 @@ main{
 }
 
 .ion-content{
-  margin-top: 120px;
+  margin-top: 130px;
 
   height: 85%;
 }
@@ -50,36 +50,44 @@ main{
   display: flex;
   justify-content: center;
   align-items: center;
-  
 }
 
 .outfit img{
   width: 280px;
-
 }
 
 
 .roupas{
-  
   display: flex;
   flex-direction: column;
- 
-  height: auto;
   
+  height: auto;
+  margin-top: 30px;
 }
 
 .roupas img {
   cursor: pointer;
 }
 
+.tl{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+ 
+  width: 200px;
+  margin: auto;
+  position: absolute;
+  top: 140px;
+}
+.tl img{
+  width: 90px;
+}
 
 .head{
   display: flex;
   justify-content: center;
   align-items: center;
   height: 25%;
-  
-  
 }
 
 .head img{
@@ -93,8 +101,6 @@ main{
   align-items: center;
   height: 40%;
   order: 1;
-  
-  
 }
 
 .tee img{
@@ -136,7 +142,6 @@ main{
   display: flex;
   justify-content: center;
   align-items: center;
- 
   width: 80%;
 }
 
