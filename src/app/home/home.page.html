@@ -16,7 +16,7 @@
             @defer (when roupa.display === 'display: flex') {
               <div [class]="roupa.tipo" [style]="roupa.display">
                 <div class="ion-item-custom">
-                  <img (click)="mudarRoupa(roupa.tipo)" src="{{roupa.imagem}}" alt="roupa">
+                  <img (click)="mudarRoupa(roupa.tipo)" src="{{roupa.caminhoImagem}}" alt="roupa">
                 </div>
               </div>
             }

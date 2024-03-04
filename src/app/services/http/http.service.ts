@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import IUser from '../../interfaces/IUser';
-import IRoupas from '../../interfaces/Iroupas';
+import IRoupas from '../../interfaces/IRoupas';
 
 @Injectable({
   providedIn: 'root'
@@ -13,11 +13,10 @@ export class HttpService {
 
    private readonly apiURL = "https://clozet-api.azurewebsites.net"
 
-  Get(type : string) : Observable<IUser[] | IRoupas[]> {
-    if(type == "Usuario"){
-      return this.http.get<IUser[]>(`${this.apiURL}/${type}`)
-    }
-    return this.http.get<IRoupas[]>(`${this.apiURL}/${type}`)
+  Get(type : string) : Observable<IUser[]> {
+   
+    return this.http.get<IUser[]>(`${this.apiURL}/${type}`)
+  
   }
 
   Login(user : IUser) : Observable<IUser>{
@@ -37,13 +36,8 @@ export class HttpService {
     }
   }
 
-  Put(type : string, nome : string) : void {
-    if(type == "Usuario"){
-      this.http.put<IUser>(`${this.apiURL}/${type}/${nome}`, {})
-    }
-    else{
-      this.http.put<IRoupas>(`${this.apiURL}/${type}/${nome}`, {})
-    }
+  Put(type : string, nome : string) : Observable<IUser> {
+    return this.http.put<IUser>(`${this.apiURL}/${type}/${nome}`, {})
   }
 
   Delete(type : string, nome : string, user? : IUser) : void {

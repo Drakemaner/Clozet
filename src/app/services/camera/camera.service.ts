@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Camera, CameraResultType, CameraPermissionType, CameraSource, Photo } from '@capacitor/camera';
 import { AlertController } from '@ionic/angular';
+import { HttpService } from '../http/http.service';
+import IRoupas from 'src/app/interfaces/IRoupas';
 
 @Injectable({
   providedIn: 'root'
@@ -8,8 +10,13 @@ import { AlertController } from '@ionic/angular';
 export class CameraService {
 
 
-  constructor(private alertController : AlertController) { }
+  constructor(private alertController : AlertController, private httpService : HttpService) { }
 
+  private roupa : IRoupas = {
+    nome: '',
+    tipo: '',
+    caminhoImagem: ''
+  }
 
   checarPermissao = async () => {
     const permissoes = await Camera.checkPermissions();
@@ -31,7 +38,7 @@ export class CameraService {
     })
   }
 
-  takePicture = async (fotos : Fotos[], tipo : string) => {
+  takePicture = async (fotos : Fotos[], tipo : string, usuarioIdParameter : number) => {
     let largura
     let altura;
 
@@ -69,13 +76,18 @@ export class CameraService {
           a.display = 'display: none'
         }
       })
+
       fotos.push({
         nome: 'foto',
         tipo: tipo,
-        imagem: image.webPath,
-        base64: image.base64String,
+        caminhoImagem: image.webPath,
         display: 'display: flex'
       })
+
+      this.roupa.usuarioId = usuarioIdParameter
+      this.roupa.caminhoImagem = image.webPath!
+      this.roupa.tipo = tipo
+
     }).catch(async (error) => {
        if(error.errorMessage.includes('denied access to photos')){
         const alert = await this.alertController.create({
@@ -95,6 +107,10 @@ export class CameraService {
         
         await alert.present()
        }
+    }).finally(()=> {
+      this.httpService.Post(this.roupa, "Roupa").subscribe(()=>{
+        console.log("Foto Cadastrada com Sucesso")
+      })
     })
 
 
@@ -108,7 +124,7 @@ export class CameraService {
 export interface Fotos {
   nome?: string,
   tipo?: string,
-  imagem?: string,
+  caminhoImagem?: string,
   base64?: string,
   display?: string
 }

@@ -13,6 +13,11 @@
         <p>eu sou o vitor e essa é minha bio</p>
       </div>
       
+      <div class="btn-login">
+        <ion-button (click)="deslogar()">deslogar</ion-button>
+        <a [routerLink]="['/cadastro']">Não tem uma conta se cadastre</a>
+      </div>
+
       <div class="looks">
         <div class="grid">
           <div class="block">look1</div>
@@ -22,10 +27,6 @@
         </div>
      </div>
      
-      <div class="btn-login">
-        <ion-button (click)="deslogar()">deslogar</ion-button>
-        <a [routerLink]="['/cadastro']">Não tem uma conta se cadastre</a>
-      </div>
     </div>
   </div>
 </ion-content>

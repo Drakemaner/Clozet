@@ -1,13 +1,19 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>clozet</ion-title>
-  </ion-toolbar>
-</ion-header>
-
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">clozet</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-content class="ion-content-custom">
+  <div class="container">
+    <div class="content">
+      @defer (when user.roupas !== undefined) {
+        @for (roupa of user.roupas; track $index) {
+          <div class="roupa-card">
+            <p>{{roupa.tipo}}</p>
+            <img [src]="roupa.caminhoImagem" [alt]="roupa.nome">
+          </div>
+        }@empty {
+          <p>Nenhuma roupa salva no clozet: {{user.nomeUsuario}}</p>
+        }
+      }
+      @placeholder {
+        <p>Pegando Informações do Banco de Dados</p>
+      }
+    </div>
+  </div>
 </ion-content>

@@ -24,13 +24,14 @@ export class LoginPage {
     }
     this.http.Login(this.user).subscribe(a =>
       {
-        console.log("Logado")
+        
+        console.log("Logado: " + a.nomeUsuario)
         if(this.platform.is('mobile')){
-          this.storageService.setObject('logado', "true")
+          this.storageService.setObject('logado', a.nomeUsuario!)
           this.router.navigate(['/home'])
         }
         else{
-          localStorage.setItem('logado','voceEstaLogado')
+          localStorage.setItem('logado',a.nomeUsuario!)
           this.router.navigate(['/home'])
         }
       })

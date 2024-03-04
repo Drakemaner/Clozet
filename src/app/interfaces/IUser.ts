@@ -1,4 +1,4 @@
-import IRoupas from "./Iroupas";
+import IRoupas from "./IRoupas";
 
 
 export default interface IUser {
