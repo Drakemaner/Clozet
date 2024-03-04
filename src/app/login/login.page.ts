@@ -1,6 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { StorageService } from '../services/storage/storage.service';
 import { Platform } from '@ionic/angular';
+import { HttpService } from '../services/http/http.service';
+import IUser from '../interfaces/IUser';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -9,16 +12,28 @@ import { Platform } from '@ionic/angular';
 })
 export class LoginPage {
 
+  user! : IUser
 
-  constructor(private platform : Platform, private storageService : StorageService) { }
+  constructor(private http : HttpService, private platform : Platform, private storageService : StorageService, private router : Router) { }
 
 
   logar() {
-    if(this.platform.is('mobile')){
-      this.storageService.setObject()
+    this.user = {
+      email: 'guilhermejenner10@gmail.com',
+      senha: 'ClozetDev@'
     }
-    else{
-      localStorage.setItem('logado','voceEstaLogado')
-    }
+    this.http.Login(this.user).subscribe(a =>
+      {
+        console.log("Logado")
+        if(this.platform.is('mobile')){
+          this.storageService.setObject('logado', "true")
+          this.router.navigate(['/home'])
+        }
+        else{
+          localStorage.setItem('logado','voceEstaLogado')
+          this.router.navigate(['/home'])
+        }
+      })
+
   }
 }

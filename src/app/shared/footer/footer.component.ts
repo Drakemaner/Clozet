@@ -58,26 +58,4 @@ export class FooterComponent   {
     this.cameraService.takePicture(this.roupas, this.tipoRoupa)
   }
 
-  navigate() {
-    if(this.platform.is('mobile')){
-      this.storageService.getObject('logado').then(value => {
-        if(typeof(value) == 'string'){
-          this.router.navigate(['/meuPerfil'])
-        }
-        else {
-          this.router.navigate(["/login"])
-        }
-      })
-    }
-    else {
-      if(localStorage.getItem('logado')){
-        this.router.navigate(['/meuPerfil'])
-      }
-      else{
-        
-        this.router.navigate(['/login'])
-      }
-    }
-  }
-
 }

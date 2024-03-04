@@ -8,10 +8,10 @@ export class StorageService {
 
   constructor() { }
 
-  setObject = async () => {
+  setObject = async (key : string, valor : string) => {
     await Preferences.set({
-      key: 'logado',
-      value: 'voceEstaLogado'
+      key: key,
+      value: valor
     });
   }
   

@@ -1,5 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Roupas } from '../pseudoBanco/roupas';
+import { StorageService } from '../services/storage/storage.service';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -10,10 +12,9 @@ import { Roupas } from '../pseudoBanco/roupas';
 export class HomePage {
 
   roupas = Roupas
-
+  logado : string | null = ''
 
   constructor() {}
-
 
   mudarRoupa(tipo : string){
     

@@ -15,6 +15,7 @@ import {CommonModule} from "@angular/common";
 import { CameraService } from './services/camera/camera.service';
 import { getAnalytics } from 'firebase/analytics';
 import { fireBaseConfig } from 'src/environments/environment.firebase';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [AppComponent],
@@ -25,6 +26,7 @@ import { fireBaseConfig } from 'src/environments/environment.firebase';
     IonicModule.forRoot(), 
     AppRoutingModule, 
     SharedModule,
+    HttpClientModule,
     AngularFireModule.initializeApp(fireBaseConfig),
     AngularFireAuthModule,
     AngularFireAnalyticsModule

@@ -1,4 +1,7 @@
-export var Roupas = [
+import IRoupas from "../interfaces/Iroupas";
+
+
+export var Roupas : IRoupas[] = [
     {
       nome: 'cabeça avatar',
       tipo:'head',
