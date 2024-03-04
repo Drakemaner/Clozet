@@ -32,11 +32,33 @@ export class CameraService {
   }
 
   takePicture = async (fotos : Fotos[], tipo : string) => {
+    let largura
+    let altura;
+
+    switch(tipo){
+      case 'head':
+        largura = 250;
+        altura = 300;
+        break;
+      case 'tee':
+        largura = 300;
+        altura = 500;
+        break;
+      case 'pants':
+        largura = 300;
+        altura = 600;
+        break;
+      default:
+        largura = 200;
+        altura = 100;
+        break;
+    }
+    
     const image = await Camera.getPhoto({
       quality: 100,
       allowEditing: false,
-      width: 300,
-      height: 400,
+      width: largura,
+      height: altura,
       resultType: CameraResultType.Uri,
       promptLabelPicture: 'Tirar Foto',
       promptLabelPhoto: 'Escolher Foto da Galeria'
