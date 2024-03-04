@@ -38,15 +38,15 @@ export class CameraService {
     switch(tipo){
       case 'head':
         largura = 250;
-        altura = 300;
+        altura = 200;
         break;
       case 'tee':
         largura = 300;
-        altura = 500;
+        altura = 400;
         break;
       case 'pants':
         largura = 300;
-        altura = 600;
+        altura = 400;
         break;
       default:
         largura = 200;

@@ -50,10 +50,7 @@ main{
   display: flex;
   justify-content: center;
   align-items: center;
-}
-
-.outfit img{
-  width: 280px;
+  
 }
 
 
@@ -61,8 +58,8 @@ main{
   display: flex;
   flex-direction: column;
   
-  height: auto;
-  margin-top: 30px;
+  height: 100%;
+  margin-top: 40px;
 }
 
 .roupas img {
@@ -87,55 +84,62 @@ main{
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 25%;
+  height: 80px;
+  
 }
 
 .head img{
-  width: 40%;
-  height: 100%;
+  width: 80px;
+  height: 80px;
+  position: absolute;
 }
 
 .tee{
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 40%;
+  
+  height: 230px;
+  width: 250px;
   order: 1;
 }
 
 .tee img{
-  height: 100%;
-  width: 80%;
-  margin: auto;
+  height: 180px;
+  width: 200px;
+  position: absolute;
+  
 }
 
 .pants{
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 37%;
+  height: 250px;
   order: 2;
+ 
 }
 
 .pants img{
-  width: 80%;
-  height: 100%;
-  margin: auto;
+  position: absolute;
+  width: 150px;
+  height: 220px;
+  
 }
 
 .shoes{
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 20%;
+  height: 100px;
  
   order: 3;
 }
 
 .shoes img{
-  
-  width: 100%;
-  height: 100%;
+  position: absolute;
+  width: 230px;
+  height: 70px;
 }
 
 .ion-item-custom{
