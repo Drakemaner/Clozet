@@ -25,6 +25,39 @@ main{
   align-items: center;
 }
 
+#container nav{
+  
+  position: absolute;
+  left: 20px;
+  top: 130px;
+  height: 300px;
+  width: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#container nav li{
+  
+  display: inline-block;
+  
+  height: 90%;
+  margin: auto;
+}
+
+#container nav li a{
+ 
+  flex-direction: column;
+  
+  margin: 20px;
+
+
+}
+
+nav li a img{
+  width: 50px;
+}
+
 
 #container a {
   text-decoration: none;
