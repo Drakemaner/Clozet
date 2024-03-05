@@ -10,6 +10,8 @@ import { Platform } from '@ionic/angular';
 })
 export class AppComponent implements OnInit{
 
+  show : boolean = true
+
   constructor(private platform : Platform, private storage : StorageService, private router : Router) {}
 
   ngOnInit(): void {
@@ -20,13 +22,15 @@ export class AppComponent implements OnInit{
           this.router.navigate(['/home'])
         }
         else{
+          this.show = false
           this.router.navigate(['/login'])
         }
       })
     }
     else{
-      if(!logadoWeb){
+      if(logadoWeb!){
         this.router.navigate(['/login'])
+        this.show = false
       }
       else{
         this.router.navigate(['/home'])

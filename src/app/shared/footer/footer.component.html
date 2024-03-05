@@ -1,24 +1,25 @@
-<ion-footer class="ion-footer-custom">
-  <div class="menu-navigation">
-    
-    <div class="block">
-      <li>
-        <a [routerLink]="['/home']">
-          <img src="/assets/icon/home.svg" alt="home">
+@if(show) {
+  <ion-footer class="ion-footer-custom">
+    <div class="menu-navigation">
+      
+      <div class="block">
+        <li>
+          <a [routerLink]="['/home']">
+            <img src="/assets/icon/home.svg" alt="home">
+            
+          </a>
           
-        </a>
-        
-        
-        <a [routerLink]="['/clozet']" class="custom-fab-button">
-          <img src="/assets/icon/closet.svg" alt="clozet">
-        </a>
-        
-        <a [routerLink]="['/meuPerfil']">
-          <img src="/assets/icon/perfil.svg" alt="perfil">
           
-        </a>
-      </li>
+          <a [routerLink]="['/clozet']" class="custom-fab-button">
+            <img src="/assets/icon/closet.svg" alt="clozet">
+          </a>
+          
+          <a [routerLink]="['/meuPerfil']">
+            <img src="/assets/icon/perfil.svg" alt="perfil">
+            
+          </a>
+        </li>
+      </div>
     </div>
-  </div>
-</ion-footer>
-
+  </ion-footer>  
+}

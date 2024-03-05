@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { CameraService } from 'src/app/services/camera/camera.service';
 import { ActionSheetController } from '@ionic/angular';
 import { Router } from '@angular/router';
@@ -29,6 +29,8 @@ export class HeaderComponent implements OnInit  {
     email: '',
     senha: ''
   }
+  @Input()
+  show : boolean = true
 
   showActions = async () => {
     const result = await this.actionSheet.create({
@@ -63,19 +65,23 @@ export class HeaderComponent implements OnInit  {
   verificarLogin(){
     if(this.platform.is("mobile")){
       this.storageService.getObject('logado').then(nomeUsuariov=> {
-        console.log(nomeUsuariov)
-        this.user.nomeUsuario = nomeUsuariov!
+        if(typeof(nomeUsuariov) == 'string'){
+  
+          this.user.nomeUsuario = nomeUsuariov!
 
-        this.httpService.GetFor("Usuario", this.user.nomeUsuario!).pipe(
-          timeout(5000),
-          catchError((error)=> {
-            console.log('Error')
-            return throwError(error);
-          })
-        ).subscribe((data : IUser)=>{
-          this.user = data
-          console.log(this.user)       
-        })
+          this.httpService.GetFor("Usuario", this.user.nomeUsuario!).pipe(
+            timeout(5000),
+            catchError((error)=> {
+              console.log('Error')
+              return throwError(error);
+            })
+            ).subscribe((data : IUser)=>{
+              this.user = data     
+            })
+        }
+        else{
+          console.log("Usuário não Logado")
+        }
       })
     }
     else{
@@ -88,8 +94,7 @@ export class HeaderComponent implements OnInit  {
           return throwError(error);
         })
       ).subscribe((data : IUser)=>{
-        this.user = data
-        console.log(this.user)       
+        this.user = data      
       })
     }
   }
