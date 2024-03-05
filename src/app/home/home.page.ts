@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { Roupas } from '../pseudoBanco/roupas';
 import { StorageService } from '../services/storage/storage.service';
 import { Router } from '@angular/router';
+import { HttpService } from '../services/http/http.service';
+import IRoupas from '../interfaces/IRoupas';
+import IUser from '../interfaces/IUser';
 
 
 @Component({
@@ -9,12 +12,38 @@ import { Router } from '@angular/router';
   templateUrl: 'home.page.html',
   styleUrls: ['home.page.scss'],
 })
-export class HomePage {
+export class HomePage implements OnInit{
 
-  roupas = Roupas
+  roupas : IRoupas[] = Roupas
   logado : string | null = ''
 
-  constructor() {}
+  constructor(private storage : StorageService, private httpService : HttpService) {}
+
+  ngOnInit(): void {
+    this.storage.getObject('logado').then((a)=> {
+      this.httpService.GetFor("Usuario", a!).subscribe((user : IUser) => {
+        if(user.roupas?.length != 0){
+          if(user.roupas?.filter(a => a.tipo == "head").length != 0){
+            this.roupas = this.roupas.filter(a => a.tipo != 'head')
+          }
+          if(user.roupas?.filter(a => a.tipo == "tee").length != 0){
+            this.roupas = this.roupas.filter(a => a.tipo != 'tee')
+          }
+          if(user.roupas?.filter(a => a.tipo == "pants").length != 0){
+            this.roupas = this.roupas.filter(a => a.tipo != 'pants')
+          }
+          if(user.roupas?.filter(a => a.tipo == "shoes").length != 0){
+            this.roupas = this.roupas.filter(a => a.tipo != 'shoes')
+          }
+          user.roupas?.forEach(a => {
+            a.display = 'display: flex'
+            this.roupas.push(a)
+          })
+        }
+        
+      })
+    })
+  }
 
   mudarRoupa(tipo : string){
     

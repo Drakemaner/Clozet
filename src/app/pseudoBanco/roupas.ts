@@ -15,12 +15,6 @@ export var Roupas : IRoupas[] = [
       display: 'display: flex'
     },
     {
-      nome: 'Jenner',
-      tipo: 'tee',
-      caminhoImagem: '/assets/Jenner1.jpg',
-      display: 'display: none'
-    },
-    {
       nome: 'calça soho_club',
       tipo:'pants',
       caminhoImagem:'/assets/calca.png',
