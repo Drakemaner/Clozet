@@ -45,6 +45,18 @@ main{
   margin: auto;
 }
 
+.save-btn{
+  position: absolute;
+  
+  top: 150px;
+  right: 50px;
+ 
+}
+
+.save-btn img{
+  width: 30px;
+}
+
 #container nav li a{
  
   flex-direction: column;

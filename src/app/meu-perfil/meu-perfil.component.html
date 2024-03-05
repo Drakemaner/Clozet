@@ -6,6 +6,10 @@
         <div class="status">
           <div class="block">
             <div class="foto"><img src="/assets/icon/perfil.svg" alt=""></div>
+            
+            <a [routerLink]="['/config']" class="config-btn">
+              <img src="/assets/icon/config.svg" alt="">
+            </a>
           </div>
         </div>
       </div>
@@ -13,11 +17,6 @@
         <p>eu sou o vitor e essa é minha bio</p>
       </div>
       
-      <div class="btn-login">
-        <ion-button (click)="deslogar()">deslogar</ion-button>
-        <a [routerLink]="['/cadastro']">Não tem uma conta se cadastre</a>
-      </div>
-
       <div class="looks">
         <div class="grid">
           <div class="block">look1</div>
@@ -26,6 +25,12 @@
           <div class="block">look4</div>
         </div>
      </div>
+
+     <div class="btn-login">
+      <button (click)="deslogar()">deslogar</button>
+      <a [routerLink]="['/cadastro']">Não tem uma conta se cadastre</a>
+    </div>
+
      
     </div>
   </div>
