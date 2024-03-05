@@ -3,6 +3,7 @@ import { Camera, CameraResultType, CameraPermissionType, CameraSource, Photo } f
 import { AlertController } from '@ionic/angular';
 import { HttpService } from '../http/http.service';
 import IRoupas from 'src/app/interfaces/IRoupas';
+import { StorageService } from '../storage/storage.service';
 
 @Injectable({
   providedIn: 'root'
@@ -10,7 +11,7 @@ import IRoupas from 'src/app/interfaces/IRoupas';
 export class CameraService {
 
 
-  constructor(private alertController : AlertController, private httpService : HttpService) { }
+  constructor(private storage : StorageService, private alertController : AlertController, private httpService : HttpService) { }
 
   private roupa : IRoupas = {
     nome: '',
@@ -83,6 +84,19 @@ export class CameraService {
         caminhoImagem: image.webPath,
         display: 'display: flex'
       })
+
+      this.storage.getObject('warned').then(async (a)=>{
+        if(a != 'true'){
+          const alert = await  this.alertController.create({
+            header: 'Aviso',
+            message: 'As Fotos são salvas localmente neste dispositivo',
+            buttons: ['Ok']
+          })
+          this.storage.setObject('warned', 'true')
+
+          await alert.present()
+        }
+      }).catch(error => console.log("Erro: " + error))
 
       this.roupa.usuarioId = usuarioIdParameter
       this.roupa.caminhoImagem = image.webPath!
