@@ -16,6 +16,7 @@ export class MeuPerfilComponent {
   deslogar(){
     if(this.platform.is('mobile')){
       this.storageService.removeObject('logado')
+      window.location.reload()
       this.router.navigate(['/login'])
     }
     else{

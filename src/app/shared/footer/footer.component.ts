@@ -13,8 +13,6 @@ import { StorageService } from 'src/app/services/storage/storage.service';
 })
 export class FooterComponent  {
   
-  @Input()
-  show : boolean = true
   
   constructor() {}
 

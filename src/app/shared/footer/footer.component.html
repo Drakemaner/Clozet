@@ -1,25 +1,23 @@
-@if(show) {
-  <ion-footer class="ion-footer-custom">
-    <div class="menu-navigation">
-      
-      <div class="block">
-        <li>
-          <a [routerLink]="['/home']">
-            <img src="/assets/icon/home.svg" alt="home">
-            
-          </a>
+<ion-footer class="ion-footer-custom">
+  <div class="menu-navigation">
+    
+    <div class="block">
+      <li>
+        <a [routerLink]="['/home']">
+          <img src="/assets/icon/home.svg" alt="home">
           
+        </a>
+        
+        
+        <a [routerLink]="['/clozet']" class="custom-fab-button">
+          <img src="/assets/icon/closet.svg" alt="clozet">
+        </a>
+        
+        <a [routerLink]="['/meuPerfil']">
+          <img src="/assets/icon/perfil.svg" alt="perfil">
           
-          <a [routerLink]="['/clozet']" class="custom-fab-button">
-            <img src="/assets/icon/closet.svg" alt="clozet">
-          </a>
-          
-          <a [routerLink]="['/meuPerfil']">
-            <img src="/assets/icon/perfil.svg" alt="perfil">
-            
-          </a>
-        </li>
-      </div>
+        </a>
+      </li>
     </div>
-  </ion-footer>  
-}
+  </div>
+</ion-footer>  

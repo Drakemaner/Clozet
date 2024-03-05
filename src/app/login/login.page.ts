@@ -43,6 +43,7 @@ export class LoginPage implements OnInit{
           console.log("Logado: " + a.nomeUsuario)
           if(this.platform.is('mobile')){
             this.storageService.setObject('logado', a.nomeUsuario!)
+            window.location.reload()
             this.router.navigate(['/home'])
           }
           else{

@@ -15,22 +15,27 @@ export class AppComponent implements OnInit{
   constructor(private platform : Platform, private storage : StorageService, private router : Router) {}
 
   ngOnInit(): void {
+    this.verificarLogin()
+  }
+
+
+  verificarLogin(){
     let logadoWeb = localStorage.getItem('logado')
     if(this.platform.is('mobile')){
       this.storage.getObject('logado').then((val)=>{
         if(typeof(val) == 'string'){
-          this.router.navigate(['/home'])
+          this.show = true
+          this.router.navigateByUrl('/home')
         }
         else{
-          this.show = false
-          this.router.navigate(['/login'])
+          this.show = false;
+          this.router.navigateByUrl('/login')
         }
       })
     }
     else{
       if(logadoWeb!){
         this.router.navigate(['/login'])
-        this.show = false
       }
       else{
         this.router.navigate(['/home'])

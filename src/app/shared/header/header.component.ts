@@ -29,8 +29,6 @@ export class HeaderComponent implements OnInit  {
     email: '',
     senha: ''
   }
-  @Input()
-  show : boolean = true
 
   showActions = async () => {
     const result = await this.actionSheet.create({

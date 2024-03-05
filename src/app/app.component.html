@@ -1,5 +1,9 @@
 <ion-app>
-  <app-header [show]="show"></app-header>
+  @if(show){
+    <app-header></app-header>
+  }
   <ion-router-outlet></ion-router-outlet>
-  <app-footer [show]="show"></app-footer>
+  @if(show){
+    <app-footer></app-footer>
+  }
 </ion-app>
