@@ -23,6 +23,10 @@ export class HomePage implements OnInit{
     this.storage.getObject('logado').then((a)=> {
       this.httpService.GetFor("Usuario", a!).subscribe((user : IUser) => {
         if(user.roupas?.length != 0){
+          let head = 0
+          let tee = 0
+          let pants = 0
+          let shoes = 0
           if(user.roupas?.filter(a => a.tipo == "head").length != 0){
             this.roupas = this.roupas.filter(a => a.tipo != 'head')
           }
@@ -36,7 +40,34 @@ export class HomePage implements OnInit{
             this.roupas = this.roupas.filter(a => a.tipo != 'shoes')
           }
           user.roupas?.forEach(a => {
-            a.display = 'display: flex'
+            if(a.tipo == 'head'){
+              a.display = 'display: flex'
+              if(head == 1){
+                a.display = 'display: none'
+              }
+              head = 1
+            }
+            else if(a.tipo == 'tee'){
+              a.display = 'display: flex'
+              if(tee == 1){
+                a.display = 'display: none'
+              }
+              tee = 1
+            }
+            else if(a.tipo == 'pants'){
+              a.display = 'display: flex'
+              if(pants == 1){
+                a.display = 'display: none'
+              }
+              pants = 1
+            }
+            else if(a.tipo == 'shoes'){
+              a.display = 'display: flex'
+              if(shoes == 1){
+                a.display = 'display: none'
+              }
+              shoes = 1
+            }
             this.roupas.push(a)
           })
         }
