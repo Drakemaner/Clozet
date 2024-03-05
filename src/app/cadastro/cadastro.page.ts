@@ -38,6 +38,7 @@ export class CadastroPage implements OnInit{
       ).subscribe(()=> {
         console.log("Usuário Cadastro com Sucesso")
         this.storage.setObject('logado', this.formGroup.value['nomeUsuario'])
+        window.location.reload()
         this.router.navigate(['/meuPerfil'])
       })
     }
