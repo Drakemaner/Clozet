@@ -20,6 +20,7 @@ export class LoginPage implements OnInit{
   }
 
   formGroup! : FormGroup
+  incorreto : boolean = false
 
   constructor(private formBuilder : FormBuilder, private http : HttpService, private platform : Platform, private storageService : StorageService, private router : Router) { }
 
@@ -35,12 +36,14 @@ export class LoginPage implements OnInit{
 
     if(this.formGroup.valid){
       this.http.Login(this.formGroup.value).pipe(
-        catchError((error) => {
-          return throwError(error)
+        catchError((e) => {
+          if(e.error = 'E-mail ou Senha Incorretos'){
+            this.incorreto = true
+          } 
+          return throwError(e)
         })
       ).subscribe(a =>
         {
-          console.log("Logado: " + a.nomeUsuario)
           if(this.platform.is('mobile')){
             this.storageService.setObject('logado', a.nomeUsuario!)
             window.location.reload()

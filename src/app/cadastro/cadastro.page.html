@@ -13,7 +13,7 @@
       <ion-label for="senha">Senha</ion-label>
       <ion-input id="email" type="password" formControlName="senha" placeholder="Digite Sua Senha"></ion-input>
       <div class="cadastro-link">
-        <a (click)="Cadastrar()">Cadastrar</a>
+        <ion-button (click)="Cadastrar()" [disabled]="!formGroup.valid">Cadastrar</ion-button>
       </div>
     </form> 
   </div>
