@@ -9,20 +9,20 @@
   
         <form [formGroup]="formGroup">
           <div class="conj">
-            <ion-label for="nomeCompleto">Nome Completo</ion-label>
+            <ion-label for="nomeCompleto"><span>Nome Completo</span></ion-label>
           <ion-input id="nomeCompleto" type="text" formControlName="nomeCompleto" placeholder="Digite seu Nome"></ion-input>
           </div>
           <div class="conj">
-            <ion-label for="nomeUsuario">Nome Usuario</ion-label>
+            <ion-label for="nomeUsuario"><span>Nome Usuario</span></ion-label>
             <ion-input id="nomeUsuario" type="text" formControlName="nomeUsuario" placeholder="Digite seu Nome de Usuário"></ion-input>
           </div>
           <div class="conj">
-            <ion-label for="email">E-mail</ion-label>
+            <ion-label for="email"><span>E-mail</span></ion-label>
             <ion-input id="email" type="email" formControlName="email" placeholder="email@email.com"></ion-input>
           </div>
           <div class="conj">
-            <ion-label for="senha">Senha</ion-label>
-            <ion-input id="email" type="password" formControlName="senha" placeholder="Digite Sua Senha"></ion-input>
+            <ion-label for="senha"><span>Senha</span></ion-label>
+            <ion-input id="email" type="password" formControlName="senha" placeholder="Digite Sua Senha" class="input-register"></ion-input>
           </div>
           
           <div class="btn-register">
