@@ -3,9 +3,14 @@
     <div class="content">
       @defer (when user.roupas !== undefined) {
         @for (roupa of user.roupas; track $index) {
-          <div class="roupa-card">
-            <p>{{roupa.tipo}}</p>
-            <img [src]="roupa.caminhoImagem" [alt]="roupa.nome">
+          <div class="block">
+            <div class="roupa-card">
+              <p>{{roupa.tipo}}</p>
+              <div class="block" style="display: flex;">
+                <img [src]="roupa.caminhoImagem" [alt]="roupa.nome">
+              </div>
+              
+            </div>
           </div>
         }@empty {
           <p>Nenhuma roupa salva no clozet: {{user.nomeUsuario}}</p>
