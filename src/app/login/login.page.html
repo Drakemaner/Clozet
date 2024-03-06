@@ -1,17 +1,23 @@
 <ion-content class="ion-content-custom" [fullscreen]="true">
   <div class="ion-content">
     <div class="container">
-      <form [formGroup]="formGroup">
-        <ion-label for="email">E-mail</ion-label>
-        <ion-input id="email" type="email" formControlName="email" placeholder="email@email.com"></ion-input>
-        <ion-label for="senha">Senha</ion-label>
-        <ion-input id="email" type="password" formControlName="senha" placeholder="Digite Sua Senha"></ion-input>
-        <span class="aviso" [style]="incorreto === true ? 'display: flex' : 'display: none'">E-mail ou Senha Incorretos</span>
-        <div class="btn-login">
-          <ion-button (click)="logar()" [disabled]="!formGroup.valid">Login</ion-button>
-          <a [routerLink]="['/cadastro']">Não tem uma conta se cadastre</a>
+      <div class="block">
+        <div class="logo">
+          <img src="/assets/icon/logo.svg" alt="">
         </div>
-      </form>
+        <form [formGroup]="formGroup">
+          <ion-label for="email">E-mail</ion-label>
+          <ion-input id="email" type="email" formControlName="email" placeholder="email@email.com"></ion-input>
+          <ion-label for="senha">Senha</ion-label>
+          <ion-input id="email" type="password" formControlName="senha" placeholder="Digite Sua Senha"></ion-input>
+          <span class="aviso" [style]="incorreto === true ? 'display: flex' : 'display: none'">E-mail ou Senha Incorretos</span>
+          <div class="btn-login">
+            <button (click)="logar()" [disabled]="!formGroup.valid"><span>Enter</span></button>
+            <a [routerLink]="['/cadastro']">Não tem uma conta se cadastre</a>
+          </div>
+        </form>
+      </div>
+     
     </div>
   </div>
 </ion-content>
