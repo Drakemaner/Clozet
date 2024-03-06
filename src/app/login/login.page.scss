@@ -71,8 +71,8 @@
     width: 90%;
 }
 
-ion-label{
-    padding-bottom: 20px;
+ion-label span{
+    margin-bottom: 20px;
     font-size: 20px;
     font-weight: 700;
     font-style: italic;
@@ -88,13 +88,17 @@ button{
     width: 200px;
     height: 50px;
     border-radius: 10px;
-    margin: auto;
+    
 }
 
 .btn-login{
+    display: flex;
+    justify-content: center;
+    align-items: center;
     
-    height: 100px;
-    margin-top: 30px;
+    height: auto;
+    margin-top: 50px;
+    
 }
 
 button span{
@@ -102,4 +106,14 @@ button span{
     font-size: 25px;
     font-weight: 800;
     font-style: italic;
+}
+
+.conj{
+    margin-top: 20px;
+}
+
+.register{
+    
+    margin-top: 30px;
+    text-align: center;
 }
