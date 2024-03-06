@@ -14,6 +14,10 @@
 	  <string>api.mydomain.com</string>
 	  <string>www.myothercooldomain.com</string>
 	</array>
+	<key>UIFileSharingEnabled</key>
+	<string>YES</string>
+	<key>LSSupportsOpeningDocumentsInPlace</key>
+	<string>YES</string>
 	<key>NSCameraUsageDescription</key>
 	<string>Privacy - Camera Usage Description</string>
 	<key>NSPhotoLibraryAddUsageDescription</key>

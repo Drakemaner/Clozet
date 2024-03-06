@@ -4,6 +4,9 @@ import { AlertController } from '@ionic/angular';
 import { HttpService } from '../http/http.service';
 import IRoupas from 'src/app/interfaces/IRoupas';
 import { StorageService } from '../storage/storage.service';
+import { RemoveBGService } from '../remove-bg/remove-bg.service';
+import { FileSystemService } from '../fileSystem/file-system.service';
+import { GetUriResult } from '@capacitor/filesystem';
 
 @Injectable({
   providedIn: 'root'
@@ -11,7 +14,7 @@ import { StorageService } from '../storage/storage.service';
 export class CameraService {
 
 
-  constructor(private storage : StorageService, private alertController : AlertController, private httpService : HttpService) { }
+  constructor(private httpService : HttpService, private fileSystem : FileSystemService , private removeBg : RemoveBGService, private storage : StorageService, private alertController : AlertController) { }
 
   private roupa : IRoupas = {
     nome: '',
@@ -39,7 +42,7 @@ export class CameraService {
     })
   }
 
-  takePicture = async (fotos : Fotos[], tipo : string, usuarioIdParameter : number) => {
+  takePicture = async (fotos : IRoupas[], tipo : string, usuarioIdParameter : number) => {
     let largura
     let altura;
 
@@ -67,23 +70,18 @@ export class CameraService {
       allowEditing: false,
       width: largura,
       height: altura,
-      resultType: CameraResultType.Uri,
+      resultType: CameraResultType.DataUrl,
       promptLabelPicture: 'Tirar Foto',
       promptLabelPhoto: 'Escolher Foto da Galeria'
     }).then((image : Photo)=> {
-
       fotos.forEach(a=> {
         if(a.tipo == tipo && a.display == 'display: flex'){
           a.display = 'display: none'
         }
       })
 
-      fotos.push({
-        nome: 'foto',
-        tipo: tipo,
-        caminhoImagem: image.webPath,
-        display: 'display: flex'
-      })
+      let base64String = image.dataUrl?.slice(23)
+      let nomeFoto = base64String?.slice(0,5).replace(/\//g, '')
 
       this.storage.getObject('warned').then(async (a)=>{
         if(a != 'true'){
@@ -97,11 +95,54 @@ export class CameraService {
           await alert.present()
         }
       }).catch(error => console.log("Erro: " + error))
+    if(tipo == 'head'){
+      this.removeBg.removeBackground(base64String!, 'person', nomeFoto!).finally(()=>
+        {
+          this.fileSystem.redPath(`${nomeFoto}.png`).then((a : GetUriResult)=> {
 
-      this.roupa.usuarioId = usuarioIdParameter
-      this.roupa.caminhoImagem = image.webPath!
-      this.roupa.tipo = tipo
+            let substring = a.uri.slice(7)
+            let webPath = `capacitor://localhost/_capacitor_file_${substring}`
+            fotos.push({
+              nome: 'foto',
+              tipo: tipo,
+              caminhoImagem: webPath,
+              display: 'display: flex',
+              deleteable: false
+            })
+            this.roupa.usuarioId = usuarioIdParameter
+            this.roupa.caminhoImagem = webPath
+            this.roupa.tipo = tipo
 
+            this.httpService.Post(this.roupa, "Roupa").subscribe(()=>{
+              console.log("Foto Cadastrada com Sucesso")
+            })
+          })
+        })
+      }
+    else{
+      this.removeBg.removeBackground(base64String!, 'product',nomeFoto!).finally(()=> {
+        this.fileSystem.redPath(`${nomeFoto}.png`).then((a : GetUriResult)=> {
+        
+          let substring = a.uri.slice(7)
+          let webPath = `capacitor://localhost/_capacitor_file_${substring}`
+      
+          fotos.push({
+            nome: 'foto',
+            tipo: tipo,
+            caminhoImagem: webPath,
+            display: 'display: flex',
+            deleteable: false
+          })
+          this.roupa.usuarioId = usuarioIdParameter
+          this.roupa.caminhoImagem = webPath
+          this.roupa.tipo = tipo
+        
+          this.httpService.Post(this.roupa, "Roupa").subscribe(()=>{
+            console.log("Foto Cadastrada com Sucesso")
+           })
+        })
+      })
+    }
     }).catch(async (error) => {
        if(error.errorMessage.includes('denied access to photos')){
         const alert = await this.alertController.create({
@@ -121,24 +162,7 @@ export class CameraService {
         
         await alert.present()
        }
-    }).finally(()=> {
-      this.httpService.Post(this.roupa, "Roupa").subscribe(()=>{
-        console.log("Foto Cadastrada com Sucesso")
-      })
     })
 
-
-    
-
-    
-
   }
-}
-
-export interface Fotos {
-  nome?: string,
-  tipo?: string,
-  caminhoImagem?: string,
-  base64?: string,
-  display?: string
 }

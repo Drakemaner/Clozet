@@ -4,5 +4,6 @@ export default interface IRoupas {
     tipo : string,
     caminhoImagem : string,
     display? : string,
-    usuarioId? : number
+    usuarioId? : number,
+    deleteable? : boolean,
 }
