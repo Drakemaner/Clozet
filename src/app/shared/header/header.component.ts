@@ -4,7 +4,7 @@ import { ActionSheetController } from '@ionic/angular';
 import { Router } from '@angular/router';
 import { StorageService } from 'src/app/services/storage/storage.service';
 import { Platform } from '@ionic/angular';
-import { Roupas } from 'src/app/pseudoBanco/roupas';
+import { Roupas } from 'src/app/Roupas/roupas';
 import { HttpService } from 'src/app/services/http/http.service';
 import IUser from 'src/app/interfaces/IUser';
 import { catchError, throwError, timeout } from 'rxjs';

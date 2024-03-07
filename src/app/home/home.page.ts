@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Roupas } from '../pseudoBanco/roupas';
+import { Roupas } from '../Roupas/roupas';
 import { StorageService } from '../services/storage/storage.service';
 import { Router } from '@angular/router';
 import { HttpService } from '../services/http/http.service';

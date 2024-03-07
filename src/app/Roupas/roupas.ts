@@ -3,6 +3,13 @@ import IRoupas from "../interfaces/IRoupas"
 
 export var Roupas : IRoupas[] = [
     {
+      nome: 'boné avatar',
+      tipo:'boné',
+      caminhoImagem:'',
+      display: 'display: flex',
+      deleteable: false
+    },
+    {
       nome: 'cabeça avatar',
       tipo:'head',
       caminhoImagem:'/assets/head.png',
