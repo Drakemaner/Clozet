@@ -8,9 +8,9 @@
 .container {
     height: 85%;
     margin-top: 150px;
-    width: 90%;
+    width: 92%;
     padding: 20px;
-    border: 1px solid black;
+    border: 1px solid #B6B6B6;
     border-radius: 20px;
     background-color: #FFFFFF;
 }
@@ -36,6 +36,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    
 }
 
 .bio{
@@ -111,7 +112,7 @@
     justify-content: center;
     align-items: center;
     border-radius: 15px;
-    border: 1px solid black;
+    border: 1px solid #B6B6B6;
     width: 200px;
     height: 200px;
     
@@ -120,21 +121,19 @@
 .config-btn{
     position: absolute;
     top: 150px;
-    right: 50px;
+    right: 30px;
 }
 
 .grid{
-    
-    background-color: #F7F7F7;
     border-radius: 20px;
     width: 100%;
     height: 380px;
     display: flex;
     justify-content: center;
     align-items: center;
-    overflow: auto;
-    padding-top: 20px;
-    padding-bottom: 20px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    padding: 20px;
 }
 
 .grid .conj{
@@ -144,10 +143,11 @@
     grid-template-rows: auto auto; 
     gap: 20px;
     height: 95%;
+    
 }
 
 .grid .container{
-    width: 130px;
+    width: 140px;
     height: 200px;
     margin: 0;
 }
