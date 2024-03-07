@@ -1,10 +1,17 @@
 <ion-content [fullscreen]="true" class="ion-content-custom">
   <div class="ion-content">
     <div class="container">
-      <div class="btn-login">
-        <button (click)="deslogar()">deslogar</button>
-        <a [routerLink]="['/cadastro']">Não tem uma conta se cadastre</a>
+      <div class="block">
+        <div class="tl">
+          <img src="/assets/icon/perfil.svg" alt="">
+        </div>
+
+        <div class="btn-deslogar">
+          <button (click)="deslogar()"><span>Sair da conta</span></button>
+         
+        </div>
       </div>
+      
     </div>
   </div>
 </ion-content>

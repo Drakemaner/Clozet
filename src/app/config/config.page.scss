@@ -1,3 +1,10 @@
+*{
+    font-family: 'Lato';
+    font-style: normal;
+    font-weight: 400; /* Adapte conforme necessário (300, 700, etc.) */
+    src: url('/src/assets/Lato/Lato-BlackItalic.ttf') format('truetype'); /* Ajuste o caminho conforme necessário */
+}
+
 .ion-content-custom{
     --ion-background-color: #F7F7F7;
 }
@@ -18,4 +25,36 @@
     border: 1px solid black;
     border-radius: 20px;
     background-color: #FFFFFF;
+}
+
+
+.btn-deslogar{
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.btn-deslogar button{
+    padding: 20px;
+    width: 150px;
+   background-color: #FFFFFF;
+}
+
+.btn-deslogar span{
+    color: #161A29;
+    font-style: italic;
+    font-weight: 600;
+    font-size: 15px;
+    text-decoration: underline;
+}
+
+.block .tl{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.tl img{
+    width: 100px;
 }

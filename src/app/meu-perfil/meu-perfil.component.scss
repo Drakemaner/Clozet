@@ -32,7 +32,6 @@
 
 .pf{
     width: 100%;
-    
     height: 20%;
     display: flex;
     justify-content: center;
@@ -40,25 +39,25 @@
 }
 
 .bio{
-    margin-top: 40px;
+    margin-top: 20px;
     height: 50px;
-    color: #161A29;
     width: 100%;
 }
 
 .bio p{
     font-family: 'Lato';
     font-style: normal;
-    font-weight: 500; /* Adapte conforme necessário (300, 700, etc.) */
+    font-weight: 600; /* Adapte conforme necessário (300, 700, etc.) */
     src: url('/assets/Lato/Lato-BlackItalic.ttf') format('truetype');
     text-align: center;
     color: #161A29;
 }
 
 .foto{
-    margin-top: 30px;
-    width: 150px;
+    
+    width: 130px;
     height: auto;
+    
 }
 
 .foto img{
@@ -67,7 +66,7 @@
 }
 .status{
    
-    width: 70%;
+
     display: flex;
     justify-content: baseline;
     align-items: center;
@@ -79,7 +78,6 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 90%;
     height: 100%;
 }
 
@@ -123,5 +121,34 @@
     position: absolute;
     top: 150px;
     right: 50px;
+}
+
+.grid{
+    
+    background-color: #F7F7F7;
+    border-radius: 20px;
+    width: 100%;
+    height: 380px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: auto;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+.grid .conj{
+    height: 400px;
+    display: grid;
+    grid-template-columns: 1fr 1fr; 
+    grid-template-rows: auto auto; 
+    gap: 20px;
+    height: 95%;
+}
+
+.grid .container{
+    width: 130px;
+    height: 200px;
+    margin: 0;
 }
 
