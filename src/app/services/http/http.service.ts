@@ -40,12 +40,12 @@ export class HttpService {
     return this.http.put<IUser>(`${this.apiURL}/${type}/${nome}`, {})
   }
 
-  Delete(type : string, nome : string, user? : IUser) : void {
+  Delete(type : string, nome : string, id? : number) : Observable<IUser | IRoupas> {
     if(type == "Usuario"){
-      this.http.delete<IUser>(`${this.apiURL}/${type}/${nome}`)
+      return this.http.delete<IUser>(`${this.apiURL}/${type}/${nome}`)
     }
     else{
-      this.http.delete<IRoupas>(`${this.apiURL}/${type}/${user?.nomeUsuario}/${nome}`)
+      return this.http.delete<IRoupas>(`${this.apiURL}/${type}/${nome}/${id}`)
     }
   }
 }

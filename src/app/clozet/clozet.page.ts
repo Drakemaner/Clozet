@@ -4,6 +4,7 @@ import IUser from '../interfaces/IUser';
 import { Platform } from '@ionic/angular';
 import { StorageService } from '../services/storage/storage.service';
 import { catchError, throwError, timeout } from 'rxjs';
+import { LoadingService } from '../loading.service';
 
 @Component({
   selector: 'app-clozet',
@@ -17,7 +18,7 @@ export class ClozetPage implements OnInit {
     senha: ''
   }
 
-  constructor(private http : HttpService, private storageService : StorageService) { }
+  constructor(private loadingService : LoadingService, private http : HttpService, private storageService : StorageService) { }
 
   ngOnInit() {
 
@@ -25,6 +26,13 @@ export class ClozetPage implements OnInit {
 
 
     console.log(this.user)
+  }
+
+  deletarRoupa(roupaID : number){
+    this.loadingService.showLoadingIndicator('Deletando Roupa Selecionada')
+    this.http.Delete("Roupa", this.user.nomeUsuario!, roupaID).subscribe(()=> {
+      this.loadingService.dismissLoadingIndicator()
+    })
   }
 
   GetInfoUser(){

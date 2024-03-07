@@ -9,6 +9,7 @@
           @for (roupa of user.roupas; track $index) {
             <div class="block">
               <div class="roupa-card">
+                <a (click)="deletarRoupa(roupa.id!)">Deletar</a>
                 <p>{{roupa.tipo}}</p>
                 <div class="block" style="display: flex;">
                   <img [src]="roupa.caminhoImagem" [alt]="roupa.nome">
