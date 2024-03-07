@@ -39,7 +39,20 @@ export class ClozetPage implements OnInit {
     })
   }
 
-  
+  refreshPage(event : any){
+    this.http.GetFor("Usuario", this.user.nomeUsuario!).pipe(
+      timeout(5000),
+      catchError((error)=> {
+        return throwError(error)
+      })
+    ).subscribe((data : IUser)=>{
+       this.user = data
+
+       setInterval(()=> {
+        event.target.complete()
+       },1500)
+    })
+  }
 
    GetInfoUser(){
     this.storageService.getObject('logado').then(a => {

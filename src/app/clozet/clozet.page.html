@@ -1,5 +1,8 @@
 <ion-content class="ion-content-custom">
   <div class="container">
+    <ion-refresher slot="fixed" [pullMin]="100" [pullMax]="200" (ionRefresh)="refreshPage($event)">
+      <ion-refresher-content></ion-refresher-content>
+    </ion-refresher>
     <div class="content">
       <div class="tl">
         <div class="sub-tl">
