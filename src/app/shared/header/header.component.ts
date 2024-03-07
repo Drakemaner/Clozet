@@ -98,9 +98,7 @@ export class HeaderComponent implements OnInit  {
   }
 
   tirarFoto(tipo : string){
-
     this.tipoRoupa = tipo
-     
     this.cameraService.takePicture(this.roupas, this.tipoRoupa, this.user.id!)
   }
   

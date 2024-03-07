@@ -11,18 +11,8 @@ import { Router } from '@angular/router';
 })
 export class MeuPerfilComponent {
 
-  constructor(private router : Router ,private http : HttpService, private platform : Platform, private storageService : StorageService) { }
+  constructor() { }
 
-  deslogar(){
-    if(this.platform.is('mobile')){
-      this.storageService.removeObject('logado')
-      window.location.reload()
-      this.router.navigate(['/login'])
-    }
-    else{
-      localStorage.removeItem('logado')
-      this.router.navigate(['/login'])
-    }
-  }
+  
 
 }

@@ -44,15 +44,9 @@ export class LoginPage implements OnInit{
         })
       ).subscribe(a =>
         {
-          if(this.platform.is('mobile')){
-            this.storageService.setObject('logado', a.nomeUsuario!)
-            window.location.reload()
-            this.router.navigate(['/home'])
-          }
-          else{
-            localStorage.setItem('logado',a.nomeUsuario!)
-            this.router.navigate(['/home'])
-          }
+          this.storageService.setObject('logado', a.nomeUsuario!)
+          window.location.reload()
+          this.router.navigate(['/home'])
         })
     }
   }
