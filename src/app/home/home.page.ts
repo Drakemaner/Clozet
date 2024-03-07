@@ -5,6 +5,8 @@ import { Router } from '@angular/router';
 import { HttpService } from '../services/http/http.service';
 import IRoupas from '../interfaces/IRoupas';
 import IUser from '../interfaces/IUser';
+import { LoadingService } from '../loading.service';
+
 
 
 @Component({
@@ -17,14 +19,19 @@ export class HomePage implements OnInit{
   roupas : IRoupas[] = Roupas
   logado : string | null = ''
 
-  constructor(private storage : StorageService, private httpService : HttpService) {}
+  constructor(private storage : StorageService, private httpService : HttpService, private loadingService : LoadingService) {}
  
-  ngOnInit(): void {
-    this.storage.getObject('logado').then((a)=> {
-      this.httpService.GetFor("Usuario", a!).subscribe((user : IUser) => {
+  ngOnInit(): void { 
+    this.storage.getObject('logado').then(async (a)=> {
+      this.loadingService.showLoadingIndicator('Pegando Roupas do Banco')
+      this.httpService.GetFor("Usuario", a!).subscribe(async (user : IUser) => {
         if(user.roupas?.length != 0){
           this.verifyStaticClothes(user)
           this.organizeClothes(user)
+          this.loadingService.dismissLoadingIndicator()
+        }
+        else{
+          this.loadingService.dismissLoadingIndicator()
         }
       })
     })
