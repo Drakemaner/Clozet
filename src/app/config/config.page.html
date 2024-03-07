@@ -1,7 +1,10 @@
 <ion-content [fullscreen]="true" class="ion-content-custom">
   <div class="ion-content">
     <div class="container">
-      
+      <div class="btn-login">
+        <button (click)="deslogar()">deslogar</button>
+        <a [routerLink]="['/cadastro']">Não tem uma conta se cadastre</a>
+      </div>
     </div>
   </div>
 </ion-content>
