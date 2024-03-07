@@ -4,7 +4,7 @@ import IUser from '../interfaces/IUser';
 import { Platform } from '@ionic/angular';
 import { StorageService } from '../services/storage/storage.service';
 import { catchError, throwError, timeout } from 'rxjs';
-import { LoadingService } from '../loading.service';
+import { LoadingService } from '../services/loading/loading.service';
 import { FileSystemService } from '../services/fileSystem/file-system.service';
 
 @Component({

@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import axios from 'axios';
 import { FileSystemService } from '../fileSystem/file-system.service';
 import { WriteFileResult } from '@capacitor/filesystem';
-import { LoadingService } from 'src/app/loading.service';
+import { LoadingService } from 'src/app/services/loading/loading.service';
 
 
 

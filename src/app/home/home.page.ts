@@ -5,7 +5,7 @@ import { Router } from '@angular/router';
 import { HttpService } from '../services/http/http.service';
 import IRoupas from '../interfaces/IRoupas';
 import IUser from '../interfaces/IUser';
-import { LoadingService } from '../loading.service';
+import { LoadingService } from '../services/loading/loading.service';
 
 
 
