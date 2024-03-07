@@ -11,7 +11,7 @@ import { Router } from '@angular/router';
 })
 export class MeuPerfilComponent {
 
-  constructor(private router : Router ,private http : HttpService, private platform : Platform, private storageService : StorageService) { }
+  constructor() { }
 
   
 

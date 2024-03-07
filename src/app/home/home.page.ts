@@ -23,77 +23,95 @@ export class HomePage implements OnInit{
     this.storage.getObject('logado').then((a)=> {
       this.httpService.GetFor("Usuario", a!).subscribe((user : IUser) => {
         if(user.roupas?.length != 0){
-          let head = 0
-          let tee = 0
-          let pants = 0
-          let shoes = 0
-          if(user.roupas?.filter(a => a.tipo == "head").length != 0){
-            this.roupas.forEach(a=> {
-              if(a.tipo == 'head'){
-                a.deleteable = true
-                a.display = 'display: none'
-              }
-            })
-          }
-          if(user.roupas?.filter(a => a.tipo == "tee").length != 0){
-            this.roupas.forEach(a=> {
-              if(a.tipo == 'tee'){
-                a.deleteable = true
-                a.display = 'display: none'
-              }
-            })
-          }
-          if(user.roupas?.filter(a => a.tipo == "pants").length != 0){
-            this.roupas.forEach(a=> {
-              if(a.tipo == 'pants'){
-                a.deleteable = true
-                a.display = 'display: none'
-              }
-            })
-          }
-          if(user.roupas?.filter(a => a.tipo == "shoes").length != 0){
-            this.roupas.forEach(a=> {
-              if(a.tipo == 'shoes'){
-                a.deleteable = true
-                a.display = 'display: none'
-              }
-            })
-          }
-          user.roupas?.forEach(a => {
-            if(a.tipo == 'head'){
-              a.display = 'display: flex'
-              if(head == 1){
-                a.display = 'display: none'
-              }
-              head = 1
-            }
-            else if(a.tipo == 'tee'){
-              a.display = 'display: flex'
-              if(tee == 1){
-                a.display = 'display: none'
-              }
-              tee = 1
-            }
-            else if(a.tipo == 'pants'){
-              a.display = 'display: flex'
-              if(pants == 1){
-                a.display = 'display: none'
-              }
-              pants = 1
-            }
-            else if(a.tipo == 'shoes'){
-              a.display = 'display: flex'
-              if(shoes == 1){
-                a.display = 'display: none'
-              }
-              shoes = 1
-            }
-            this.roupas.push(a)
-          })
+          this.verifyStaticClothes(user)
+          this.organizeClothes(user)
         }
       })
     })
   }
+
+  verifyStaticClothes(user :IUser){
+    if(user.roupas?.filter(a => a.tipo == "head").length != 0){
+      this.roupas.forEach(a=> {
+        if(a.tipo == 'head'){
+          a.deleteable = true
+          a.display = 'display: none'
+        }
+      })
+    }
+    if(user.roupas?.filter(a => a.tipo == "tee").length != 0){
+      this.roupas.forEach(a=> {
+        if(a.tipo == 'tee'){
+          a.deleteable = true
+          a.display = 'display: none'
+        }
+      })
+    }
+    if(user.roupas?.filter(a => a.tipo == "pants").length != 0){
+      this.roupas.forEach(a=> {
+        if(a.tipo == 'pants'){
+          a.deleteable = true
+          a.display = 'display: none'
+        }
+      })
+    }
+    if(user.roupas?.filter(a => a.tipo == "shoes").length != 0){
+      this.roupas.forEach(a=> {
+        if(a.tipo == 'shoes'){
+          a.deleteable = true
+          a.display = 'display: none'
+        }
+      })
+    }
+  }
+
+  organizeClothes(user : IUser){
+    let head = 0
+    let tee = 0
+    let pants = 0
+    let shoes = 0
+
+    user.roupas?.forEach(a => {
+      if(a.tipo == 'head'){
+        a.display = 'display: flex'
+        a.deleteable = false
+        if(head == 1){
+          a.display = 'display: none'
+          a.deleteable = false
+        }
+        head = 1
+      }
+      else if(a.tipo == 'tee'){
+        a.display = 'display: flex'
+        a.deleteable = false
+        if(tee == 1){
+          a.display = 'display: none'
+          a.deleteable = false
+        }
+        tee = 1
+      }
+      else if(a.tipo == 'pants'){
+        a.display = 'display: flex'
+        a.deleteable = false
+        if(pants == 1){
+          a.display = 'display: none'
+          a.deleteable = false
+        }
+        pants = 1
+      }
+      else if(a.tipo == 'shoes'){
+        a.display = 'display: flex'
+        a.deleteable = false
+        if(shoes == 1){
+          a.display = 'display: none'
+          a.deleteable = false
+        }
+        shoes = 1
+      }
+      this.roupas.push(a)
+    })
+  }
+
   mudarRoupa(tipo : string){
     
     if(tipo == 'tee'){

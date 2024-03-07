@@ -43,33 +43,16 @@ export class CameraService {
   }
 
   takePicture = async (fotos : IRoupas[], tipo : string, usuarioIdParameter : number) => {
-    let largura
-    let altura;
+    
+    let size = this.sizeSelect(tipo)
 
-    switch(tipo){
-      case 'head':
-        largura = 250;
-        altura = 200;
-        break;
-      case 'tee':
-        largura = 300;
-        altura = 400;
-        break;
-      case 'pants':
-        largura = 300;
-        altura = 400;
-        break;
-      default:
-        largura = 200;
-        altura = 100;
-        break;
-    }
+    console.log(`Largura: ${size.largura}; Altura: ${size.altura}`)
     
     const image = await Camera.getPhoto({
       quality: 100,
       allowEditing: false,
-      width: largura,
-      height: altura,
+      width: size.largura,
+      height: size.altura,
       resultType: CameraResultType.DataUrl,
       promptLabelPicture: 'Tirar Foto',
       promptLabelPhoto: 'Escolher Foto da Galeria'
@@ -79,22 +62,83 @@ export class CameraService {
           a.display = 'display: none'
         }
       })
-
+      console.log("Data URL: " + image.dataUrl)
       let base64String = image.dataUrl?.slice(23)
-      let nomeFoto = base64String?.slice(0,5).replace(/\//g, '')
+      let nomeFoto = base64String?.slice(0,20).replace(/\//g, '')
 
-      this.storage.getObject('warned').then(async (a)=>{
-        if(a != 'true'){
-          const alert = await  this.alertController.create({
-            header: 'Aviso',
-            message: 'As Fotos são salvas localmente neste dispositivo',
-            buttons: ['Ok']
-          })
-          this.storage.setObject('warned', 'true')
+      this.warnUser()
 
-          await alert.present()
-        }
-      }).catch(error => console.log("Erro: " + error))
+      this.removeBackground(tipo, base64String!, nomeFoto!, fotos, usuarioIdParameter)
+    
+    }).catch((error : any) => {
+       this.warnCameraPermission(error)
+    })
+  }
+
+  private sizeSelect(tipo : string){
+    let size = {
+      largura : 0,
+      altura : 0
+    }
+    switch(tipo){
+      case 'head':
+        size.largura = 250;
+        size.altura = 200;
+        break;
+      case 'tee':
+        size.largura = 300;
+        size.altura = 400;
+        break;
+      case 'pants':
+        size.largura = 300;
+        size.altura = 400;
+        break;
+      default:
+        size.largura = 200;
+        size.altura = 100;
+        break;
+    }
+
+    return size
+  }
+
+  private async warnCameraPermission(error : any){
+    if(error.errorMessage.includes('denied access to photos')){
+      const alert = await this.alertController.create({
+        header: 'Acesso a Galeria Não Permitida',
+        message: 'Para permitir acesso vá a Ajustes > Privacidade e Segurança > Fotos',
+        buttons: ['Continuar']
+      })
+      
+      await alert.present()
+     }
+     else if(error.errorMessage.includes('denied access to camera')){
+      const alert = await this.alertController.create({
+        header: 'Acesso a Câmera Não Permitida',
+        message: 'Para permitir acesso vá a Ajustes > Privacidade e Segurança > Câmera',
+        buttons: ['Continuar']
+      })
+      
+      await alert.present()
+     }
+  }
+
+  private warnUser(){
+    this.storage.getObject('warned').then(async (a)=>{
+      if(a != 'true'){
+        const alert = await  this.alertController.create({
+          header: 'Aviso',
+          message: 'As Fotos são salvas localmente neste dispositivo',
+          buttons: ['Ok']
+        })
+        this.storage.setObject('warned', 'true')
+
+        await alert.present()
+      }
+    }).catch(error => console.log("Erro: " + error))
+  }
+
+  private removeBackground(tipo : string, base64String : string, nomeFoto : string, fotos : IRoupas[], usuarioIdParameter : number){
     if(tipo == 'head'){
       this.removeBg.removeBackground(base64String!, 'person', nomeFoto!).finally(()=>
         {
@@ -143,26 +187,5 @@ export class CameraService {
         })
       })
     }
-    }).catch(async (error) => {
-       if(error.errorMessage.includes('denied access to photos')){
-        const alert = await this.alertController.create({
-          header: 'Acesso a Galeria Não Permitida',
-          message: 'Para permitir acesso vá a Ajustes > Privacidade e Segurança > Fotos',
-          buttons: ['Continuar']
-        })
-        
-        await alert.present()
-       }
-       else if(error.errorMessage.includes('denied access to camera')){
-        const alert = await this.alertController.create({
-          header: 'Acesso a Câmera Não Permitida',
-          message: 'Para permitir acesso vá a Ajustes > Privacidade e Segurança > Câmera',
-          buttons: ['Continuar']
-        })
-        
-        await alert.present()
-       }
-    })
-
   }
 }

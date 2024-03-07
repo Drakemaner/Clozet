@@ -10,20 +10,14 @@ import { Router } from '@angular/router';
 })
 export class ConfigPage {
 
-  constructor(private platform : Platform, private storageService : StorageService, private router : Router) { }
+  constructor(private storageService : StorageService, private router : Router) { }
 
  
 
   deslogar(){
-    if(this.platform.is('mobile')){
-      this.storageService.removeObject('logado')
-      window.location.reload()
-      this.router.navigate(['/login'])
-    }
-    else{
-      localStorage.removeItem('logado')
-      this.router.navigate(['/login'])
-    }
+    this.storageService.removeObject('logado')
+    window.location.reload()
+    this.router.navigate(['/login'])
   }
 
 }
