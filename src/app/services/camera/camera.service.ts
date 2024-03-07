@@ -139,37 +139,11 @@ export class CameraService {
   }
 
   private removeBackground(tipo : string, base64String : string, nomeFoto : string, fotos : IRoupas[], usuarioIdParameter : number){
-    if(tipo == 'head'){
-      this.removeBg.removeBackground(base64String!, 'person', nomeFoto!).finally(()=>
-        {
-          this.fileSystem.redPath(`${nomeFoto}.png`).then((a : GetUriResult)=> {
-
-            let substring = a.uri.slice(7)
-            let webPath = `capacitor://localhost/_capacitor_file_${substring}`
-            fotos.push({
-              nome: 'foto',
-              tipo: tipo,
-              caminhoImagem: webPath,
-              display: 'display: flex',
-              deleteable: false
-            })
-            this.roupa.usuarioId = usuarioIdParameter
-            this.roupa.caminhoImagem = webPath
-            this.roupa.tipo = tipo
-
-            this.httpService.Post(this.roupa, "Roupa").subscribe(()=>{
-              console.log("Foto Cadastrada com Sucesso")
-            })
-          })
-        })
-      }
-    else{
-      this.removeBg.removeBackground(base64String!, 'product',nomeFoto!).finally(()=> {
+    this.removeBg.removeBackground(base64String!, tipo == 'head' ? 'person' : 'product', nomeFoto!).finally(()=>
+      {
         this.fileSystem.redPath(`${nomeFoto}.png`).then((a : GetUriResult)=> {
-        
           let substring = a.uri.slice(7)
           let webPath = `capacitor://localhost/_capacitor_file_${substring}`
-      
           fotos.push({
             nome: 'foto',
             tipo: tipo,
@@ -177,15 +151,14 @@ export class CameraService {
             display: 'display: flex',
             deleteable: false
           })
+          this.roupa.nome = nomeFoto!
           this.roupa.usuarioId = usuarioIdParameter
           this.roupa.caminhoImagem = webPath
           this.roupa.tipo = tipo
-        
           this.httpService.Post(this.roupa, "Roupa").subscribe(()=>{
             console.log("Foto Cadastrada com Sucesso")
-           })
+          })
         })
       })
-    }
   }
 }

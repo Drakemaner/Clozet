@@ -5,6 +5,7 @@ import { Platform } from '@ionic/angular';
 import { StorageService } from '../services/storage/storage.service';
 import { catchError, throwError, timeout } from 'rxjs';
 import { LoadingService } from '../loading.service';
+import { FileSystemService } from '../services/fileSystem/file-system.service';
 
 @Component({
   selector: 'app-clozet',
@@ -18,24 +19,29 @@ export class ClozetPage implements OnInit {
     senha: ''
   }
 
-  constructor(private loadingService : LoadingService, private http : HttpService, private storageService : StorageService) { }
+  constructor(private fileSystemService : FileSystemService ,private loadingService : LoadingService, private http : HttpService, private storageService : StorageService) { }
 
   ngOnInit() {
-
     this.GetInfoUser()
-
-
-    console.log(this.user)
   }
 
   deletarRoupa(roupaID : number){
     this.loadingService.showLoadingIndicator('Deletando Roupa Selecionada')
-    this.http.Delete("Roupa", this.user.nomeUsuario!, roupaID).subscribe(()=> {
+    this.http.Delete("Roupa", this.user.nomeUsuario!, roupaID).pipe(
+      timeout(5000),
+      catchError((error)=> {
+        return throwError(error)
+      })
+    ).subscribe(()=> {
+      this.fileSystemService.deleteFile(this.user.roupas?.filter(a=> a.id == roupaID)[0].nome!)
+      this.user.roupas = this.user.roupas?.filter(a => a.id != roupaID)
       this.loadingService.dismissLoadingIndicator()
     })
   }
 
-  GetInfoUser(){
+  
+
+   GetInfoUser(){
     this.storageService.getObject('logado').then(a => {
       
       this.http.GetFor("Usuario", a!).pipe(

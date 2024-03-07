@@ -29,9 +29,9 @@ export class FileSystemService {
     return contents
   };
   
-   deleteFile = async () => {
+   deleteFile = async (nome : string) => {
     await Filesystem.deleteFile({
-      path: 'secrets/text.txt',
+      path: `${nome}.png`,
       directory: Directory.Documents,
     });
   };
