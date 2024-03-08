@@ -13,10 +13,8 @@ export class HttpService {
 
    private readonly apiURL = "https://clozet-api.azurewebsites.net"
 
-  Get(type : string) : Observable<IUser[]> {
-   
-    return this.http.get<IUser[]>(`${this.apiURL}/${type}`)
-  
+  Get(type : string) : Observable<any> {
+    return this.http.get<any>(`${this.apiURL}/${type}`)
   }
 
   Login(user : IUser) : Observable<IUser>{
@@ -27,25 +25,15 @@ export class HttpService {
     return this.http.get<IUser>(`${this.apiURL}/${type}/${nome}`)
   }
 
-  Post(valor : IUser | IRoupas, type : string) : Observable<IUser | IRoupas> {
-    if(type == 'Usuario'){
-      return this.http.post<IUser>(`${this.apiURL}/${type}`, valor)
-    }
-    else {
-      return this.http.post<IRoupas>(`${this.apiURL}/${type}`, valor)
-    }
+  Post(valor : any, type : string) : Observable<any> {
+    return this.http.post<any>(`${this.apiURL}/${type}`, valor)
   }
 
-  Put(type : string, nome : string) : Observable<IUser> {
-    return this.http.put<IUser>(`${this.apiURL}/${type}/${nome}`, {})
+  Put(type : string, nome : string) : Observable<any> {
+    return this.http.put<any>(`${this.apiURL}/${type}/${nome}`, {})
   }
 
-  Delete(type : string, nome : string, id? : number) : Observable<IUser | IRoupas> {
-    if(type == "Usuario"){
-      return this.http.delete<IUser>(`${this.apiURL}/${type}/${nome}`)
-    }
-    else{
-      return this.http.delete<IRoupas>(`${this.apiURL}/${type}/${nome}/${id}`)
-    }
+  Delete(type : string, nome : string, id? : number) : Observable<any> {
+    return this.http.delete<any>(`${this.apiURL}/${type}/${nome}/${id}`)
   }
 }

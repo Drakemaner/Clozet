@@ -6,6 +6,7 @@ import { HttpService } from '../services/http/http.service';
 import IRoupas from '../interfaces/IRoupas';
 import IUser from '../interfaces/IUser';
 import { LoadingService } from '../services/loading/loading.service';
+import { IOutfits } from '../interfaces/IOutfits';
 
 
 
@@ -17,7 +18,19 @@ import { LoadingService } from '../services/loading/loading.service';
 export class HomePage implements OnInit{
 
   roupas : IRoupas[] = Roupas
-  logado : string | null = ''
+  user : IUser = {
+    email: '',
+    senha: ''
+  }
+
+  outfit : IOutfits = {
+    usuarioId: this.user.id!,
+    roupas: [{
+      nome : 'string',
+      tipo : 'string',
+      caminhoImagem : 'string',
+    }]
+  }
 
   constructor(private storage : StorageService, private httpService : HttpService, private loadingService : LoadingService) {}
  
@@ -25,6 +38,7 @@ export class HomePage implements OnInit{
     this.storage.getObject('logado').then(async (a)=> {
       this.loadingService.showLoadingIndicator('Pegando Roupas do Banco')
       this.httpService.GetFor("Usuario", a!).subscribe(async (user : IUser) => {
+        this.user = user
         if(user.roupas?.length != 0){
           this.verifyStaticClothes(user)
           this.organizeClothes(user)
@@ -191,4 +205,12 @@ export class HomePage implements OnInit{
     }
   }
 
+  saveOutfit(){
+    this.loadingService.showLoadingIndicator('Salvando Outfit')
+
+    this.outfit.roupas = this.roupas.filter(a => a.display == 'display: flex')
+    this.outfit.usuarioId = this.user.id!
+
+    this.httpService.Post(this.outfit, "Outfit").subscribe(()=> this.loadingService.dismissLoadingIndicator())
+  }
 }
