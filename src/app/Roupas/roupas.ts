@@ -24,6 +24,20 @@ export var Roupas : IRoupas[] = [
       deleteable: false
     },
     {
+      nome: 'acessorios',
+      tipo: 'acessorio',
+      caminhoImagem: '',
+      display: 'display: flex',
+      deleteable: false
+    },
+    {
+      nome: 'feminino',
+      tipo: 'fem',
+      caminhoImagem: '',
+      display: 'display: flex',
+      deleteable: false
+    },
+    {
       nome: 'calça soho_club',
       tipo:'pants',
       caminhoImagem:'/assets/calca.png',
