@@ -25,10 +25,8 @@ export class HomePage implements OnInit{
 
   outfit : IOutfits = {
     usuarioId: this.user.id!,
-    roupas: [{
-      nome : 'string',
-      tipo : 'string',
-      caminhoImagem : 'string',
+    roupasRequest: [{
+      id: 0
     }]
   }
 
@@ -94,39 +92,19 @@ export class HomePage implements OnInit{
 
     user.roupas?.forEach(a => {
       if(a.tipo == 'head'){
-        a.display = 'display: flex'
-        a.deleteable = false
-        if(head == 1){
-          a.display = 'display: none'
-          a.deleteable = false
-        }
+        head == 0 ? a.display = 'display: flex' : a.display = 'display: none'
         head = 1
       }
       else if(a.tipo == 'tee'){
-        a.display = 'display: flex'
-        a.deleteable = false
-        if(tee == 1){
-          a.display = 'display: none'
-          a.deleteable = false
-        }
+        tee == 0 ? a.display = 'display: flex' : a.display = 'display: none'
         tee = 1
       }
       else if(a.tipo == 'pants'){
-        a.display = 'display: flex'
-        a.deleteable = false
-        if(pants == 1){
-          a.display = 'display: none'
-          a.deleteable = false
-        }
+        pants == 0 ? a.display = 'display: flex' : a.display = 'display: none'
         pants = 1
       }
       else if(a.tipo == 'shoes'){
-        a.display = 'display: flex'
-        a.deleteable = false
-        if(shoes == 1){
-          a.display = 'display: none'
-          a.deleteable = false
-        }
+        shoes == 0 ? a.display = 'display: flex' : a.display = 'display: none'
         shoes = 1
       }
       this.roupas.push(a)
@@ -134,72 +112,18 @@ export class HomePage implements OnInit{
   }
 
   mudarRoupa(tipo : string){
-    
-    if(tipo == 'tee'){
-      let tees = this.roupas.filter(roupa => roupa.tipo == 'tee' && !roupa.deleteable)
-      for(let i = 0; i < tees.length; i++){
-        if(tees[i].display == 'display: flex'){
-          if(i + 1 < tees.length){
-            tees[i].display = 'display: none'
-            tees[i + 1].display = 'display: flex'
-            return
-          }
-          else{
-            tees[i].display = 'display: none'
-            tees[0].display = 'display: flex'
-            return 
-          }
+    let roupasTipo = this.roupas.filter(roupa => roupa.tipo == tipo && !roupa.deleteable)
+    for(let i = 0; i < roupasTipo.length; i++){
+      if(roupasTipo[i].display == 'display: flex'){
+        if(i + 1 < roupasTipo.length){
+          roupasTipo[i].display = 'display: none'
+          roupasTipo[i + 1].display = 'display: flex'
+          return
         }
-      }
-    }
-    else if(tipo == 'pants'){
-      let pants = this.roupas.filter(roupa => roupa.tipo == 'pants' && !roupa.deleteable)
-      for(let i = 0; i < pants.length; i++){
-        if(pants[i].display == 'display: flex'){
-          if(i + 1 < pants.length){
-            pants[i].display = 'display: none'
-            pants[i + 1].display = 'display: flex'
-            return
-          }
-          else{
-            pants[i].display = 'display: none'
-            pants[0].display = 'display: flex'
-            return
-          }
-        }
-      }
-    }
-    else if(tipo == 'shoes'){
-      let shoes = this.roupas.filter(roupa => roupa.tipo == 'shoes' && !roupa.deleteable)
-      for(let i = 0; i < shoes.length; i++){
-        if(shoes[i].display == 'display: flex'){
-          if(i + 1 < shoes.length){
-            shoes[i].display = 'display: none'
-            shoes[i + 1].display = 'display: flex'
-            return
-          }
-          else{
-            shoes[i].display = 'display: none'
-            shoes[0].display = 'display: flex'
-            return
-          }
-        }
-      }
-    }
-    else{
-      let head = this.roupas.filter(roupa => roupa.tipo == 'head' && !roupa.deleteable)
-      for(let i = 0; i < head.length; i++){
-        if(head[i].display == 'display: flex'){
-          if(i + 1 < head.length){
-            head[i].display = 'display: none'
-            head[i + 1].display = 'display: flex'
-            return
-          }
-          else{
-            head[i].display = 'display: none'
-            head[0].display = 'display: flex'
-            return
-          }
+        else{
+          roupasTipo[i].display = 'display: none'
+          roupasTipo[0].display = 'display: flex'
+          return 
         }
       }
     }
@@ -207,10 +131,18 @@ export class HomePage implements OnInit{
 
   saveOutfit(){
     this.loadingService.showLoadingIndicator('Salvando Outfit')
+    let roupasId = this.roupas.forEach((a)=> {
+      if(a.display == 'display: flex'){
+        console.log(a.caminhoImagem)
+        let idRoupas = {
+          id : a.id!
+        }
+        this.outfit.roupasRequest?.push(idRoupas)
+      }
+    })
 
-    this.outfit.roupas = this.roupas.filter(a => a.display == 'display: flex')
     this.outfit.usuarioId = this.user.id!
-
-    this.httpService.Post(this.outfit, "Outfit").subscribe(()=> this.loadingService.dismissLoadingIndicator())
+    //Requisição Comentada até confirmação e realização de todos os ajustes e mudanças em relação a home page e suas funções
+    //this.httpService.Post(this.outfit, "Outfit").subscribe(()=> this.loadingService.dismissLoadingIndicator())
   }
 }

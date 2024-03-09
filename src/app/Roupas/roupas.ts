@@ -6,7 +6,7 @@ export var Roupas : IRoupas[] = [
       nome: 'boné avatar',
       tipo:'boné',
       caminhoImagem:'',
-      display: 'display: flex',
+      display: 'display: none',
       deleteable: false
     },
     {
@@ -27,14 +27,14 @@ export var Roupas : IRoupas[] = [
       nome: 'acessorios',
       tipo: 'acessorio',
       caminhoImagem: '',
-      display: 'display: flex',
+      display: 'display: none',
       deleteable: false
     },
     {
       nome: 'feminino',
       tipo: 'fem',
       caminhoImagem: '',
-      display: 'display: flex',
+      display: 'display: none',
       deleteable: false
     },
     {
