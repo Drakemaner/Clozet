@@ -36,7 +36,8 @@ export class HomePage implements OnInit{
  
   ngOnInit(): void { 
     this.storage.getObject('logado').then(async (a)=> {
-      this.loadingService.showLoadingIndicator('Pegando Roupas do Banco')
+
+      //this.loadingService.showLoadingIndicator('Pegando Roupas do Banco')
       this.httpService.GetFor("Usuario", a!).subscribe(async (user : IUser) => {
         this.user = user
         if(user.roupas?.length != 0){
