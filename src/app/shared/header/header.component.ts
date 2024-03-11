@@ -55,6 +55,10 @@ export class HeaderComponent implements OnInit  {
           handler: () => this.tirarFoto('pants')  
         },
         {
+          text: 'Short',
+          handler: () => this.tirarFoto('short')  
+        },
+        {
           text: 'Tênis',
           handler: () => this.tirarFoto('shoes')
         },
