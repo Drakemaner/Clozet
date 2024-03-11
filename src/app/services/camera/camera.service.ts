@@ -81,6 +81,10 @@ export class CameraService {
       altura : 0
     }
     switch(tipo){
+      case 'cap':
+        size.largura = 200;
+        size.altura = 150;
+        break;
       case 'head':
         size.largura = 250;
         size.altura = 200;
@@ -92,6 +96,10 @@ export class CameraService {
       case 'pants':
         size.largura = 300;
         size.altura = 400;
+        break;
+      case 'dress':
+        size.largura = 100;
+        size.altura = 100;
         break;
       default:
         size.largura = 200;

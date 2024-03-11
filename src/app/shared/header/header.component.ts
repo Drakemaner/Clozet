@@ -35,12 +35,20 @@ export class HeaderComponent implements OnInit  {
       header: 'Tipo da Roupa',
       buttons: [
         {
+          text: 'Cap',
+          handler: () => this.tirarFoto('cap')
+        },
+        {
           text: 'Head',
           handler: () => this.tirarFoto('head')
         },
         {
           text: 'Tee',
           handler: () => this.tirarFoto('tee')
+        },
+        {
+          text: 'Dress',
+          handler: () => this.tirarFoto('dress')
         },
         {
           text: 'Calça',
