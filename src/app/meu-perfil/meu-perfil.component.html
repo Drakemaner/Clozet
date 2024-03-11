@@ -15,16 +15,30 @@
       </div>
       <div class="bio">
         <p>eu sou o vitor e essa é minha bio</p>
+        @defer (when user.roupas !== undefined) {
+          @for (outfit of user.outfits; track $index) {
+            <div class="block">
+              <div class="roupa-card">
+                <p>{{outfit.nome}}</p>
+                <div class="block" style="display: flex;">
+                  @for (roupa of outfit.roupasResponse; track $index) {
+                    <img [src]="roupa.caminhoImagem" [alt]="roupa.nome">
+                  }
+                </div> 
+              </div>
+            </div>
+          }@empty {
+            <p>Nenhum Outfit salvo no clozet: {{user.nomeUsuario}}</p>
+          }
+        }
+        @placeholder {
+          <p>Pegando Informações do Banco de Dados</p>
+        }
       </div>
       
       <div class="grid">
         <div class="conj">
-          <div class="container"></div>
-          <div class="container"></div>
-          <div class="container"></div>
-          <div class="container"></div>
-          <div class="container"></div>
-          <div class="container"></div>
+          
         </div>
       </div>
      

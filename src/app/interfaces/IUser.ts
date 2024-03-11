@@ -1,3 +1,4 @@
+import { IOutfits } from "./IOutfits";
 import IRoupas from "./IRoupas";
 
 
@@ -7,5 +8,6 @@ export default interface IUser {
     nomeUsuario?: string,
     email: string,
     senha: string,
-    roupas? : IRoupas[]
+    roupas? : IRoupas[],
+    outfits? : IOutfits[]
 }
