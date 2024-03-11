@@ -4,5 +4,6 @@ export interface IOutfits {
     id? : number,
     nome? : string,
     usuarioId: number,
-    roupas : IRoupas[]
+    roupasRequest? : {id : number}[]
+    roupasResponse? : IRoupas[]
 }
