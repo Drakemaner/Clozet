@@ -3,7 +3,7 @@ import { HttpService } from '../services/http/http.service';
 import IUser from '../interfaces/IUser';
 import { Platform } from '@ionic/angular';
 import { StorageService } from '../services/storage/storage.service';
-import { catchError, throwError, timeout } from 'rxjs';
+import { catchError, filter, throwError, timeout } from 'rxjs';
 import { LoadingService } from '../services/loading/loading.service';
 import { FileSystemService } from '../services/fileSystem/file-system.service';
 
@@ -18,6 +18,8 @@ export class ClozetPage implements OnInit {
     email: '',
     senha: ''
   }
+  
+  select : any[] = []
 
   constructor(private fileSystemService : FileSystemService ,private loadingService : LoadingService, private http : HttpService, private storageService : StorageService) { }
 
@@ -28,8 +30,9 @@ export class ClozetPage implements OnInit {
   deletarRoupa(roupaID : number){
     this.loadingService.showLoadingIndicator('Deletando Roupa Selecionada')
     this.http.Delete("Roupa", this.user.nomeUsuario!, roupaID).pipe(
-      timeout(5000),
+      timeout(15000),
       catchError((error)=> {
+        this.deletarRoupa(roupaID)
         return throwError(error)
       })
     ).subscribe(()=> {
@@ -41,8 +44,9 @@ export class ClozetPage implements OnInit {
 
   refreshPage(event : any){
     this.http.GetFor("Usuario", this.user.nomeUsuario!).pipe(
-      timeout(5000),
+      timeout(15000),
       catchError((error)=> {
+        this.refreshPage(event)
         return throwError(error)
       })
     ).subscribe((data : IUser)=>{
@@ -58,12 +62,39 @@ export class ClozetPage implements OnInit {
     this.storageService.getObject('logado').then(a => {
       
       this.http.GetFor("Usuario", a!).pipe(
-        timeout(5000),
+        timeout(15000),
         catchError((error)=> {
+          this.GetInfoUser()
           return throwError(error)
         })
       ).subscribe((data : IUser)=>{
          this.user = data
+      })
+    })
+  }
+
+  SelectRoupas(event : any){
+    if(event.target.checked == true){
+      this.select.push(event.target.value)
+    }
+    else {
+      this.select =  this.select.filter(a => a!= event.target.value)
+    }
+  }
+
+  deletarRoupasSelecionadas(){
+    this.loadingService.showLoadingIndicator('Deletando Roupas Selecionadas')
+    this.select.forEach((a)=> {
+      this.http.Delete("Roupa", this.user.nomeUsuario!, a).pipe(
+        timeout(15000),
+        catchError((error)=> {
+          this.deletarRoupasSelecionadas()
+          return throwError(error)
+        })
+      ).subscribe(()=> {
+        this.fileSystemService.deleteFile(this.user.roupas?.filter(b=> b.id == a)[0].nome!)
+        this.user.roupas = this.user.roupas?.filter(b => b.id != a)
+        this.loadingService.dismissLoadingIndicator()
       })
     })
   }

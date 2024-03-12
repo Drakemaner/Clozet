@@ -97,6 +97,10 @@ export class CameraService {
         size.largura = 300;
         size.altura = 400;
         break;
+      case 'short':
+        size.largura = 300;
+        size.altura = 400;
+        break;
       case 'dress':
         size.largura = 100;
         size.altura = 100;
