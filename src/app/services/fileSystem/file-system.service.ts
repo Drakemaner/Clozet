@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Filesystem, Directory, Encoding } from '@capacitor/filesystem';
+import { Filesystem, Directory, Encoding, WriteFileResult } from '@capacitor/filesystem';
 
 @Injectable({
   providedIn: 'root'
@@ -8,7 +8,7 @@ export class FileSystemService {
 
   constructor() { }
 
-   writeFile = async (caminho : string, foto : string ) => {
+   writeFile = async (caminho : string, foto : string ) : Promise<WriteFileResult> => {
    
     const file = await Filesystem.writeFile({
        path: caminho,
@@ -16,7 +16,7 @@ export class FileSystemService {
        directory: Directory.Documents
      }).catch((err : any) => {console.log("Erro WriteFile: " + err)});
 
-     return file;
+    return file!;
   };
   
    readFile = async () => {
@@ -26,7 +26,7 @@ export class FileSystemService {
       encoding: Encoding.UTF8,
     });
   
-    return contents
+    return contents!
   };
   
    deleteFile = async (nome : string) => {

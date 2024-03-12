@@ -8,6 +8,7 @@ import { RemoveBGService } from '../remove-bg/remove-bg.service';
 import { FileSystemService } from '../fileSystem/file-system.service';
 import { GetUriResult } from '@capacitor/filesystem';
 import IUser from 'src/app/interfaces/IUser';
+import { catchError, interval, throwError, timeout } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -15,13 +16,9 @@ import IUser from 'src/app/interfaces/IUser';
 export class CameraService {
 
 
-  constructor(private httpService : HttpService, private fileSystem : FileSystemService , private removeBg : RemoveBGService, private storage : StorageService, private alertController : AlertController) { }
+  constructor(private fileSystem : FileSystemService , private removeBg : RemoveBGService, private storage : StorageService, private alertController : AlertController) { }
 
-  private roupa : IRoupas = {
-    nome: '',
-    tipo: '',
-    caminhoImagem: ''
-  }
+  
 
   checarPermissao = async () => {
     const permissoes = await Camera.checkPermissions();
@@ -49,8 +46,6 @@ export class CameraService {
   takePicture = async (fotos : IRoupas[], tipo : string, usuarioIdParameter : number) => {
     
     let size = this.sizeSelect(tipo)
-
-    console.log(`Largura: ${size.largura}; Altura: ${size.altura}`)
     
     const image = await Camera.getPhoto({
       quality: 100,
@@ -61,18 +56,14 @@ export class CameraService {
       promptLabelPicture: 'Tirar Foto',
       promptLabelPhoto: 'Escolher Foto da Galeria'
     }).then((image : Photo)=> {
-      fotos.forEach(a=> {
-        if(a.tipo == tipo && a.display == 'display: flex'){
-          a.display = 'display: none'
-        }
-      })
-      console.log("Data URL: " + image.dataUrl)
+      
+      let randomNumber: number = Math.floor(Math.random() * 1000000);
       let base64String = image.dataUrl?.slice(23)
-      let nomeFoto = base64String?.slice(0,20).replace(/\//g, '')
+      let nomeFoto = base64String?.slice(25,60).replace(/\//g, '') + randomNumber.toString()
 
       this.warnUser()
 
-      this.removeBackground(tipo, base64String!, nomeFoto!, fotos, usuarioIdParameter)
+      this.removeBg.removeBackground(base64String!, tipo == 'head' ? 'person' : 'product', nomeFoto!, fotos, usuarioIdParameter, tipo)
     
     }).catch((error : any) => {
        this.warnCameraPermission(error)
@@ -152,29 +143,5 @@ export class CameraService {
         await alert.present()
       }
     }).catch(error => console.log("Erro: " + error))
-  }
-
-  private removeBackground(tipo : string, base64String : string, nomeFoto : string, fotos : IRoupas[], usuarioIdParameter : number){
-    this.removeBg.removeBackground(base64String!, tipo == 'head' ? 'person' : 'product', nomeFoto!).finally(()=>
-      {
-        this.fileSystem.redPath(`${nomeFoto}.png`).then((a : GetUriResult)=> {
-          let substring = a.uri.slice(7)
-          let webPath = `capacitor://localhost/_capacitor_file_${substring}`
-          fotos.push({
-            nome: 'foto',
-            tipo: tipo,
-            caminhoImagem: webPath,
-            display: 'display: flex',
-            deleteable: false
-          })
-          this.roupa.nome = nomeFoto!
-          this.roupa.usuarioId = usuarioIdParameter
-          this.roupa.caminhoImagem = webPath
-          this.roupa.tipo = tipo
-          this.httpService.Post(this.roupa, "Roupa").subscribe(()=>{
-            console.log("Foto Cadastrada com Sucesso")
-          })
-        })
-      })
   }
 }

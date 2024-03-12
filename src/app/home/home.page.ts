@@ -86,12 +86,17 @@ export class HomePage implements OnInit{
   }
 
   organizeClothes(user : IUser){
+    let cap = 0
     let head = 0
     let tee = 0
     let pants = 0
     let shoes = 0
 
     user.roupas?.forEach(a => {
+      if(a.tipo == 'cap'){
+        cap == 0 ? a.display = 'display: flex' : a.display = 'display: none'
+        cap = 1
+      }
       if(a.tipo == 'head'){
         head == 0 ? a.display = 'display: flex' : a.display = 'display: none'
         head = 1
@@ -114,6 +119,7 @@ export class HomePage implements OnInit{
 
   mudarRoupa(tipo : string){
     let roupasTipo = this.roupas.filter(roupa => roupa.tipo == tipo && !roupa.deleteable)
+    console.log("Home.ts: " + roupasTipo.filter(a=> a.display == 'display: flex')[0].caminhoImagem)
     for(let i = 0; i < roupasTipo.length; i++){
       if(roupasTipo[i].display == 'display: flex'){
         if(i + 1 < roupasTipo.length){
@@ -134,7 +140,6 @@ export class HomePage implements OnInit{
     this.loadingService.showLoadingIndicator('Salvando Outfit')
     let roupasId = this.roupas.forEach((a)=> {
       if(a.display == 'display: flex'){
-        console.log(a.caminhoImagem)
         let idRoupas = {
           id : a.id!
         }
