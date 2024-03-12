@@ -15,7 +15,8 @@ export class AppComponent implements OnInit{
   constructor(private platform : Platform, private storage : StorageService, private router : Router) {}
 
   ngOnInit(): void {
-    this.verificarLogin()
+    console.log("Até o Servidor voltar")
+    //this.verificarLogin()
   }
 
 
