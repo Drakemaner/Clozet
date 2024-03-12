@@ -103,15 +103,17 @@
     align-items: center;
 }
 
-.checkbox{
-    background-color: #B6B6B6;
-    width: 30px;
-    height: 30px;
+.sub-tl img{
+    width: 90px;
 }
 
-.checkbox input::after{
+.checkbox input{
     background-color: #B6B6B6;
+    width: 40px;
+    height: 40px;
 }
+
+
 
 .tl-roupa{
     font-style: italic;

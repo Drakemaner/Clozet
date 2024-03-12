@@ -7,23 +7,33 @@
       <div class="tl">
         <div class="sub-tl">
           <img src="/assets/icon/clozet-tl.svg" alt="">
-          @if(select.length === 0){
-            <a (click)="deletarRoupasSelecionadas()"><img src="/assets/icon/remove.svg" alt=""></a>
-          } 
+          
+        
         </div>
         @defer (when user.roupas !== undefined) {
           @for (roupa of user.roupas; track $index) {
+
             <div class="block">
-              
+
               <div class="roupa-card">
-                <ion-checkbox [name]="roupa.id?.toString()!" [value]="roupa.id" (ionChange)="SelectRoupas($event)"></ion-checkbox>
-                <div class="delete">
-                  <a (click)="deletarRoupa(roupa.id!)"><img src="/assets/icon/remove.svg" alt=""></a>
-                </div>
-                <p>{{roupa.tipo}}</p>
+              
+             
+                <nav>
+                  <input type="checkbox" [name]="roupa.id?.toString()!" [value]="roupa.id" (ionChange)="SelectRoupas($event)">
+                 
+                  <p class="tl-roupa">{{roupa.tipo}}</p>
+
+                  <div class="delete">
+                    <a (click)="deletarRoupa(roupa.id!)"><img src="/assets/icon/remove.svg" alt=""></a>
+                  </div>
+
+                  
+                </nav>
+
                 <div class="block" style="display: flex;">
                   <img [src]="roupa.caminhoImagem" [alt]="roupa.nome">
                 </div>
+                
                 
               </div>
             </div>
