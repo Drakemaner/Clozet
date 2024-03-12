@@ -80,7 +80,7 @@ export class HeaderComponent implements OnInit  {
           this.user.nomeUsuario = nomeUsuariov!
 
           this.httpService.GetFor("Usuario", this.user.nomeUsuario!).pipe(
-            timeout(5000),
+            timeout(15000),
             catchError((error)=> {
               console.log('Error')
               return throwError(error);
@@ -98,7 +98,7 @@ export class HeaderComponent implements OnInit  {
       this.user.nomeUsuario = localStorage.getItem('logado')!
 
       this.httpService.GetFor("Usuario", this.user.nomeUsuario!).pipe(
-        timeout(5000),
+        timeout(15000),
         catchError((error)=> {
           console.log('Error')
           return throwError(error);

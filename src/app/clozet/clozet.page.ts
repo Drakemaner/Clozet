@@ -32,7 +32,6 @@ export class ClozetPage implements OnInit {
     this.http.Delete("Roupa", this.user.nomeUsuario!, roupaID).pipe(
       timeout(15000),
       catchError((error)=> {
-        this.deletarRoupa(roupaID)
         return throwError(error)
       })
     ).subscribe(()=> {
@@ -46,7 +45,6 @@ export class ClozetPage implements OnInit {
     this.http.GetFor("Usuario", this.user.nomeUsuario!).pipe(
       timeout(15000),
       catchError((error)=> {
-        this.refreshPage(event)
         return throwError(error)
       })
     ).subscribe((data : IUser)=>{
@@ -64,7 +62,6 @@ export class ClozetPage implements OnInit {
       this.http.GetFor("Usuario", a!).pipe(
         timeout(15000),
         catchError((error)=> {
-          this.GetInfoUser()
           return throwError(error)
         })
       ).subscribe((data : IUser)=>{
@@ -88,7 +85,6 @@ export class ClozetPage implements OnInit {
       this.http.Delete("Roupa", this.user.nomeUsuario!, a).pipe(
         timeout(15000),
         catchError((error)=> {
-          this.deletarRoupasSelecionadas()
           return throwError(error)
         })
       ).subscribe(()=> {

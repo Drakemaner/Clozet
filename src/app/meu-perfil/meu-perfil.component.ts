@@ -26,7 +26,7 @@ export class MeuPerfilComponent implements OnInit {
     this.storageService.getObject('logado').then(a => {
       
       this.http.GetFor("Usuario", a!).pipe(
-        timeout(5000),
+        timeout(15000),
         catchError((error)=> {
           return throwError(error)
         })
