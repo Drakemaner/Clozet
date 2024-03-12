@@ -90,7 +90,7 @@ nav li a img{
 
 
 .outfit{
-  height: 500px;
+  height: 570px;
   width: 400px;
   display: flex;
   justify-content: center;
@@ -104,7 +104,7 @@ nav li a img{
   flex-direction: column;
   
   height: 100%;
-  margin-top: 70px;
+  margin-top: 30px;
 }
 
 .roupas img {
@@ -130,7 +130,8 @@ nav li a img{
   justify-content: center;
   align-items: center;
   height: 65px;
-  order: 1;
+  background-color: #B6B6B6;
+  order: 2;
 }
 
 .head img{
@@ -146,7 +147,7 @@ nav li a img{
  
   height: 230px;
   width: 250px;
-  order: 2;
+  order: 3;
 }
 
 .tee img{
@@ -161,7 +162,7 @@ nav li a img{
   justify-content: center;
   align-items: center;
   height: 250px;
-  order: 3;
+  order: 4;
  
 }
 
@@ -178,7 +179,7 @@ nav li a img{
   align-items: center;
   height: 100px;
  
-  order: 4;
+  order: 5;
 }
 
 .shoes img{
@@ -195,18 +196,20 @@ nav li a img{
 }
 
 .cap{
-  background-color: red;
   display: flex;
   justify-content: center;
   align-items: center;
   height: 75px;
-  width: 120px;
-  order: 0;
+  background-color: #6b5f5f;
+  
+  order: 1;
+  
 }
 
 .cap img{
   width: 80px;
-  height: 40px;
+  height: 80px;
+  position: absolute;
   
 }
 
