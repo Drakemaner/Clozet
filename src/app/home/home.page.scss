@@ -143,14 +143,14 @@ nav li a img{
   display: flex;
   justify-content: center;
   align-items: center;
-  
+ 
   height: 230px;
   width: 250px;
   order: 1;
 }
 
 .tee img{
-  height: 180px;
+  height: 160px;
   width: 200px;
   position: absolute;
   
@@ -199,13 +199,17 @@ nav li a img{
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 65px;
+  height: 75px;
+  width: 120px;
+  position: absolute;
+  top: 220px;
+  left: 250px;
 }
 
 .cap img{
   width: 80px;
   height: 40px;
-  position: absolute;
+  
 }
 
 
