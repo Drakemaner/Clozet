@@ -130,7 +130,7 @@ nav li a img{
   justify-content: center;
   align-items: center;
   height: 65px;
-  
+  order: 1;
 }
 
 .head img{
@@ -146,7 +146,7 @@ nav li a img{
  
   height: 230px;
   width: 250px;
-  order: 1;
+  order: 2;
 }
 
 .tee img{
@@ -161,7 +161,7 @@ nav li a img{
   justify-content: center;
   align-items: center;
   height: 250px;
-  order: 2;
+  order: 3;
  
 }
 
@@ -178,7 +178,7 @@ nav li a img{
   align-items: center;
   height: 100px;
  
-  order: 3;
+  order: 4;
 }
 
 .shoes img{
@@ -201,9 +201,7 @@ nav li a img{
   align-items: center;
   height: 75px;
   width: 120px;
-  position: absolute;
-  top: 220px;
-  left: 250px;
+  order: 0;
 }
 
 .cap img{
