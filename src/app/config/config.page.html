@@ -3,7 +3,8 @@
     <div class="container">
       <div class="block">
         <div class="tl">
-          <img src="/assets/icon/perfil.svg" alt="">
+          <img [src]="user.fotoPerfil" alt="fotoPerfil">
+          <a (click)="escolherFotoPerfil()">Escolher Foto de Perfil</a>
         </div>
 
         <div class="btn-deslogar">

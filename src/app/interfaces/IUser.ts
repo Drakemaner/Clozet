@@ -8,6 +8,7 @@ export default interface IUser {
     nomeUsuario?: string,
     email: string,
     senha: string,
+    fotoPerfil? : string,
     roupas? : IRoupas[],
     outfits? : IOutfits[]
 }

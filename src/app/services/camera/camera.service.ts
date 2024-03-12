@@ -7,6 +7,7 @@ import { StorageService } from '../storage/storage.service';
 import { RemoveBGService } from '../remove-bg/remove-bg.service';
 import { FileSystemService } from '../fileSystem/file-system.service';
 import { GetUriResult } from '@capacitor/filesystem';
+import IUser from 'src/app/interfaces/IUser';
 
 @Injectable({
   providedIn: 'root'
@@ -33,13 +34,16 @@ export class CameraService {
   }
 
 
-  pegarFoto = async () => {
+  pegarFoto = async (limit : number) => {
      
     const galeria = await Camera.pickImages({
       quality: 100,
       width: 250,
-      height: 400
+      height: 400,
+      limit: limit
     })
+
+    return galeria.photos;
   }
 
   takePicture = async (fotos : IRoupas[], tipo : string, usuarioIdParameter : number) => {
