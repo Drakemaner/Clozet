@@ -5,7 +5,7 @@ export var Roupas : IRoupas[] = [
     {
       nome: 'boné avatar',
       tipo:'boné',
-      caminhoImagem:'',
+      caminhoImagem:'/assets/bone-teste.png',
       display: 'display: flex',
       deleteable: false
     },
