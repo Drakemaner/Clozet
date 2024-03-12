@@ -4,7 +4,7 @@ import IRoupas from "../interfaces/IRoupas"
 export var Roupas : IRoupas[] = [
     {
       nome: 'boné avatar',
-      tipo:'boné',
+      tipo:'cap',
       caminhoImagem:'/assets/bone-teste.png',
       display: 'display: flex',
       deleteable: false
