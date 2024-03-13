@@ -27,14 +27,14 @@ export var Roupas : IRoupas[] = [
       nome: 'oculos',
       tipo: 'glasses',
       caminhoImagem: '/assets/oculos.png',
-      display: 'display: none',
+      display: 'display: flex',
       deleteable: false,
       acessorio: true
     },
     {
       nome: 'feminino',
       tipo: 'fem',
-      caminhoImagem: '',
+      caminhoImagem: '/assets/vestido.png',
       display: 'display: none',
       deleteable: false
     },
