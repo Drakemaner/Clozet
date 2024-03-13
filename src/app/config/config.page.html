@@ -1,16 +1,31 @@
 <ion-content [fullscreen]="true" class="ion-content-custom">
   <div class="ion-content">
     <div class="container">
+
       <div class="block">
         <div class="tl">
-          <img [src]="user.fotoPerfil" alt="fotoPerfil">
+
+          <div class="pic">
+            
+            <img [src]="user.fotoPerfil">
+           
+          </div>
+          
+        </div>
+        <div class="choose">
           <a (click)="escolherFotoPerfil()">Escolher Foto de Perfil</a>
         </div>
+        
 
-        <div class="btn-deslogar">
+      </div>
+
+      <div class="config-block">
+        <div class="out">
           <button (click)="deslogar()"><span>Sair da conta</span></button>
-         
+          
         </div>
+        
+       
       </div>
       
     </div>
