@@ -24,11 +24,12 @@ export var Roupas : IRoupas[] = [
       deleteable: false
     },
     {
-      nome: 'acessorios',
-      tipo: 'acessorio',
-      caminhoImagem: '',
+      nome: 'oculos',
+      tipo: 'glasses',
+      caminhoImagem: '/assets/oculos.png',
       display: 'display: none',
-      deleteable: false
+      deleteable: false,
+      acessorio: true
     },
     {
       nome: 'feminino',
