@@ -3,7 +3,7 @@
     <div class="container">
       <div class="block">
         <div class="tl">
-          <img [src]="user.fotoPerfil" alt="fotoPerfil">
+          <img [src]="user.fotoPerfil === undefined ? '/assets/icon/config.svg' : user.fotoPerfil" alt="fotoPerfil">
           <a (click)="escolherFotoPerfil()">Escolher Foto de Perfil</a>
         </div>
 

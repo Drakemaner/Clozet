@@ -8,7 +8,7 @@
             <div class="foto"><img src="/assets/icon/perfil.svg" alt=""></div>
             
             <a [routerLink]="['/config']" class="config-btn">
-              <img src="/assets/icon/config.svg" alt="">
+              <img [src]="user.fotoPerfil === undefined ? '/assets/icon/config.svg' : user.fotoPerfil" alt="fotoPerfil">
             </a>
           </div>
         </div>
