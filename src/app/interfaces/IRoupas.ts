@@ -6,4 +6,5 @@ export default interface IRoupas {
     display? : string,
     usuarioId? : number,
     deleteable? : boolean,
+    acessorio? : boolean
 }
