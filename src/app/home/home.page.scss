@@ -91,7 +91,7 @@ nav li a img{
 
 .outfit{
   height: 570px;
-  width: 400px;
+  width: 320px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -209,21 +209,52 @@ nav li a img{
 .cap img{
   width: 90px;
   height: 70px;
-  
+  top: 165px;
   position: absolute;
   
 }
 
 .glasses{
   
-  width: 100px;
-  height: 100px;
-  position: absolute;
-  right: 30px;
-  top: 180px;
+  width: 100%;
+  height: 20%;
+
 }
 
+.glasses img{
+  position: absolute;
+  width: 100px;
+}
 
+.clock{
+  
+  height: 20%;
+}
+
+.clock img{
+  position: absolute;
+  width: 100px;
+}
+
+.bag{
+  
+  height: 60%;
+}
+
+.bag img{
+  position: absolute;
+  width: 170px;
+  right: 5px;
+}
+
+.acessorios{
+  display: flex;
+  flex-direction: column;
+ 
+  height: 100%;
+  width: 200px;
+  margin-top: 30px;
+}
 
 
 
