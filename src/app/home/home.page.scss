@@ -102,9 +102,11 @@ nav li a img{
 .roupas{
   display: flex;
   flex-direction: column;
-  
+  margin-left: 30px;
   height: 100%;
-  margin-top: 30px;
+  width: 270px;
+  margin-top: 20px;
+  
 }
 
 .roupas img {
@@ -137,7 +139,7 @@ nav li a img{
 .head img{
   width: 80px;
   height: 80px;
-  position: absolute;
+  
 }
 
 .tee{
@@ -223,17 +225,20 @@ nav li a img{
 
 .glasses img{
   position: absolute;
+  right: 50px;
   width: 100px;
 }
 
 .clock{
-  
+ 
   height: 20%;
 }
 
 .clock img{
   position: absolute;
-  width: 100px;
+  width: 80px;
+  top: 350px;
+  
 }
 
 .bag{
