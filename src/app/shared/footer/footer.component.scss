@@ -10,21 +10,21 @@
 }
 
 .block{
-    
+    background-color: #161A29;
     padding: 10px;
     border-radius: 20px;
     margin: 15px;
-    height: 100%;
-    margin-bottom: 20px;
+    height: 70px;
+    margin-bottom: 30px;
 }
   
 .block li{
-    margin-top: 10px;
-    height: 70px;
+    
+    height: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 95px; 
+    gap: 100px; 
     width: 100%;
 }
   
@@ -33,7 +33,7 @@
 }
 
 .block img{
-    width: 40px;
+    width: 25px;
 }
 
 
