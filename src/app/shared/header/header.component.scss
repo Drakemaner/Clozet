@@ -10,11 +10,11 @@
 
 nav{
   
-  height: 100px;
+  height: 50px;
   display: flex;
   justify-content: center;
   align-items: center;
-  padding-top: 70px;
+  margin-top: 50px;
 }
 
 
@@ -34,12 +34,26 @@ nav{
 }
 
 .add{
-  width: 50px;
+  width: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  
   cursor: pointer;
 }
 
+.add img{
+  width: 33px;
+}
+
 .sinal{
-  cursor: pointer;
-  width: 50px;
+  width: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  
+}
+.sinal img{
+  width: 33px;
 }
 
