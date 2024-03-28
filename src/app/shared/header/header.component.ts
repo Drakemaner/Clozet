@@ -16,7 +16,13 @@ import { catchError, throwError, timeout } from 'rxjs';
 })
 export class HeaderComponent implements OnInit  {
 
-  constructor(private httpService : HttpService, private platform : Platform, private cameraService : CameraService, private storageService : StorageService , private actionSheet : ActionSheetController, private router : Router) { }
+  @Input()
+  title : string = ''
+
+  @Input()
+  buttons : string[] = []
+
+  constructor(private httpService : HttpService, private platform : Platform, private cameraService : CameraService, private storageService : StorageService , private actionSheet : ActionSheetController) { }
   
   
   ngOnInit(): void {

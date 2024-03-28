@@ -10,8 +10,6 @@ import { Platform } from '@ionic/angular';
 })
 export class AppComponent implements OnInit{
 
-  show : boolean = true
-
   constructor(private platform : Platform, private storage : StorageService, private router : Router) {}
 
   ngOnInit(): void {
@@ -25,11 +23,9 @@ export class AppComponent implements OnInit{
     if(this.platform.is('mobile')){
       this.storage.getObject('logado').then((val)=>{
         if(typeof(val) == 'string'){
-          this.show = true
           this.router.navigateByUrl('/home')
         }
         else{
-          this.show = false;
           this.router.navigateByUrl('/login')
         }
       })
