@@ -1,13 +1,13 @@
 <ion-header class="ion-no-border">
   <nav>
-    <div class="add" (click)="showActions()">
-      <img src="/assets/icon/add-clothe.svg" alt="">
+    <div class="add" (click)="title === 'Clozet' ? showActions() : ''">
+      <img [src]="buttons[0]" alt="">
     </div>
     <div class="logo-container">
-      <h1>Clozet</h1>
+      <h1>{{title}}</h1>
     </div>
     <div class="sinal">
-      <img src="/assets/icon/new.svg" alt="">
+      <img [src]="buttons[1]" alt="">
     </div>
   </nav>
 </ion-header>
