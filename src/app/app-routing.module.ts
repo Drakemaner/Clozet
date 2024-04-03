@@ -34,7 +34,12 @@ const routes: Routes = [
   {
     path: 'config',
     loadChildren: () => import('./config/config.module').then( m => m.ConfigPageModule)
+  },
+  {
+    path: 'roupas',
+    loadChildren: () => import('./adicionar-roupa/adicionar-roupa.module').then( m => m.AdicionarRoupaPageModule)
   }
+
 ];
 
 @NgModule({
