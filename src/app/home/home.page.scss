@@ -13,37 +13,8 @@ main{
   height: 100vh;
 }
 
-#container {
 
-  
-  border-radius: 20px;
-  margin: 35px 15px 0 15px;
-  
-  height: 85%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
 
-#container nav{
-  
-  position: absolute;
-  left: 20px;
-  top: 130px;
-  height: 300px;
-  width: 100px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-#container nav li{
-  
-  display: inline-block;
-  
-  height: 90%;
-  margin: auto;
-}
 
 .save-btn{
   position: absolute;
@@ -82,19 +53,22 @@ nav li a img{
 }
 
 .ion-content{
-  margin-top: 130px;
-
-  height: 85%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+ 
+  height: 100%;
 }
 
 
 
 .outfit{
-  height: 570px;
+  height: 600px;
   width: 320px;
   display: flex;
   justify-content: center;
   align-items: center;
+  
   
 }
 
@@ -105,7 +79,7 @@ nav li a img{
   margin-left: 30px;
   height: 100%;
   width: 270px;
-  margin-top: 20px;
+  
   
 }
 
@@ -211,7 +185,7 @@ nav li a img{
 .cap img{
   width: 90px;
   height: 70px;
-  top: 165px;
+  top: 125px;
   position: absolute;
   
 }
@@ -262,6 +236,25 @@ nav li a img{
 }
 
 
+.modal{
+  background-color: red;
+  height: auto;
+  
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.btn-modal{
+  --ion-background-color: red;
+  width: 100%;
+  height: 70px;
+  
+}
 
 
+
+ion-button{
+  --ion-background-color: red!important;
+}
 
