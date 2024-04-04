@@ -22,6 +22,9 @@ export class HeaderComponent implements OnInit  {
   @Input()
   buttons : string[] = []
 
+  @Input()
+  page? : string = ''
+
   constructor(private httpService : HttpService, private platform : Platform, private cameraService : CameraService, private storageService : StorageService , private actionSheet : ActionSheetController) { }
   
   
@@ -34,6 +37,16 @@ export class HeaderComponent implements OnInit  {
   user : IUser = {
     email: '',
     senha: ''
+  }
+
+
+  verifyButtons() : string{
+    if(this.page == 'perfil'){
+      return '/config'
+    }
+    else {
+      return ""
+    }
   }
 
   showActions = async () => {
