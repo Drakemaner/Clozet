@@ -51,6 +51,10 @@ export class HomePage implements OnInit{
     })
   }
 
+  translate(value : string){
+    return value.charAt(0).toUpperCase() + value.slice(1)
+  }
+
   verifyStaticClothes(user :IUser){
     if(user.roupas?.filter(a => a.tipo == "head").length != 0){
       this.roupas.forEach(a=> {

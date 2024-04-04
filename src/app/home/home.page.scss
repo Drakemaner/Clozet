@@ -253,6 +253,52 @@ nav li a img{
 }
 
 
+.block {
+  margin: 2.5rem 1rem;
+  background-color: #1A2131;
+  border-radius: 20px;
+}
+
+.modal-list {
+  display: flex;
+  flex-direction: column;
+  color: white;
+  padding: 1rem;
+  list-style: none;
+  gap: 10px;
+  overflow: auto;
+}
+
+.modal-item {
+  font-size: 12px;
+  position: relative;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.type {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #171D2A;
+  height: 23px;
+  width: 67px;
+  border-radius: 5px;
+  color: #D0D0D0;
+}
+
+.modal-item button {
+  width: 30px;
+  background-color: transparent;
+}
+
+.roupa{
+  position: absolute;
+  left: 90px;
+  color: #D0D0D0;
+}
 
 ion-button{
   --ion-background-color: red!important;
