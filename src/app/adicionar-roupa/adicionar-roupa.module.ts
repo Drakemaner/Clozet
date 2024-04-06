@@ -7,13 +7,15 @@ import { IonicModule } from '@ionic/angular';
 import { AdicionarRoupaPageRoutingModule } from './adicionar-roupa-routing.module';
 
 import { AdicionarRoupaPage } from './adicionar-roupa.page';
+import { SharedModule } from '../shared/shared.module';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    AdicionarRoupaPageRoutingModule
+    AdicionarRoupaPageRoutingModule,
+    SharedModule
   ],
   declarations: [AdicionarRoupaPage]
 })
