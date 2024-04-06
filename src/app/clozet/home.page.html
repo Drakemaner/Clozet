@@ -1,5 +1,4 @@
 
-
 <app-header title="outfit" [buttons]="['assets/icon/add-clothe.svg','Sexo2']"></app-header>
 <ion-content class="ion-content-custom" [fullscreen]="true">
   <div class="ion-content">
@@ -46,11 +45,11 @@
 <div class="modal">
   <ion-button class="btn-modal" id="open-modal" expand="block"><img src="/assets/icon/seta-cima.svg" alt=""></ion-button>
 
-  <ion-modal trigger="open-modal" [initialBreakpoint]="0.60" [breakpoints]="[0, 0.60]">
+  <ion-modal trigger="open-modal" [initialBreakpoint]="0.75" [breakpoints]="[0, 0.75]">
     <ng-template >
       <div class="block">Block of Content</div>
 
-      <app-footer style="margin-bottom: 400px;"></app-footer>
+      <app-footer></app-footer>
     </ng-template>
   </ion-modal>
 </div>
