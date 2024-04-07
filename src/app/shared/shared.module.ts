@@ -4,13 +4,15 @@ import {HeaderComponent} from "./header/header.component";
 import {IonicModule} from "@ionic/angular";
 import {FooterComponent} from "./footer/footer.component";
 import { RouterModule } from '@angular/router';
+import { PopUpComponent } from './pop-up/pop-up.component';
 
 
 
 @NgModule({
   declarations: [
     HeaderComponent,
-    FooterComponent
+    FooterComponent,
+    PopUpComponent
   ],
   imports: [
     CommonModule,
@@ -19,7 +21,8 @@ import { RouterModule } from '@angular/router';
   ],
   exports: [
     HeaderComponent,
-    FooterComponent
+    FooterComponent,
+    PopUpComponent
   ]
 })
 export class SharedModule { }

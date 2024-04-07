@@ -1,6 +1,9 @@
 
 
 <app-header title="outfit" [buttons]="['assets/icon/add-clothe.svg','assets/icon/new.svg']"></app-header>
+@if (PopUp.show === true) {
+  <app-pop-up [roupas]="roupas" [popUp]="PopUp" (Show)="receivePopUp($event)"></app-pop-up>
+}
 <ion-content class="ion-content-custom" [fullscreen]="true">
   <div class="ion-content">
     <div id="container">
@@ -12,7 +15,7 @@
             @if (roupa.display === 'display: flex' && roupa.acessorio !== true) {
               <div [class]="roupa.tipo" [style]="roupa.display">
                 <div class="ion-item-custom">
-                  <img (click)="mudarRoupa(roupa.tipo)" src="{{roupa.caminhoImagem}}" alt="roupa">
+                  <img src="{{roupa.caminhoImagem}}" alt="roupa">
                 </div>
               </div>
             }
@@ -26,7 +29,7 @@
             @if (roupa.display === 'display: flex' && roupa.acessorio === true) {
               <div [class]="roupa.tipo" [style]="roupa.display">
                 <div class="ion-item-custom">
-                  <img (click)="mudarRoupa(roupa.tipo)" src="{{roupa.caminhoImagem}}" alt="roupa">
+                  <img src="{{roupa.caminhoImagem}}" alt="roupa">
                 </div>
               </div>
             }
@@ -46,7 +49,7 @@
 <div class="modal">
   <ion-button class="btn-modal" id="open-modal" expand="block"><img src="/assets/icon/seta-cima.svg" alt=""></ion-button>
 
-  <ion-modal trigger="open-modal" [initialBreakpoint]="0.75" [breakpoints]="[0, 0.75]">
+  <ion-modal #modal trigger="open-modal" [initialBreakpoint]="0.75" [breakpoints]="[0, 0.75]" [isOpen]="!PopUp.show && PopUp.openModal">
     <ng-template >
       <div class="block">
         <ul class="modal-list">
@@ -54,12 +57,11 @@
             <li class="modal-item">
               <p class="type" [style]="roupa.display !== 'display: flex' ? 'background-color: #263046' : ''">{{translate(roupa.tipo)}}</p> 
               <p class="roupa" [style]="roupa.display !== 'display: flex' ? 'display: none' : ''">{{roupa.nome === undefined ? 'Roupa sem Nome' : roupa.nome}}</p>
-              <button type="button" (click)="mudarRoupa(roupa.tipo)"><img [src]="roupa.display === 'display: flex' ? '/assets/icon/config.svg' : '/assets/icon/save.svg'" alt="Alterar"></button>
+              <button type="button" (click)="addPopUp(roupa.display === 'display: flex' ? 'change' : 'add', roupa.tipo); modal.dismiss()"><img [src]="roupa.display === 'display: flex' ? '/assets/icon/config.svg' : '/assets/icon/save.svg'" alt="Alterar"></button>
             </li>
           }
         </ul>
       </div>
-
       <app-footer style="margin-bottom: 400px;"></app-footer>
     </ng-template>
   </ion-modal>
