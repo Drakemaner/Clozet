@@ -18,6 +18,7 @@ import { IOutfits } from '../interfaces/IOutfits';
 export class HomePage implements OnInit{
 
   roupas : IRoupas[] = Roupas
+  
   user : IUser = {
     email: '',
     senha: ''
@@ -29,6 +30,13 @@ export class HomePage implements OnInit{
     roupasRequest: [{
       id: 0
     }]
+  }
+
+  PopUp = {
+    openModal: false,
+    show: false,
+    type: '',
+    roupaType: ''
   }
 
   constructor(private storage : StorageService, private httpService : HttpService, private loadingService : LoadingService) {}
@@ -49,6 +57,11 @@ export class HomePage implements OnInit{
         }
       })
     })
+  }
+
+  receivePopUp(event : any){
+    this.PopUp.show = event.show;
+    this.PopUp.openModal = event.openModal;
   }
 
   translate(value : string){
@@ -132,72 +145,11 @@ export class HomePage implements OnInit{
     })
   }
 
-  mudarRoupa(tipo : string){
-    let roupasTipo
-    
-    if(tipo == 'pants' ||  tipo == 'short'){
-      roupasTipo = this.roupas.filter(roupa => (roupa.tipo == 'pants' || 'short') && !roupa.deleteable)
-    }
-    else{
-      roupasTipo = this.roupas.filter(roupa => roupa.tipo == tipo && !roupa.deleteable)
-    }
-
-    for(let i = 0; i < roupasTipo.length; i++){
-      if(tipo == 'dress'){
-        if(roupasTipo[i].display == 'display: flex'){
-          if(i + 1 < roupasTipo.length){
-            roupasTipo[i].display = 'display: none'
-            roupasTipo[i + 1].display = 'display: flex'
-
-            this.calcaId = this.roupas.filter(a=> (a.tipo == 'pants' || 'short') && a.display == 'display: flex')[0].id!
-            this.roupas.filter(a=> (a.tipo == 'pants' || 'short') && a.display == 'display: flex')[0].display = 'display: none'
-            return
-          }
-          else{
-            roupasTipo[i].display = 'display: none'
-            roupasTipo[0].display = 'display: flex'
-
-            this.calcaId = this.roupas.filter(a=> a.tipo == 'pants' || 'short' && a.display == 'display: flex')[0].id!
-            this.roupas.filter(a=> (a.tipo == 'pants' || 'short') && a.display == 'display: flex')[0].display = 'display: none'
-            return 
-          }
-        }
-      }
-      else {
-        if(this.roupas.filter(a=> a.tipo == 'pants' && a.display == 'display: flex').length == 0){
-          if(roupasTipo[i].display == 'display: flex'){
-            if(i + 1 < roupasTipo.length){
-              this.roupas.filter(a=> a.id == this.calcaId).length > 0 ? this.roupas.filter(a=> a.id == this.calcaId)[0].display == 'display: flex' : this.roupas.filter(a=> a.tipo == 'pants')[0].display == 'display: flex'
-
-              roupasTipo[i].display = 'display: none'
-              roupasTipo[i + 1].display = 'display: flex'
-              return
-            }
-            else{
-              this.roupas.filter(a=> a.id == this.calcaId).length > 0 ? this.roupas.filter(a=> a.id == this.calcaId)[0].display == 'display: flex' : this.roupas.filter(a=> a.tipo == 'pants')[0].display == 'display: flex'
-
-              roupasTipo[i].display = 'display: none'
-              roupasTipo[0].display = 'display: flex'
-              return 
-            }
-          }
-        }
-        else {
-          if(roupasTipo[i].display == 'display: flex'){
-            if(i + 1 < roupasTipo.length){
-              roupasTipo[i].display = 'display: none'
-              roupasTipo[i + 1].display = 'display: flex'
-              return
-            }
-            else{
-              roupasTipo[i].display = 'display: none'
-              roupasTipo[0].display = 'display: flex'
-              return 
-            }
-          }
-        }
-      }
-    }
+  addPopUp(tipo : string, roupaTipo : string){
+    this.PopUp.show = true
+    this.PopUp.type = tipo
+    this.PopUp.roupaType = roupaTipo
+    return this.PopUp
   }
 
   saveOutfit(){
