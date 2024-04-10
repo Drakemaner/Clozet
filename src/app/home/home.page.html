@@ -55,7 +55,7 @@
             <li class="modal-item">
               <p class="type" [style]="roupa.display !== 'display: flex' ? 'background-color: #263046' : ''">{{translate(roupa.tipo)}}</p> 
               <p class="roupa" [style]="roupa.display !== 'display: flex' ? 'display: none' : ''">{{roupa.nome === undefined ? 'Roupa sem Nome' : roupa.nome}}</p>
-              <button type="button" (click)="addPopUp(roupa.display === 'display: flex' ? 'change' : 'add', roupa.tipo); modal.dismiss()"><img [src]="roupa.display === 'display: flex' ? '/assets/icon/add-new-clo.svg' : '/assets/icon/replace.svg'" alt="Alterar"></button>
+              <button type="button" (click)="addPopUp(roupa.display === 'display: flex' ? 'change' : 'add', roupa.tipo); modal.dismiss()"><img [src]="roupa.display === 'display: flex' ? '/assets/icon/replace.svg' : '/assets/icon/add-new-clo.svg'" alt="Alterar"></button>
             </li>
           }
         </ul>
