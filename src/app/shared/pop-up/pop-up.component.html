@@ -1,10 +1,12 @@
 <div class="pop-up">
-  <h3>{{translate(popUp.roupaType)}}</h3>
+  <h2>Selecione seu item</h2>
+ 
   <ul class="container-list">
     @for (roupa of roupas; track $index) {
       @if(roupa.tipo === popUp.roupaType){
         <li class="popUp-card" (click)="selectCloth(roupa.id!)">
-          @if(roupa.display === 'display: flex') {<p style="font-size: 12px;">Utilizado</p>}
+          <h3>{{translate(popUp.roupaType)}}</h3>
+          @if(roupa.display === 'display: flex') {<p style="font-size: 12px; color: #161A29; margin: 0;">Utilizado</p>}
           <img [src]="roupa.caminhoImagem" alt="" srcset="">
           <p>{{roupa.nome.length > 32 ? '' : roupa.nome}}</p>
         </li>

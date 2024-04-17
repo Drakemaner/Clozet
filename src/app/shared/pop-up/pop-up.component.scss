@@ -1,6 +1,6 @@
 .pop-up {
-    background-color: rgb(237, 237, 237);
-    box-shadow: 0 1px 5px gray;
+    background-color: rgb(255, 255, 255);
+    border: 1px solid #DDDDDD;
     width: 60%;
     height: 600px;
     overflow: auto;
@@ -11,6 +11,7 @@
     z-index: 1;
     text-align: center;
     border-radius: 20px;
+    color: #161A29;
   }
   
 .container-list{
@@ -19,10 +20,12 @@
   justify-content: center;
   align-items: center;
  
+ 
 }
 
 .popUp-card{
-  border: 1px solid black;
+  margin-top: 15px;
+  border: 1px solid #DDDDDD;
   border-radius: 15px;
   padding: 10px;
   width: 70%;
@@ -35,4 +38,17 @@
 
 .popUp-card img {
   padding: 2rem 1rem;
+}
+
+h2{
+  font-family: 'Lato';
+  font-weight: 700;
+  font-size: 18px;
+  font-style: italic;
+}
+
+h3{
+  margin: 0;
+  font-size: 14px;
+  font-weight: 500;
 }
