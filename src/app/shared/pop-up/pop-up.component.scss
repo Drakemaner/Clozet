@@ -1,8 +1,8 @@
 .pop-up {
     background-color: rgb(255, 255, 255);
     border: 1px solid #DDDDDD;
-    width: 60%;
-    height: 600px;
+    width: 80%;
+    height: 550px;
     overflow: auto;
     position: absolute;
     left: 50%;
@@ -28,16 +28,17 @@
   border: 1px solid #DDDDDD;
   border-radius: 15px;
   padding: 10px;
-  width: 70%;
+  width: 80%;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 20px;
-  cursor: pointer;
+  gap: 4px;
+  
 }
 
 .popUp-card img {
-  padding: 2rem 1rem;
+  width: 160px;
+  margin: 15px;
 }
 
 h2{
@@ -50,5 +51,26 @@ h2{
 h3{
   margin: 0;
   font-size: 14px;
+  font-weight: 500;
+}
+
+p{
+  font-family: 'Lato';
+  font-weight: 700;
+  font-size: 18px;
+  font-style: italic;
+  
+ 
+}
+
+.nome-item{
+  
+  margin-bottom: 0;
+  padding: 0;
+}
+
+.status{
+  
+  font-size: 12px;
   font-weight: 500;
 }
