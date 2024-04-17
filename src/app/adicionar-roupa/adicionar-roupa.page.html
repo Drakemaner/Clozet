@@ -1,4 +1,13 @@
-<app-header title="Clozet" [buttons]="['assets/icon/add-clothe.svg','assets/icon/new.svg']"></app-header>
+<app-header 
+  title="Clozet" 
+  [buttons]="[{
+    image: 'assets/icon/add-clothe.svg'
+  },
+  {
+    image:'assets/icon/new.svg'
+  }
+  ]"
+  ></app-header>
 <ion-content class="main" [fullscreen]="true">
  <div class="container">
   <div class="add">

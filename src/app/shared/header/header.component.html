@@ -1,13 +1,13 @@
 <ion-header class="ion-no-border">
   <nav>
-    <div class="add" [routerLink]="title !== 'Clozet' && page !== 'perfil'  ? ['/roupas'] : verifyButtons()">
-      <img [src]="buttons[0]" alt="">
+    <div class="add" (click)="selectFunction(buttons[0].function)" [routerLink]="title !== 'Clozet' && page !== 'perfil'  ? ['/roupas'] : verifyButtons()">
+      <img [src]="buttons[0].image" alt="">
     </div>
     <div class="logo-container">
       <h1>{{title}}</h1>
     </div>
-    <div class="sinal" (click)="title === 'Clozet' ? showActions() : ''">
-      <img [src]="buttons[1]" alt="">
+    <div class="sinal" (click)="selectFunction(buttons[1].function)">
+      <img [src]="buttons[1].image" alt="">
     </div>
   </nav>
 </ion-header>

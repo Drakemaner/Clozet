@@ -1,4 +1,13 @@
-<app-header title="outfit" [buttons]="['assets/icon/add-clothe.svg','assets/icon/new.svg']"></app-header>
+<app-header 
+  title="outfit" 
+  [buttons]="[{
+    image: 'assets/icon/add-clothe.svg',
+  },{
+    image: 'assets/icon/new.svg',
+    function: 1
+  }]"
+  [roupas]="roupas"
+  ></app-header>
 @if (PopUp.show === true) {
   <app-pop-up class="popUp" [roupas]="roupas" [popUp]="PopUp" (Show)="receivePopUp($event)"></app-pop-up>
 }

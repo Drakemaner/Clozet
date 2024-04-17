@@ -1,4 +1,11 @@
-<app-header title="Clozet" [buttons]="['assets/icon/add-clothe.svg','Sexo2']"></app-header>
+<app-header 
+  title="Clozet" 
+  [buttons]="[
+    {
+      image: 'assets/icon/add-clothe.svg'
+    }
+  ]"
+  ></app-header>
 <ion-content class="ion-content-custom">
   <div class="container">
     <ion-refresher slot="fixed" [pullMin]="100" [pullMax]="200" (ionRefresh)="refreshPage($event)">

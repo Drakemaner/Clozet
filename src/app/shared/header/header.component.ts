@@ -8,6 +8,7 @@ import { Roupas } from 'src/app/Roupas/roupas';
 import { HttpService } from 'src/app/services/http/http.service';
 import IUser from 'src/app/interfaces/IUser';
 import { catchError, throwError, timeout } from 'rxjs';
+import IRoupas from 'src/app/interfaces/IRoupas';
 
 @Component({
   selector: 'app-header',
@@ -20,10 +21,13 @@ export class HeaderComponent implements OnInit  {
   title : string = ''
 
   @Input()
-  buttons : string[] = []
+  buttons : {image: string, function?: number}[]= []
 
   @Input()
   page? : string = ''
+
+  @Input()
+  roupas : IRoupas[] = []
 
   constructor(private httpService : HttpService, private platform : Platform, private cameraService : CameraService, private storageService : StorageService , private actionSheet : ActionSheetController) { }
   
@@ -33,10 +37,18 @@ export class HeaderComponent implements OnInit  {
   }
 
   tipoRoupa = ''
-  roupas = Roupas
   user : IUser = {
     email: '',
     senha: ''
+  }
+
+
+  selectFunction(value : number | undefined){
+    value == undefined ?  null : ''
+
+    if(value == 1){
+      return this.restartRoupas()
+    }
   }
 
 
@@ -49,88 +61,12 @@ export class HeaderComponent implements OnInit  {
     }
   }
 
-  showActions = async () => {
-    const result = await this.actionSheet.create({
-      header: 'Tipo da Roupa',
-      buttons: [
-        {
-          text: 'Cap',
-          handler: () => this.tirarFoto('cap')
-        },
-        {
-          text: 'Head',
-          handler: () => this.tirarFoto('head')
-        },
-        {
-          text: 'Tee',
-          handler: () => this.tirarFoto('tee')
-        },
-        {
-          text: 'Dress',
-          handler: () => this.tirarFoto('dress')
-        },
-        {
-          text: 'Calça',
-          handler: () => this.tirarFoto('pants')  
-        },
-        {
-          text: 'Short',
-          handler: () => this.tirarFoto('short')  
-        },
-        {
-          text: 'Tênis',
-          handler: () => this.tirarFoto('shoes')
-        },
-        {
-          text: 'Cancelar',
-          role: 'cancel'
-        }
-      ],
+  restartRoupas(){
+    this.roupas.forEach(a => {
+      if(a.display == 'display: flex'){
+        a.display = 'display: none'
+      }
     })
-    
-    await result.present();
-  }
-
-  verificarLogin(){
-    if(this.platform.is("mobile")){
-      this.storageService.getObject('logado').then(nomeUsuariov=> {
-        if(typeof(nomeUsuariov) == 'string'){
-  
-          this.user.nomeUsuario = nomeUsuariov!
-
-          this.httpService.GetFor("Usuario", this.user.nomeUsuario!).pipe(
-            timeout(15000),
-            catchError((error)=> {
-              console.log('Error')
-              return throwError(error);
-            })
-            ).subscribe((data : IUser)=>{
-              this.user = data     
-            })
-        }
-        else{
-          console.log("Usuário não Logado")
-        }
-      })
-    }
-    else{
-      this.user.nomeUsuario = localStorage.getItem('logado')!
-
-      this.httpService.GetFor("Usuario", this.user.nomeUsuario!).pipe(
-        timeout(15000),
-        catchError((error)=> {
-          console.log('Error')
-          return throwError(error);
-        })
-      ).subscribe((data : IUser)=>{
-        this.user = data      
-      })
-    }
-  }
-
-  tirarFoto(tipo : string){
-    this.tipoRoupa = tipo
-    this.cameraService.takePicture(this.roupas, this.tipoRoupa, this.user.id!)
   }
   
 }
