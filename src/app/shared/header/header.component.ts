@@ -1,13 +1,4 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { CameraService } from 'src/app/services/camera/camera.service';
-import { ActionSheetController } from '@ionic/angular';
-import { Router } from '@angular/router';
-import { StorageService } from 'src/app/services/storage/storage.service';
-import { Platform } from '@ionic/angular';
-import { Roupas } from 'src/app/Roupas/roupas';
-import { HttpService } from 'src/app/services/http/http.service';
-import IUser from 'src/app/interfaces/IUser';
-import { catchError, throwError, timeout } from 'rxjs';
 import IRoupas from 'src/app/interfaces/IRoupas';
 
 @Component({
@@ -15,7 +6,7 @@ import IRoupas from 'src/app/interfaces/IRoupas';
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss'],
 })
-export class HeaderComponent implements OnInit  {
+export class HeaderComponent {
 
   @Input()
   title : string = ''
@@ -29,19 +20,7 @@ export class HeaderComponent implements OnInit  {
   @Input()
   roupas : IRoupas[] = []
 
-  constructor(private httpService : HttpService, private platform : Platform, private cameraService : CameraService, private storageService : StorageService , private actionSheet : ActionSheetController) { }
-  
-  
-  ngOnInit(): void {
-    this.verificarLogin()
-  }
-
-  tipoRoupa = ''
-  user : IUser = {
-    email: '',
-    senha: ''
-  }
-
+  constructor() { }
 
   selectFunction(value : number | undefined){
     value == undefined ?  null : ''
