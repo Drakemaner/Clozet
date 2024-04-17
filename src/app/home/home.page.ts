@@ -7,6 +7,7 @@ import IRoupas from '../interfaces/IRoupas';
 import IUser from '../interfaces/IUser';
 import { LoadingService } from '../services/loading/loading.service';
 import { IOutfits } from '../interfaces/IOutfits';
+import { AlertController } from '@ionic/angular';
 
 
 
@@ -39,7 +40,7 @@ export class HomePage implements OnInit{
     roupaType: ''
   }
 
-  constructor(private storage : StorageService, private httpService : HttpService, private loadingService : LoadingService) {}
+  constructor(private storage : StorageService, private httpService : HttpService, private loadingService : LoadingService, private alert : AlertController) {}
  
   ngOnInit(): void { 
     this.storage.getObject('logado').then(async (a)=> {
@@ -146,10 +147,44 @@ export class HomePage implements OnInit{
   }
 
   addPopUp(tipo : string, roupaTipo : string){
-    this.PopUp.show = true
+    this.verificacaoDress(tipo, roupaTipo).then(a=> this.PopUp.show = a)
     this.PopUp.type = tipo
     this.PopUp.roupaType = roupaTipo
     return this.PopUp
+  }
+
+  async verificacaoDress(tipo : string, roupaTipo : string) : Promise<boolean> {
+
+    let calca = this.roupas.filter(a=> a.tipo == 'pants' && a.display == 'display: flex')[0]
+    let dress = this.roupas.filter(a=> a.tipo == 'fem' && a.display == 'display: flex')[0]
+    let tee = this.roupas.filter(a=> a.tipo == 'tee' && a.display == 'display: flex')[0]
+
+    if(dress != null){
+      if(roupaTipo == 'tee' || roupaTipo == 'pants'){
+        console.log('Oie')
+        const alert = await this.alert.create({
+          header: 'Ação Não Permitida',
+          message: 'Não é  permitido adicionar Camisa ou Calça, enquanto o vestido está sendo utilizado',
+          buttons: ['Ok']
+        })
+        alert.present()
+        return false
+      }
+    }
+    else if(tipo == 'add' && roupaTipo == 'fem'){
+      if(calca != null || tee != null){
+        console.log('Oie')
+        const alert = await this.alert.create({
+          header: 'Ação Não Permitida',
+          message: 'Não é  permitido adicionar vestido enquanto há camisa ou calça',
+          buttons: ['Ok']
+        })
+        alert.present()
+        return false
+      }
+    }
+    
+    return true
   }
 
   saveOutfit(){
