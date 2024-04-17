@@ -45,6 +45,10 @@ export class PopUpComponent   {
     return value.charAt(0).toUpperCase() + value.slice(1)
   }
 
+  closePopUp(){
+    this.Show.emit({show: false, openModal: true})
+  }
+
   private verificarRoupaSelecionada(roupaId : number){
     let roupaSelecionada = this.roupas.filter(a=> a.id == roupaId && a.display == 'display: flex')
 

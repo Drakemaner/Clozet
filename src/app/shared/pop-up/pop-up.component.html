@@ -1,10 +1,8 @@
 <div class="pop-up">
   <div class="header-pop">
     <h2>Selecione seu item</h2>
-    <ion-icon name="close-outline"></ion-icon>
+    <button (click)="closePopUp()"><ion-icon name="close-outline"></ion-icon></button>
   </div>
- 
- 
   <ul class="container-list">
     @for (roupa of roupas; track $index) {
       @if(roupa.tipo === popUp.roupaType){
