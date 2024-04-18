@@ -12,13 +12,13 @@ export class HeaderComponent {
   title : string = ''
 
   @Input()
-  buttons : {image: string, function?: number}[]= []
+  buttons : {image?: string, function?: number}[]= []
 
   @Input()
   page? : string = ''
 
   @Input()
-  roupas : IRoupas[] = []
+  roupas? : IRoupas[] = []
 
   constructor() { }
 
@@ -41,7 +41,7 @@ export class HeaderComponent {
   }
 
   restartRoupas(){
-    this.roupas.forEach(a => {
+    this.roupas?.forEach(a => {
       if(a.display == 'display: flex'){
         a.display = 'display: none'
       }

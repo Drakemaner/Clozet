@@ -7,7 +7,7 @@
       <h1>{{title}}</h1>
     </div>
     <div class="sinal" (click)="selectFunction(buttons[1].function)">
-      <img [src]="buttons[1].image" alt="">
+      <img [src]="buttons[1] === undefined ? '' : buttons[1].image" alt="">
     </div>
   </nav>
 </ion-header>
