@@ -120,10 +120,10 @@ nav li a img{
   display: flex;
   justify-content: center;
   align-items: center;
- 
   height: 230px;
   width: 250px;
   order: 3;
+ 
 }
 
 .tee img{
@@ -224,6 +224,23 @@ nav li a img{
   position: absolute;
   width: 170px;
   right: 5px;
+}
+
+.fem{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 530px;
+  width: 250px;
+  order: 3;
+ 
+}
+
+.fem img{
+  height: 460px;
+  width: 260px;
+  position: absolute;
+  
 }
 
 .acessorios{
