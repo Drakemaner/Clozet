@@ -1,4 +1,4 @@
-import { AfterContentChecked, Component, Input, OnInit } from '@angular/core';
+import { AfterContentChecked, Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Platform } from '@ionic/angular';
 import { StorageService } from 'src/app/services/storage/storage.service';
@@ -13,7 +13,13 @@ import { StorageService } from 'src/app/services/storage/storage.service';
 })
 export class FooterComponent  {
   
+  @Output()
+  closeModal : EventEmitter<boolean | undefined>= new EventEmitter()
   
   constructor() {}
+
+  modalClose(){
+    this.closeModal.emit(true)
+  }
 
 }

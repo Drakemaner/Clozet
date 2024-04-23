@@ -3,17 +3,17 @@
     
     <div class="block">
       <li>
-        <a [routerLink]="['/home']">
+        <a [routerLink]="['/home']" (click)="modalClose()">
           <img src="/assets/icon/home-b.svg" alt="home">
           
         </a>
         
         
-        <a [routerLink]="['/clozet']" class="custom-fab-button">
+        <a [routerLink]="['/clozet']" class="custom-fab-button" (click)="modalClose()">
           <img src="/assets/icon/closet-b.svg" alt="clozet">
         </a>
         
-        <a [routerLink]="['/meuPerfil']">
+        <a [routerLink]="['/meuPerfil']" (click)="modalClose()">
           <img src="/assets/icon/perfil-b.svg" alt="perfil">
           
         </a>

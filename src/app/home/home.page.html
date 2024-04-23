@@ -72,7 +72,7 @@
           }
         </ul>
       </div>
-      <app-footer style="margin-bottom: 400px;"></app-footer>
+      <app-footer style="margin-bottom: 400px;" (closeModal)="closeModal($event) === true ? modal.dismiss() : undefined"></app-footer>
     </ng-template>
   </ion-modal>
 </div>
