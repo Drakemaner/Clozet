@@ -27,6 +27,14 @@ export var Roupas : IRoupas[] = [
       deleteable: false
     },
     {
+      id: 3,
+      nome: 'Jaqueta',
+      tipo:'jaqueta',
+      caminhoImagem:'/assets/tee.png',
+      display: 'display: flex',
+      deleteable: false
+    },
+    {
       id: 4,
       nome: 'oculos',
       tipo: 'glasses',
