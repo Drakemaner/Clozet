@@ -16,36 +16,39 @@
     <div id="container">
       
       <div class="outfit" >
-        <div class="roupas">
+        @if (verifyRoupas()) {
+          <div class="roupas">
           
-          @for (roupa of roupas; track $index) {
-            @if (roupa.display === 'display: flex' && roupa.acessorio !== true) {
-              <div [class]="roupa.tipo" [style]="roupa.display">
-                <div class="ion-item-custom">
-                  <img src="{{roupa.caminhoImagem}}" alt="roupa">
+            @for (roupa of roupas; track $index) {
+              @if (roupa.display === 'display: flex' && roupa.acessorio !== true) {
+                <div [class]="roupa.tipo" [style]="roupa.display">
+                  <div class="ion-item-custom">
+                    <img src="{{roupa.caminhoImagem}}" alt="roupa">
+                  </div>
                 </div>
-              </div>
+              }
+              
             }
+          </div>
+  
+          <div class="acessorios">
             
-          }
-        </div>
-
-        <div class="acessorios">
-          
-          @for (roupa of roupas; track $index) {
-            @if (roupa.display === 'display: flex' && roupa.acessorio === true) {
-              <div [class]="roupa.tipo" [style]="roupa.display">
-                <div class="ion-item-custom">
-                  <img src="{{roupa.caminhoImagem}}" alt="roupa">
+            @for (roupa of roupas; track $index) {
+              @if (roupa.display === 'display: flex' && roupa.acessorio === true) {
+                <div [class]="roupa.tipo" [style]="roupa.display">
+                  <div class="ion-item-custom">
+                    <img src="{{roupa.caminhoImagem}}" alt="roupa">
+                  </div>
                 </div>
-              </div>
+              }
+              
             }
-            
-          }
-        </div>
+          </div>
+        }
+        @else {
+          <p>Monte seu Outfit !</p>
+        }
 
-
-        
       </div>
 
       

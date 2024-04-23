@@ -60,6 +60,10 @@ export class HomePage implements OnInit{
     })
   }
 
+  verifyRoupas() : boolean{
+    return this.roupas.filter(a=> a.display == 'display: flex').length != 0
+  }
+
   receivePopUp(event : any){
     this.PopUp.show = event.show;
     this.PopUp.openModal = event.openModal;
