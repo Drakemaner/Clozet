@@ -1,5 +1,5 @@
 <app-header 
-  title="outfit" 
+  [title]="roupas[0].outfit === '' ? 'Outfit' : roupas[0].outfit!" 
   [buttons]="[{
     image: 'assets/icon/save.svg',
   },{

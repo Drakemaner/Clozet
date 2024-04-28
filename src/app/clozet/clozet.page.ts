@@ -19,6 +19,8 @@ export class ClozetPage implements OnInit {
     senha: ''
   }
   
+  showInputOutfit = false
+
   select : any[] = []
 
   constructor(private fileSystemService : FileSystemService ,private loadingService : LoadingService, private http : HttpService, private storageService : StorageService) { }
@@ -39,6 +41,10 @@ export class ClozetPage implements OnInit {
       this.user.roupas = this.user.roupas?.filter(a => a.id != roupaID)
       this.loadingService.dismissLoadingIndicator()
     })
+  }
+
+  InputOutfit(event : any){
+    this.showInputOutfit = event
   }
 
   refreshPage(event : any){

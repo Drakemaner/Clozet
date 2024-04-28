@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
 import IRoupas from 'src/app/interfaces/IRoupas';
 
 @Component({
@@ -20,6 +20,9 @@ export class HeaderComponent {
   @Input()
   roupas? : IRoupas[] = []
 
+  @Output()
+  showInput : EventEmitter<boolean> = new EventEmitter()
+
   constructor() { }
 
   selectFunction(value : number | undefined){
@@ -28,6 +31,9 @@ export class HeaderComponent {
     if(value == 1){
       return this.restartRoupas()
     }
+    else if(value == 2){
+      this.showInput.emit(true)
+    }
   }
 
 
@@ -35,9 +41,11 @@ export class HeaderComponent {
     if(this.page == 'perfil'){
       return '/config'
     }
-    else {
-      return ""
+    else if(this.page == 'Clozet'){
+      return '/roupas'
     }
+
+    return ''
   }
 
   restartRoupas(){

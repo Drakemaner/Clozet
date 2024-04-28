@@ -1,5 +1,6 @@
 export default interface IRoupas {
-    id? : number
+    outfit? : string,
+    id? : number,
     nome : string,
     tipo : string,
     caminhoImagem : string,

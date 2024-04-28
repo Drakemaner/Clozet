@@ -1,15 +1,21 @@
 <app-header 
-  title="Clozet" 
+  title="Clozet"
+  page="Clozet" 
   [buttons]="[
     {
       image: 'assets/icon/add-clothe.svg'
     },
     {
-      image: 'assets/icon/new.svg'
+      image: 'assets/icon/new.svg',
+      function: 2
     }
   ]"
+  (showInput)="InputOutfit($event)"
   ></app-header>
 <ion-content class="ion-content-custom">
+  @if(showInputOutfit){
+    <app-outfit-input></app-outfit-input>
+  }
   <div class="container">
     <ion-refresher slot="fixed" [pullMin]="100" [pullMax]="200" (ionRefresh)="refreshPage($event)">
       <ion-refresher-content></ion-refresher-content>

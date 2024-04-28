@@ -3,6 +3,7 @@ import IRoupas from "../interfaces/IRoupas"
 
 export var Roupas : IRoupas[] = [
     {
+      outfit: '',
       id: 1,
       nome: 'boné avatar',
       tipo:'cap',
@@ -11,6 +12,7 @@ export var Roupas : IRoupas[] = [
       deleteable: false
     },
     {
+      outfit: '',
       id: 2,
       nome: 'cabeça avatar',
       tipo:'head',
@@ -19,6 +21,7 @@ export var Roupas : IRoupas[] = [
       deleteable: false
     },
     {
+      outfit: '',
       id: 3,
       nome: 'camisa Branca',
       tipo:'tee',
@@ -27,6 +30,7 @@ export var Roupas : IRoupas[] = [
       deleteable: false
     },
     {
+      outfit: '',
       id: 3,
       nome: 'Jaqueta',
       tipo:'jaqueta',
@@ -35,6 +39,7 @@ export var Roupas : IRoupas[] = [
       deleteable: false
     },
     {
+      outfit: '',
       id: 4,
       nome: 'oculos',
       tipo: 'glasses',
@@ -44,6 +49,7 @@ export var Roupas : IRoupas[] = [
       acessorio: true
     },
     {
+      outfit: '',
       id: 5,
       nome: 'relogio',
       tipo: 'clock',
@@ -53,6 +59,7 @@ export var Roupas : IRoupas[] = [
       acessorio: true
     },
     {
+      outfit: '',
       id: 6,
       nome: 'bolsa',
       tipo: 'bag',
@@ -62,6 +69,7 @@ export var Roupas : IRoupas[] = [
       acessorio: true
     },
     {
+      outfit: '',
       id: 7,
       nome: 'feminino',
       tipo: 'fem',
@@ -70,6 +78,7 @@ export var Roupas : IRoupas[] = [
       deleteable: false
     },
     {
+      outfit: '',
       id: 8,
       nome: 'calça soho_club',
       tipo:'pants',
@@ -78,6 +87,7 @@ export var Roupas : IRoupas[] = [
       deleteable: false
     },
     {
+      outfit: '',
       id: 9,
       nome: 'tenis allStar',
       tipo:'shoes',

@@ -1,6 +1,6 @@
 <ion-header class="ion-no-border">
   <nav>
-    <div class="add" (click)="selectFunction(buttons[0].function)" [routerLink]="title !== 'Clozet' && page !== 'perfil'  ? ['/roupas'] : verifyButtons()">
+    <div class="add" (click)="selectFunction(buttons[0].function)" [routerLink]="verifyButtons()">
       <img [src]="buttons[0].image" alt="">
     </div>
     <div class="logo-container">
