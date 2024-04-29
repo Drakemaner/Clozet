@@ -22,11 +22,6 @@
     </ion-refresher>
     <div class="content">
       <div class="tl">
-        <div class="sub-tl">
-          <img src="/assets/icon/clozet-tl.svg" alt="">
-          
-        
-        </div>
         @defer (when user.roupas !== undefined) {
           @for (roupa of user.roupas; track $index) {
 
@@ -54,12 +49,11 @@
                 
               </div>
             </div>
-          }@empty {
-            <p>Nenhuma roupa salva no clozet: {{user.nomeUsuario}}</p>
           }
         }
         @placeholder {
-          <p>Pegando Informações do Banco de Dados</p>
+          <img src="/assets/default-clozet.png" alt="">
+          <p style="font-family: 'Lato'; font-style: italic;">Você ainda não possui nenhuma <span style="font-weight: 600;">peça de roupa</span></p>
         }
       </div>
      
