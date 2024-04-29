@@ -19,6 +19,7 @@ export class OutfitInputComponent {
 
   criarOutfit(){
     this.roupas.forEach(a=> {
+      a.display == 'display: flex' ? a.display = 'display: none' : null
       a.outfit = this.inputName
     })
     this.Show.emit(false)
