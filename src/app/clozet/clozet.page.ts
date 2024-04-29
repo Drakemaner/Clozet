@@ -43,7 +43,11 @@ export class ClozetPage implements OnInit {
     })
   }
 
-  InputOutfit(event : any){
+  ShowInputOutfit(event : any){
+    this.showInputOutfit = event
+  }
+
+  closeInputOutfit(event : any){
     this.showInputOutfit = event
   }
 

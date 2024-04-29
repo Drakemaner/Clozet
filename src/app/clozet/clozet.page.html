@@ -10,11 +10,11 @@
       function: 2
     }
   ]"
-  (showInput)="InputOutfit($event)"
+  (showInput)="ShowInputOutfit($event)"
   ></app-header>
 <ion-content class="ion-content-custom">
   @if(showInputOutfit){
-    <app-outfit-input></app-outfit-input>
+    <app-outfit-input (Show)="closeInputOutfit($event)"></app-outfit-input>
   }
   <div class="container">
     <ion-refresher slot="fixed" [pullMin]="100" [pullMax]="200" (ionRefresh)="refreshPage($event)">

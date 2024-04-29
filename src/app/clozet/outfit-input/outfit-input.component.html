@@ -1,5 +1,6 @@
 <div class="input-card">
   <div class="input-content">
+    <button (click)="closeInput()"><img src="/assets/icon/close.svg" alt=""></button>
     <ion-label>Digite o Nome de Seu Outfit</ion-label>
     <input type="text" placeholder="Digite o Nome do Seu Outfit" [(ngModel)]="inputName">
     <button (click)="criarOutfit()">Criar Outfit</button>
