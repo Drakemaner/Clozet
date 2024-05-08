@@ -76,14 +76,19 @@ ion-label span{
     font-size: 15px;
     font-weight: 700;
     font-style: italic;
+    
+   
 }
+
+
 
 
 
 ion-input{
     border-radius: 5px;
     border: 1px solid #d7d7d7;
-    padding: 20px;
+    --padding-start: 15px;
+    
 }
 
 button{
@@ -123,4 +128,8 @@ button span{
 
 .conj label{
     margin-bottom: 20px;
+}
+
+.input{
+    padding-left: 20px;
 }
