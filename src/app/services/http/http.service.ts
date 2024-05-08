@@ -11,7 +11,7 @@ export class HttpService {
 
   constructor(private http : HttpClient) { }
 
-   private readonly apiURL = "https://clozet-api.azurewebsites.net"
+   private readonly apiURL = "https://clozet.azurewebsites.net"
 
   Get(type : string) : Observable<any> {
     return this.http.get<any>(`${this.apiURL}/${type}`)

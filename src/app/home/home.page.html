@@ -9,7 +9,7 @@
   [roupas]="roupas"
   ></app-header>
 @if (PopUp.show === true) {
-  <app-pop-up class="popUp" [roupas]="roupas" [popUp]="PopUp" (Show)="receivePopUp($event)"></app-pop-up>
+  <app-pop-up [roupas]="roupas" [popUp]="PopUp" (Show)="receivePopUp($event)"></app-pop-up>
 }
 <ion-content class="ion-content-custom" [fullscreen]="true">
   <div class="ion-content">
@@ -67,11 +67,11 @@
     <ng-template >
       <div class="block">
         <ul class="modal-list">
-          @for (roupa of roupas; track $index) {
+          @for (roupa of modalList(); track $index) {
             <li class="modal-item">
-              <p class="type" [style]="roupa.display !== 'display: flex' ? 'background-color: #263046' : ''">{{translate(roupa.tipo)}}</p> 
-              <p class="roupa" [style]="roupa.display !== 'display: flex' ? 'display: none' : ''">{{roupa.nome === undefined ? 'Roupa sem Nome' : roupa.nome}}</p>
-              <button type="button" (click)="addPopUp(roupa.display === 'display: flex' ? 'change' : 'add', roupa.tipo); modal.dismiss()"><img [src]="roupa.display === 'display: flex' ? '/assets/icon/replace.svg' : '/assets/icon/add-new-clo.svg'" alt="Alterar"></button>
+              <p class="type" [style]="roupa.nome === '' ? 'background-color: #263046' : ''">{{translate(roupa.tipo,'upper')}}</p> 
+              <p class="roupa" [style]="roupa.nome === '' ? 'display: none' : ''">{{roupa.nome === undefined ? 'Roupa sem Nome' : translate(roupa.nome,'cut')}}</p>
+              <button type="button" (click)="addPopUp(roupa.nome !== 'display: flex' ? 'change' : 'add', roupa.tipo); modal.dismiss()"><img [src]="roupa.nome !== '' ? '/assets/icon/replace.svg' : '/assets/icon/add-new-clo.svg'" alt="Alterar"></button>
             </li>
           }
         </ul>

@@ -44,7 +44,7 @@ export class HomePage implements OnInit{
   ngOnInit(): void { 
     this.storage.getObject('logado').then(async (a)=> {
 
-      //this.loadingService.showLoadingIndicator('Pegando Roupas do Banco')
+      this.loadingService.showLoadingIndicator('Pegando Roupas do Banco')
       this.httpService.GetFor("Usuario", a!).subscribe(async (user : IUser) => {
         this.user = user
         if(user.roupas?.length != 0){
@@ -72,8 +72,13 @@ export class HomePage implements OnInit{
     this.PopUp.openModal = event.openModal;
   }
 
-  translate(value : string){
-    return value.charAt(0).toUpperCase() + value.slice(1)
+  translate(value : string, type : string){
+    if(type == 'upper'){
+      return value.charAt(0).toUpperCase() + value.slice(1)
+    }
+    else {
+      return value.slice(0,20)
+    }
   }
 
   verifyStaticClothes(user :IUser){
@@ -192,6 +197,33 @@ export class HomePage implements OnInit{
     }
     
     return true
+  }
+
+  modalList(){
+    let roupas = [
+      {tipo: 'cap', nome: ''},
+      {tipo: 'head', nome: ''},
+      {tipo: 'glasses', nome: ''},
+      {tipo: 'jaqueta', nome: ''},
+      {tipo: 'clock', nome: ''},
+      {tipo: 'bag', nome: ''},
+      {tipo: 'tee', nome: ''},
+      {tipo: 'fem', nome: ''},
+      {tipo: 'pants', nome: ''},
+      {tipo: 'shoes', nome: ''}
+    ]
+
+    this.roupas.forEach(a=> {
+      roupas.forEach(b=> {
+        if(a.tipo == b.tipo){
+          if(a.display == 'display: flex'){
+            b.nome = a.nome
+          }
+        }
+      })
+    })
+
+    return roupas
   }
 
   saveOutfit(){

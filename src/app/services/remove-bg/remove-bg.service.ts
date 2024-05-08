@@ -49,7 +49,7 @@ export class RemoveBGService {
           
           this.saveOnSQLServer(nomeFoto, usuarioIdParameter, webPath, tipoRoupa)
 
-          this.loadingService.dismissLoadingIndicator()
+          this.loadingService.dismissLoadingIndicator().then(()=> window.location.reload())
         })
     }).catch((error)=> {
       this.loadingService.dismissLoadingIndicator()
