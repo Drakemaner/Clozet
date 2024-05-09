@@ -30,7 +30,7 @@ export class AppComponent implements OnInit{
       })
     }
     else{
-      if(logadoWeb!){
+      if(logadoWeb == null){
         this.router.navigate(['/login'])
       }
       else{

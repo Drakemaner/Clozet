@@ -7,6 +7,7 @@ import IUser from '../interfaces/IUser';
 import { LoadingService } from '../services/loading/loading.service';
 import { IOutfits } from '../interfaces/IOutfits';
 import { AlertController } from '@ionic/angular';
+import { Outfit } from '../shared/outfit/outfit';
 
 
 
@@ -18,19 +19,14 @@ import { AlertController } from '@ionic/angular';
 export class HomePage implements OnInit{
 
   roupas : IRoupas[] = Roupas
+  outfit = Outfit
   
   user : IUser = {
     email: '',
     senha: ''
   }
-  calcaId = 0
 
-  outfit : IOutfits = {
-    usuarioId: this.user.id!,
-    roupasRequest: [{
-      id: 0
-    }]
-  }
+  showInputOutfit = false
 
   PopUp = {
     openModal: false,
@@ -226,9 +222,10 @@ export class HomePage implements OnInit{
     return roupas
   }
 
-  saveOutfit(){
-    this.loadingService.showLoadingIndicator('Salvando Outfit')
-    let roupasId = this.roupas.forEach((a)=> {
+  saveOutfit(event : any){
+    if(event == true){
+      this.loadingService.showLoadingIndicator('Salvando Outfit')
+      let roupasId = this.roupas.forEach((a)=> {
       if(a.display == 'display: flex'){
         let idRoupas = {
           id : a.id!
@@ -236,9 +233,16 @@ export class HomePage implements OnInit{
         this.outfit.roupasRequest?.push(idRoupas)
       }
     })
+      this.outfit.usuarioId = this.user.id!
+      //Requisição Comentada até confirmação e realização de todos os ajustes e mudanças em relação a home page e suas funções
+      this.httpService.Post(this.outfit, "Outfit").subscribe(()=> this.loadingService.dismissLoadingIndicator())
+    }
+    else {
+      this.showInputOutfit = true
+    }
+  }
 
-    this.outfit.usuarioId = this.user.id!
-    //Requisição Comentada até confirmação e realização de todos os ajustes e mudanças em relação a home page e suas funções
-    //this.httpService.Post(this.outfit, "Outfit").subscribe(()=> this.loadingService.dismissLoadingIndicator())
+  closeInputOutfit(event : any){
+    this.showInputOutfit = event
   }
 }

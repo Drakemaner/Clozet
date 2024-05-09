@@ -23,6 +23,9 @@ export class HeaderComponent {
   @Output()
   showInput : EventEmitter<boolean> = new EventEmitter()
 
+  @Output()
+  saveOutfit : EventEmitter<boolean> = new EventEmitter()
+
   constructor() { }
 
   selectFunction(value : number | undefined){
@@ -33,6 +36,14 @@ export class HeaderComponent {
     }
     else if(value == 2){
       this.showInput.emit(true)
+    }
+    else if(value == 3){
+      if(this.title == 'Outfit'){
+        this.saveOutfit.emit(false)
+      }
+      else{
+        this.saveOutfit.emit(true)
+      }
     }
   }
 

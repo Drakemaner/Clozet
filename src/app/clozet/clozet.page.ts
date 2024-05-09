@@ -6,28 +6,27 @@ import { StorageService } from '../services/storage/storage.service';
 import { catchError, filter, throwError, timeout } from 'rxjs';
 import { LoadingService } from '../services/loading/loading.service';
 import { FileSystemService } from '../services/fileSystem/file-system.service';
+import { Roupas } from '../Roupas/roupas';
 
 @Component({
   selector: 'app-clozet',
   templateUrl: './clozet.page.html',
   styleUrls: ['./clozet.page.scss'],
 })
-export class ClozetPage implements OnInit {
+export class ClozetPage {
 
   user : IUser = {
     email: '',
     senha: ''
   }
+
+  roupas = Roupas
   
   showInputOutfit = false
 
   select : any[] = []
 
   constructor(private fileSystemService : FileSystemService ,private loadingService : LoadingService, private http : HttpService, private storageService : StorageService) { }
-
-  ngOnInit() {
-    this.GetInfoUser()
-  }
 
   deletarRoupa(roupaID : number){
     this.loadingService.showLoadingIndicator('Deletando Roupa Selecionada')
@@ -63,20 +62,6 @@ export class ClozetPage implements OnInit {
        setInterval(()=> {
         event.target.complete()
        },1500)
-    })
-  }
-
-   GetInfoUser(){
-    this.storageService.getObject('logado').then(a => {
-      
-      this.http.GetFor("Usuario", a!).pipe(
-        timeout(15000),
-        catchError((error)=> {
-          return throwError(error)
-        })
-      ).subscribe((data : IUser)=>{
-         this.user = data
-      })
     })
   }
 
