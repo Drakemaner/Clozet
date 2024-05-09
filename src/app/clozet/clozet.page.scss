@@ -3,26 +3,22 @@
     align-items: center;
     justify-content: center;
     
-    height: 85%;
+    height: 100%;
+    width: 100%;
 }
+
 
 .ion-content-custom{
     --ion-background-color: #FAF9F7;
 }
 
 .content {
-    background-color: #FAF9F7;
+   
     display: flex;
-    flex-wrap: wrap;
+    align-items: center;
     justify-content: center;
-    
-    height: 85%;
-    width: 95%;
-    border-radius: 20px;
-    margin: 35px 15px 0 15px;
-    padding: 10px;
-    margin-top: 150px;
-    overflow: auto;
+    width: 100%;
+    height: 100%;
 }
 
 .content p {
@@ -31,25 +27,22 @@
 }
 
 .roupa-card{
-    border: 1px #B6B6B6 solid;
+    
     border-radius: 10px;
     margin-top: 20px;
-    width: 320px;
-    height: 400px;
-    
+   
+    height: 270px;
+    width: 170px;
 }
-
-.roupa-card .block{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
 
 .roupa-card img{
-   width: 250px;
-   height: 250px;
-    
+    width: 150px;
+    height: 150px;
+}
+
+.roupa-card nav{
+    display: flex;
+    gap: 50px;
 }
 
 .roupa-card p{
@@ -57,17 +50,19 @@
 }
 
 .block{
-   
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    overflow: auto;
-    width: 100%;
+    width: 85%;
+    height: 800px;
+ 
+    
+    height: 90%;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(3, 2fr);
+    gap: 10px;
+
+
+
 }
-
-
-
-
 
 .block .roupa-card .delete a img{
    
@@ -76,13 +71,7 @@
     
 }
 
-.block .roupa-card nav{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 100px;
-    margin: 10px;
-}
+
 
 
 
