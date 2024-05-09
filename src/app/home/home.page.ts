@@ -23,7 +23,6 @@ export class HomePage implements OnInit{
     email: '',
     senha: ''
   }
-  calcaId = 0
 
   outfit : IOutfits = {
     usuarioId: this.user.id!,
@@ -31,6 +30,8 @@ export class HomePage implements OnInit{
       id: 0
     }]
   }
+
+  showInputOutfit = false
 
   PopUp = {
     openModal: false,
@@ -226,9 +227,10 @@ export class HomePage implements OnInit{
     return roupas
   }
 
-  saveOutfit(){
-    this.loadingService.showLoadingIndicator('Salvando Outfit')
-    let roupasId = this.roupas.forEach((a)=> {
+  saveOutfit(event : any){
+    if(event == true){
+      this.loadingService.showLoadingIndicator('Salvando Outfit')
+      let roupasId = this.roupas.forEach((a)=> {
       if(a.display == 'display: flex'){
         let idRoupas = {
           id : a.id!
@@ -236,9 +238,16 @@ export class HomePage implements OnInit{
         this.outfit.roupasRequest?.push(idRoupas)
       }
     })
+      this.outfit.usuarioId = this.user.id!
+      //Requisição Comentada até confirmação e realização de todos os ajustes e mudanças em relação a home page e suas funções
+      this.httpService.Post(this.outfit, "Outfit").subscribe(()=> this.loadingService.dismissLoadingIndicator())
+    }
+    else {
+      this.showInputOutfit = true
+    }
+  }
 
-    this.outfit.usuarioId = this.user.id!
-    //Requisição Comentada até confirmação e realização de todos os ajustes e mudanças em relação a home page e suas funções
-    //this.httpService.Post(this.outfit, "Outfit").subscribe(()=> this.loadingService.dismissLoadingIndicator())
+  closeInputOutfit(event : any){
+    this.showInputOutfit = event
   }
 }

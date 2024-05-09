@@ -8,7 +8,7 @@ import { ClozetPageRoutingModule } from './clozet-routing.module';
 
 import { ClozetPage } from './clozet.page';
 import { SharedModule } from '../shared/shared.module';
-import { OutfitInputComponent } from './outfit-input/outfit-input.component';
+
 
 
 
@@ -18,9 +18,8 @@ import { OutfitInputComponent } from './outfit-input/outfit-input.component';
     FormsModule,
     IonicModule,
     ClozetPageRoutingModule,
-    SharedModule,
-    FormsModule
+    SharedModule
   ],
-  declarations: [ClozetPage,OutfitInputComponent]
+  declarations: [ClozetPage]
 })
 export class ClozetPageModule {}

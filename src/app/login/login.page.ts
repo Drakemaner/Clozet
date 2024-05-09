@@ -45,6 +45,7 @@ export class LoginPage implements OnInit{
       ).subscribe(a =>
         {
           this.storageService.setObject('logado', a.nomeUsuario!)
+          localStorage.setItem('logado',a.nomeUsuario!)
           window.location.reload()
           this.router.navigate(['/home'])
         })

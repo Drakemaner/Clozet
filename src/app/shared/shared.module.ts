@@ -5,6 +5,8 @@ import {IonicModule} from "@ionic/angular";
 import {FooterComponent} from "./footer/footer.component";
 import { RouterModule } from '@angular/router';
 import { PopUpComponent } from './pop-up/pop-up.component';
+import { OutfitInputComponent } from './outfit-input/outfit-input.component';
+import { FormsModule } from '@angular/forms';
 
 
 
@@ -12,17 +14,20 @@ import { PopUpComponent } from './pop-up/pop-up.component';
   declarations: [
     HeaderComponent,
     FooterComponent,
-    PopUpComponent
+    PopUpComponent,
+    OutfitInputComponent
   ],
   imports: [
     CommonModule,
     IonicModule,
-    RouterModule
+    RouterModule,
+    FormsModule
   ],
   exports: [
     HeaderComponent,
     FooterComponent,
-    PopUpComponent
+    PopUpComponent,
+    OutfitInputComponent
   ]
 })
 export class SharedModule { }

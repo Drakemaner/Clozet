@@ -1,12 +1,10 @@
 import { Injectable } from '@angular/core';
 import axios from 'axios';
 import { FileSystemService } from '../fileSystem/file-system.service';
-import { WriteFileResult } from '@capacitor/filesystem';
 import { LoadingService } from 'src/app/services/loading/loading.service';
 import IRoupas from 'src/app/interfaces/IRoupas';
 import { HttpService } from '../http/http.service';
 import { catchError, throwError } from 'rxjs';
-
 
 
 @Injectable({
@@ -48,8 +46,6 @@ export class RemoveBGService {
           const webPath = await this.saveFileReceived(fotos, nomeFoto, base64String, tipoRoupa)
           
           this.saveOnSQLServer(nomeFoto, usuarioIdParameter, webPath, tipoRoupa)
-
-          this.loadingService.dismissLoadingIndicator().then(()=> window.location.reload())
         })
     }).catch((error)=> {
       this.loadingService.dismissLoadingIndicator()
@@ -84,7 +80,7 @@ export class RemoveBGService {
       this.roupa.usuarioId = usuarioIdParameter
       this.roupa.caminhoImagem = webPath
       this.roupa.tipo = tipoRoupa
-      this.httpService.Post(this.roupa, "Roupa").pipe(
+       this.httpService.Post(this.roupa, "Roupa").pipe(
         catchError((error : any) => {
           if(error.status == 500){
             console.log("Servidor Caiu")
@@ -93,6 +89,7 @@ export class RemoveBGService {
         })
       ).subscribe((a)=>{
         console.log("Foto Cadastrada com Sucesso")
+        this.loadingService.dismissLoadingIndicator()
       })
   }
 }
