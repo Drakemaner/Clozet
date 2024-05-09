@@ -7,6 +7,7 @@ import IUser from '../interfaces/IUser';
 import { LoadingService } from '../services/loading/loading.service';
 import { IOutfits } from '../interfaces/IOutfits';
 import { AlertController } from '@ionic/angular';
+import { Outfit } from '../shared/outfit/outfit';
 
 
 
@@ -18,17 +19,11 @@ import { AlertController } from '@ionic/angular';
 export class HomePage implements OnInit{
 
   roupas : IRoupas[] = Roupas
+  outfit = Outfit
   
   user : IUser = {
     email: '',
     senha: ''
-  }
-
-  outfit : IOutfits = {
-    usuarioId: this.user.id!,
-    roupasRequest: [{
-      id: 0
-    }]
   }
 
   showInputOutfit = false
