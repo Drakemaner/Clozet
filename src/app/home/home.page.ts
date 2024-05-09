@@ -19,6 +19,7 @@ import { Outfit } from '../shared/outfit/outfit';
 export class HomePage implements OnInit{
 
   roupas : IRoupas[] = Roupas
+
   outfit = Outfit
   
   user : IUser = {
@@ -38,6 +39,7 @@ export class HomePage implements OnInit{
   constructor(private storage : StorageService, private httpService : HttpService, private loadingService : LoadingService, private alert : AlertController) {}
  
   ngOnInit(): void { 
+    console.log(this.outfit)
     this.storage.getObject('logado').then(async (a)=> {
 
       this.loadingService.showLoadingIndicator('Pegando Roupas do Banco')
