@@ -1,5 +1,5 @@
 <app-header 
-  [title]="outfit.nome === null ? 'Outfit' : outfit.nome!" 
+  [title]="outfit === undefined ? 'Outfit' : outfit.nome!" 
   [buttons]="[{
     image: 'assets/icon/save.svg',
     function: 3

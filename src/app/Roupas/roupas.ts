@@ -3,7 +3,10 @@ import IRoupas from "../interfaces/IRoupas"
 
 export var Roupas : IRoupas[] = [
     {
+<<<<<<< HEAD
       
+=======
+>>>>>>> 7ed6c1722c66d6256d6beaba7a2c018169830890
       id: 1,
       nome: 'boné avatar',
       tipo:'cap',
@@ -12,7 +15,10 @@ export var Roupas : IRoupas[] = [
       deleteable: false
     },
     {
+<<<<<<< HEAD
       
+=======
+>>>>>>> 7ed6c1722c66d6256d6beaba7a2c018169830890
       id: 2,
       nome: 'cabeça avatar',
       tipo:'head',
@@ -21,7 +27,10 @@ export var Roupas : IRoupas[] = [
       deleteable: false
     },
     {
+<<<<<<< HEAD
       
+=======
+>>>>>>> 7ed6c1722c66d6256d6beaba7a2c018169830890
       id: 3,
       nome: 'camisa Branca',
       tipo:'tee',
@@ -30,7 +39,10 @@ export var Roupas : IRoupas[] = [
       deleteable: false
     },
     {
+<<<<<<< HEAD
       
+=======
+>>>>>>> 7ed6c1722c66d6256d6beaba7a2c018169830890
       id: 3,
       nome: 'Jaqueta',
       tipo:'jaqueta',
@@ -39,7 +51,10 @@ export var Roupas : IRoupas[] = [
       deleteable: false
     },
     {
+<<<<<<< HEAD
      
+=======
+>>>>>>> 7ed6c1722c66d6256d6beaba7a2c018169830890
       id: 4,
       nome: 'oculos',
       tipo: 'glasses',
@@ -49,7 +64,10 @@ export var Roupas : IRoupas[] = [
       acessorio: true
     },
     {
+<<<<<<< HEAD
      
+=======
+>>>>>>> 7ed6c1722c66d6256d6beaba7a2c018169830890
       id: 5,
       nome: 'relogio',
       tipo: 'clock',
@@ -59,7 +77,10 @@ export var Roupas : IRoupas[] = [
       acessorio: true
     },
     {
+<<<<<<< HEAD
       
+=======
+>>>>>>> 7ed6c1722c66d6256d6beaba7a2c018169830890
       id: 6,
       nome: 'bolsa',
       tipo: 'bag',
@@ -69,7 +90,10 @@ export var Roupas : IRoupas[] = [
       acessorio: true
     },
     {
+<<<<<<< HEAD
       
+=======
+>>>>>>> 7ed6c1722c66d6256d6beaba7a2c018169830890
       id: 7,
       nome: 'feminino',
       tipo: 'fem',
@@ -78,7 +102,10 @@ export var Roupas : IRoupas[] = [
       deleteable: false
     },
     {
+<<<<<<< HEAD
       
+=======
+>>>>>>> 7ed6c1722c66d6256d6beaba7a2c018169830890
       id: 8,
       nome: 'calça soho_club',
       tipo:'pants',
@@ -87,7 +114,10 @@ export var Roupas : IRoupas[] = [
       deleteable: false
     },
     {
+<<<<<<< HEAD
       
+=======
+>>>>>>> 7ed6c1722c66d6256d6beaba7a2c018169830890
       id: 9,
       nome: 'tenis allStar',
       tipo:'shoes',
