@@ -17,7 +17,7 @@
         <div class="desc-pf">
           @defer (when user.roupas !== undefined) {
             @for (outfit of user.outfits; track $index) {
-              <p>{{user.nomeUsuario}}</p>
+              <p>{{outfit.nome}}</p>
               
             }
           }
