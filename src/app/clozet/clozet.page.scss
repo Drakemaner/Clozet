@@ -7,13 +7,22 @@
     width: 100%;
 }
 
+.tl{
+    
+    height: auto;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(3, 2fr);
+    gap: 10px;
+    
+}
 
 .ion-content-custom{
     --ion-background-color: #FAF9F7;
 }
 
 .content {
-   
+    
     display: flex;
     align-items: center;
     justify-content: center;
@@ -27,22 +36,28 @@
 }
 
 .roupa-card{
-    
-    border-radius: 10px;
-    margin-top: 20px;
    
-    height: 270px;
-    width: 170px;
+    border-radius: 10px;
+    margin-top: 15px;
+    
+    height: auto;
+    width: 190px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+   
 }
 
 .roupa-card img{
-    width: 150px;
-    height: 150px;
+    width: 200px;
+    height: auto;
 }
 
 .roupa-card nav{
     display: flex;
     gap: 50px;
+    margin: auto
 }
 
 .roupa-card p{
@@ -50,16 +65,11 @@
 }
 
 .block{
-    width: 85%;
-    height: 800px;
- 
-    
-    height: 90%;
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    grid-template-rows: repeat(3, 2fr);
-    gap: 10px;
-
+  
+    display: flex;
+    justify-content: center;
+    align-items: center;
+   
 
 
 }
