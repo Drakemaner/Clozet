@@ -8,8 +8,8 @@
 }
 
 .tl{
-    
-    height: auto;
+    overflow: auto;
+    height: 100%;
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     grid-template-rows: repeat(3, 2fr);
@@ -50,7 +50,7 @@
 }
 
 .roupa-card img{
-    width: 200px;
+    width: 150px;
     height: auto;
 }
 
@@ -76,21 +76,11 @@
 
 .block .roupa-card .delete a img{
    
-    width: 30px;
-    height: 30px;
+    width: 24px;
+    height: 24px;
     
 }
 
-
-
-
-
-.block  .roupa-card nav .delete {
-   
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
 
 
 .sub-tl{
@@ -116,5 +106,11 @@
 
 .tl-roupa{
     font-style: italic;
-    font-weight: 800;
+    font-weight: 500;
+    font-size: 12px;
+    
+}
+
+.tl-roupa p{
+    color: #D4D4D4;
 }
