@@ -39,10 +39,11 @@
 }
 
 .roupa-card{
-   
+
     border-radius: 10px;
     margin-top: 15px;
-    
+    padding-top: 10px;
+    padding-bottom: 25px;
     height: auto;
     width: 180px;
     display: flex;
@@ -60,7 +61,8 @@
 .roupa-card nav{
     display: flex;
     gap: 35px;
-    margin: auto
+    margin: auto;
+    padding-bottom: 10px;
 }
 
 .roupa-card p{
