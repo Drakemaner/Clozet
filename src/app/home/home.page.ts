@@ -232,16 +232,26 @@ export class HomePage implements OnInit{
         let idRoupas = {
           id : a.id!
         }
-        this.outfit.roupasRequest?.push(idRoupas)
+        this.outfit.roupasId?.push(idRoupas)
       }
     })
-      this.outfit.usuarioId = this.user.id!
+      this.outfit.usuarioID = this.user.id!
       //Requisição Comentada até confirmação e realização de todos os ajustes e mudanças em relação a home page e suas funções
       this.httpService.Post(this.outfit, "Outfit").subscribe(()=> this.loadingService.dismissLoadingIndicator())
     }
     else {
       this.showInputOutfit = true
     }
+  }
+
+  verificacaoSalvarOutfit(){
+    let roupasSelecionadas = this.roupas.filter(a=> a.display == 'display: flex')
+
+    roupasSelecionadas.length == 0 ? this.alert.create({
+      header: 'Ação Não Permitida',
+      message: 'Não é possível salvar um Outfit sem nenhuma roupa',
+      buttons: ['Ok']
+    }) : undefined
   }
 
   closeInputOutfit(event : any){

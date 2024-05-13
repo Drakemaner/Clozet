@@ -3,7 +3,7 @@ import IRoupas from "./IRoupas";
 export interface IOutfits {
     id? : number,
     nome? : string,
-    usuarioId: number,
-    roupasRequest? : {id : number}[]
+    usuarioID: number,
+    roupasId? : {id : number}[]
     roupasResponse? : IRoupas[]
 }
