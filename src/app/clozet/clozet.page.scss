@@ -2,19 +2,22 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    
+   
     height: 100%;
     width: 100%;
 }
 
 .tl{
-    overflow: auto;
+    overflow-y: auto;
+    overflow-x: hidden;
     height: 100%;
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     grid-template-rows: repeat(3, 2fr);
-    gap: 10px;
+    gap: 15px;
     
+    width: 93%;
+   
 }
 
 .ion-content-custom{
@@ -41,7 +44,7 @@
     margin-top: 15px;
     
     height: auto;
-    width: 190px;
+    width: 180px;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -50,13 +53,13 @@
 }
 
 .roupa-card img{
-    width: 150px;
+    width: 120px;
     height: auto;
 }
 
 .roupa-card nav{
     display: flex;
-    gap: 50px;
+    gap: 35px;
     margin: auto
 }
 
@@ -96,12 +99,6 @@
     width: 90px;
 }
 
-.checkbox input{
-    background-color: #B6B6B6;
-    width: 40px;
-    height: 40px;
-}
-
 
 
 .tl-roupa{
@@ -111,6 +108,12 @@
     
 }
 
-.tl-roupa p{
-    color: #D4D4D4;
-}
+
+ion-checkbox {
+    --size: 20px;
+    --checkbox-background-checked: #6815ec;
+    --checkbox-background: white;
+    --border-color:#D4D4D4;
+    --border-width: 1px;
+    
+  }

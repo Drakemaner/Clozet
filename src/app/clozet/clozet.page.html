@@ -25,11 +25,14 @@
             
            
               <nav>
-                <input type="checkbox" [name]="roupa.id?.toString()!" [value]="roupa.id" (ionChange)="SelectRoupas($event)">
                
-                <p class="tl-roupa">{{roupa.tipo}}</p>
+                <ion-checkbox [name]="roupa.id?.toString()!" [value]="roupa.id" (ionChange)="SelectRoupas($event)"></ion-checkbox>
+              
+                
+               
+                <p class="tl-roupa" style="color: #bababa;">{{roupa.tipo}}</p>
                 <div class="delete">
-                  <a (click)="deletarRoupa(roupa.id!)"><img src="/assets/icon/remove.svg" alt=""></a>
+                  <a (click)="deletarRoupa(roupa.id!)"><img src="/assets/remove-white.svg" alt=""></a>
                 </div>
                 
               </nav>
