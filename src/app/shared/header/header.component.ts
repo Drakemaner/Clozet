@@ -26,6 +26,9 @@ export class HeaderComponent {
   @Output()
   saveOutfit : EventEmitter<boolean> = new EventEmitter()
 
+  @Output()
+  takePhoto : EventEmitter<boolean> = new EventEmitter()
+
   constructor() { }
 
   selectFunction(value : number | undefined){
@@ -45,6 +48,10 @@ export class HeaderComponent {
         this.saveOutfit.emit(true)
       }
     }
+
+    else if(value == 4){
+      this.takePhoto.emit(true)
+    }
   }
 
 
@@ -52,10 +59,7 @@ export class HeaderComponent {
     if(this.page == 'perfil'){
       return '/config'
     }
-    else if(this.page == 'Clozet'){
-      return '/roupas'
-    }
-
+    
     return ''
   }
 

@@ -3,7 +3,8 @@
   page="Clozet" 
   [buttons]="[
     {
-      image: 'assets/icon/add-clothe.svg'
+      image: 'assets/icon/add-clothe.svg',
+      function: 4
     },
     {
       image: 'assets/icon/new.svg',
@@ -11,6 +12,7 @@
     }
   ]"
   (showInput)="ShowInputOutfit($event)"
+  (takePhoto)="showActions()"
   ></app-header>
   @if(showInputOutfit){
     <app-outfit-input (Show)="closeInputOutfit($event)" type="New"></app-outfit-input>

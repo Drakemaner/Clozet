@@ -16,7 +16,6 @@ import { Roupas } from '../Roupas/roupas';
 })
 export class AdicionarRoupaPage implements OnInit {
 
-  tipoRoupa = ''
   roupas : IRoupas[] = Roupas
   user : IUser = {
     email: '',
@@ -111,8 +110,7 @@ export class AdicionarRoupaPage implements OnInit {
   }
 
   tirarFoto(tipo : string){
-    this.tipoRoupa = tipo
-    this.cameraService.takePicture(this.roupas, this.tipoRoupa, this.user.id!)
+    this.cameraService.takePicture(this.roupas, tipo, this.user.id!)
   }
 
 }

@@ -1,12 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpService } from '../services/http/http.service';
 import IUser from '../interfaces/IUser';
-import { AlertController, Platform } from '@ionic/angular';
+import { ActionSheetController, AlertController, Platform } from '@ionic/angular';
 import { StorageService } from '../services/storage/storage.service';
 import { catchError, filter, throwError, timeout } from 'rxjs';
 import { LoadingService } from '../services/loading/loading.service';
 import { FileSystemService } from '../services/fileSystem/file-system.service';
 import { Roupas } from '../Roupas/roupas';
+import { CameraService } from '../services/camera/camera.service';
 
 @Component({
   selector: 'app-clozet',
@@ -26,14 +27,20 @@ export class ClozetPage {
 
   select : any[] = []
 
-  constructor(private fileSystemService : FileSystemService ,private loadingService : LoadingService, private http : HttpService, private alert : AlertController) { }
+  constructor(private fileSystemService : FileSystemService ,private loadingService : LoadingService, private http : HttpService, private alert : AlertController, private actionSheet : ActionSheetController, private cameraService : CameraService) { }
 
   deletarRoupa(roupaID : number){
     this.loadingService.showLoadingIndicator('Deletando Roupa Selecionada')
-    this.http.Delete("Roupa", this.user.nomeUsuario!, roupaID).subscribe(()=> {
+    this.http.Delete("Roupa", this.user.nomeUsuario!, roupaID).subscribe(async ()=> {
       this.fileSystemService.deleteFile(this.user.roupas?.filter(a=> a.id == roupaID)[0].nome!)
       this.user.roupas = this.user.roupas?.filter(a => a.id != roupaID)
       this.loadingService.dismissLoadingIndicator()
+
+      const alert = await this.alert.create({
+        header: 'Roupa Deletada com Sucesso',
+        buttons: ['Ok']
+      })
+      
     }, async (e)=> {
       this.loadingService.dismissLoadingIndicator()
       const alert = await this.alert.create({
@@ -43,6 +50,48 @@ export class ClozetPage {
       })
       alert.present()
     })
+  }
+
+  showActions = async () => {
+    const result = await this.actionSheet.create({
+      header: 'Tipo da Roupa',
+      buttons: [
+        {
+          text: 'Cap',
+          handler: () => this.tirarFoto('cap')
+        },
+        {
+          text: 'Head',
+          handler: () => this.tirarFoto('head')
+        },
+        {
+          text: 'Tee',
+          handler: () => this.tirarFoto('tee')
+        },
+        {
+          text: 'Dress',
+          handler: () => this.tirarFoto('dress')
+        },
+        {
+          text: 'Calça',
+          handler: () => this.tirarFoto('pants')  
+        },
+        {
+          text: 'Short',
+          handler: () => this.tirarFoto('short')  
+        },
+        {
+          text: 'Tênis',
+          handler: () => this.tirarFoto('shoes')
+        },
+        {
+          text: 'Cancelar',
+          role: 'cancel'
+        }
+      ],
+    })
+    
+    await result.present();
   }
 
   ShowInputOutfit(event : any){
@@ -65,10 +114,16 @@ export class ClozetPage {
   deletarRoupasSelecionadas(){
     this.loadingService.showLoadingIndicator('Deletando Roupas Selecionadas')
     this.select.forEach((a)=> {
-      this.http.Delete("Roupa", this.user.nomeUsuario!, a).subscribe(()=> {
+      this.http.Delete("Roupa", this.user.nomeUsuario!, a).subscribe(async ()=> {
         this.fileSystemService.deleteFile(this.user.roupas?.filter(b=> b.id == a)[0].nome!)
         this.user.roupas = this.user.roupas?.filter(b => b.id != a)
         this.loadingService.dismissLoadingIndicator()
+
+        const alert = await this.alert.create({
+          header: 'Roupas Deletadas com Sucesso',
+          buttons: ['Ok']
+        })
+
       }, async (e)=> {
         this.loadingService.dismissLoadingIndicator()
         const alert = await this.alert.create({
@@ -79,6 +134,10 @@ export class ClozetPage {
         alert.present()
       })
     })
+  }
+
+  tirarFoto(tipo : string){
+    this.cameraService.takePicture(this.roupas, tipo, this.user.id!)
   }
 
 }

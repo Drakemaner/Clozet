@@ -28,10 +28,6 @@ const routes: Routes = [
     loadChildren: () => import('./clozet/clozet.module').then( m => m.ClozetPageModule)
   },
   {
-    path: 'outfit',
-    loadChildren: () => import('./outfit/outfit.module').then( m => m.OutfitPageModule)
-  },
-  {
     path: 'config',
     loadChildren: () => import('./config/config.module').then( m => m.ConfigPageModule)
   },

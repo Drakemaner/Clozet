@@ -232,23 +232,57 @@ export class HomePage implements OnInit{
     return roupas
   }
 
-  saveOutfit(event : any){
-    if(event == true){
+  saveOutfit(event : boolean){
+
+    if(this.outfit.nome != ''){
       this.loadingService.showLoadingIndicator('Salvando Outfit')
       let roupasId = this.roupas.forEach((a)=> {
-      if(a.display == 'display: flex'){
-        let idRoupas = {
-          id : a.id!
+        if(a.display == 'display: flex'){
+          let idRoupas = {
+            id : a.id!
+          }
+          this.outfit.roupasId?.push(idRoupas)
         }
-        this.outfit.roupasId?.push(idRoupas)
-      }
-    })
+      })
       this.outfit.usuarioID = this.user.id!
       if(this.outfit.existente){
-        this.httpService.Put(this.outfit, "Outfit").subscribe(()=> this.loadingService.dismissLoadingIndicator())
+        this.httpService.Put(this.outfit, "Outfit").subscribe(async ()=> {
+          
+          this.loadingService.dismissLoadingIndicator()
+          const alert = await this.alert.create({
+            header: 'Outfit criado com Sucesso',
+            buttons: ['Ok']
+          })
+        }, async (e)=> {
+          this.loadingService.dismissLoadingIndicator()
+          const alert = await this.alert.create({
+            header: 'Ação Não Permitida',
+            message: 'Não foi possível salvar o outfit, verifique sua conexão com a internet ou tente novamente',
+            buttons: ['Ok']
+          })
+          alert.present()
+          console.log(e)
+        })
       }
       else{
-        this.httpService.Post(this.outfit, "Outfit").subscribe(()=> this.loadingService.dismissLoadingIndicator())
+
+        this.httpService.Post(this.outfit, "Outfit").subscribe(async ()=> {
+          this.loadingService.dismissLoadingIndicator()
+          const alert = await this.alert.create({
+            header: 'Outfit criado com Sucesso',
+            buttons: ['Ok']
+          })
+          alert.present()
+        }, async (e)=> {
+          this.loadingService.dismissLoadingIndicator()
+          const alert = await this.alert.create({
+            header: 'Ação Não Permitida',
+            message: 'Não foi possível salvar o outfit, verifique sua conexão com a internet ou tente novamente',
+            buttons: ['Ok']
+          })
+          alert.present()
+          console.log(e)
+        })
       } 
     }
     else {
