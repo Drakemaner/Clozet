@@ -15,7 +15,7 @@
   <app-pop-up [roupas]="roupas" [popUp]="PopUp" (Show)="receivePopUp($event)"></app-pop-up>
 }
 @if(showInputOutfit){
-  <app-outfit-input (Show)="closeInputOutfit($event)"></app-outfit-input>
+  <app-outfit-input (Show)="closeInputOutfit($event)" type="Same"></app-outfit-input>
 }
 <ion-content class="ion-content-custom" [fullscreen]="true">
   <div class="ion-content">
