@@ -29,8 +29,8 @@ export class HttpService {
     return this.http.post<any>(`${this.apiURL}/${type}`, valor)
   }
 
-  Put(type : string, nome : string) : Observable<any> {
-    return this.http.put<any>(`${this.apiURL}/${type}/${nome}`, {})
+  Put(valor : any, type : string) : Observable<any> {
+    return this.http.put<any>(`${this.apiURL}/${type}`, valor)
   }
 
   Delete(type : string, nome : string, id? : number) : Observable<any> {

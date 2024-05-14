@@ -244,8 +244,12 @@ export class HomePage implements OnInit{
       }
     })
       this.outfit.usuarioID = this.user.id!
-      //Requisição Comentada até confirmação e realização de todos os ajustes e mudanças em relação a home page e suas funções
-      this.httpService.Post(this.outfit, "Outfit").subscribe(()=> this.loadingService.dismissLoadingIndicator())
+      if(this.outfit.existente){
+        this.httpService.Put(this.outfit, "Outfit").subscribe(()=> this.loadingService.dismissLoadingIndicator())
+      }
+      else{
+        this.httpService.Post(this.outfit, "Outfit").subscribe(()=> this.loadingService.dismissLoadingIndicator())
+      } 
     }
     else {
       this.showInputOutfit = true

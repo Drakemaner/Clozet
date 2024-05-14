@@ -4,6 +4,10 @@ import { HttpService } from '../services/http/http.service';
 import { catchError, throwError, timeout } from 'rxjs';
 import IUser from '../interfaces/IUser';
 import { AlertController } from '@ionic/angular';
+import { Roupas } from '../Roupas/roupas';
+import { Router } from '@angular/router';
+import { Outfit } from '../shared/outfit/outfit';
+import { IOutfits } from '../interfaces/IOutfits';
 
 @Component({
   selector: 'app-meu-perfil',
@@ -17,7 +21,10 @@ export class MeuPerfilComponent implements OnInit {
     senha: ''
   }
 
-  constructor(private http : HttpService, private storageService : StorageService, private alert : AlertController) { }
+  roupas = Roupas
+  outfit = Outfit
+
+  constructor(private http : HttpService, private storageService : StorageService, private alert : AlertController, private router : Router) { }
 
   ngOnInit(): void {
     this.GetInfoUser()
@@ -40,6 +47,21 @@ export class MeuPerfilComponent implements OnInit {
         alert.present()
       })
     })
+  }
+
+  GoTo(outfit : IOutfits){
+    this.roupas.forEach((a) => {
+      a.display = 'display: none'
+
+      outfit.roupasId!.forEach(b => {
+        if(a.id == b.id){
+          a.display = 'display: flex'
+        }
+      })
+    })
+    this.outfit.nome = outfit.nome
+    outfit.existente = true
+    this.router.navigate(['/home'])
   }
 
 }

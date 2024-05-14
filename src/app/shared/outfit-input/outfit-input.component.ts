@@ -29,8 +29,9 @@ export class OutfitInputComponent {
         a.display == 'display: flex' ? a.display = 'display: none' : null
       })
     }
-    
+
     this.outfit.nome = this.inputName
+    this.outfit.existente = false
     this.Show.emit(false)
     this.router.navigate(['/home'])
   }

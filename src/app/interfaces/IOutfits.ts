@@ -6,4 +6,5 @@ export interface IOutfits {
     usuarioID: number,
     roupasId? : {id : number}[]
     roupasResponse? : IRoupas[]
+    existente : boolean
 }
