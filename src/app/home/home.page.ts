@@ -43,7 +43,7 @@ export class HomePage implements OnInit{
     this.storage.getObject('logado').then(async (a)=> {
 
       this.loadingService.showLoadingIndicator('Pegando Roupas do Banco')
-      this.httpService.GetFor("Usuario", a!).subscribe(async (user : IUser) => {
+     this.httpService.GetFor("Usuario", a!).subscribe((user : IUser) => {
         this.user = user
         if(user.roupas?.length != 0){
           this.verifyStaticClothes(user)
@@ -53,6 +53,14 @@ export class HomePage implements OnInit{
         else{
           this.loadingService.dismissLoadingIndicator()
         }
+      }, async (e)=> {
+        this.loadingService.dismissLoadingIndicator()
+        const alert = await this.alert.create({
+          header: 'Falha ao Receber suas Roupas Salvas',
+          message: 'Por favor verifique sua conexão com a internet ou feche e abra o aplicativo novamente',
+          buttons: ['Ok']
+        })
+        alert.present()
       })
     })
   }

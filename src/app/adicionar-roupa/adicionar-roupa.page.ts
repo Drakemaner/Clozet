@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CameraService } from 'src/app/services/camera/camera.service';
-import { ActionSheetController } from '@ionic/angular';
+import { ActionSheetController, AlertController } from '@ionic/angular';
 import { StorageService } from 'src/app/services/storage/storage.service';
 import { Platform } from '@ionic/angular';
 import { HttpService } from 'src/app/services/http/http.service';
@@ -23,7 +23,7 @@ export class AdicionarRoupaPage implements OnInit {
     senha: ''
   }
 
-  constructor(private httpService : HttpService, private platform : Platform, private cameraService : CameraService, private storageService : StorageService , private actionSheet : ActionSheetController) { }
+  constructor(private httpService : HttpService, private platform : Platform, private cameraService : CameraService, private storageService : StorageService , private actionSheet : ActionSheetController, private alert : AlertController) { }
 
   ngOnInit() {
     this.verificarLogin()
@@ -78,14 +78,16 @@ export class AdicionarRoupaPage implements OnInit {
   
           this.user.nomeUsuario = nomeUsuariov!
 
-          this.httpService.GetFor("Usuario", this.user.nomeUsuario!).pipe(
-            timeout(15000),
-            catchError((error)=> {
-              console.log('Error')
-              return throwError(error);
-            })
-            ).subscribe((data : IUser)=>{
+          this.httpService.GetFor("Usuario", this.user.nomeUsuario!)
+            .subscribe((data : IUser)=>{
               this.user = data     
+            }, async (e)=> {
+              const alert = await this.alert.create({
+                header: 'Falha ao Receber suas Roupas Salvas',
+                message: 'Por favor verifique sua conexão com a internet ou feche e abra o aplicativo novamente',
+                buttons: ['Ok']
+              })
+              alert.present()
             })
         }
         else{
