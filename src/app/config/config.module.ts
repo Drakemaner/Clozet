@@ -7,13 +7,15 @@ import { IonicModule } from '@ionic/angular';
 import { ConfigPageRoutingModule } from './config-routing.module';
 
 import { ConfigPage } from './config.page';
+import { SharedModule } from '../shared/shared.module';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    ConfigPageRoutingModule
+    ConfigPageRoutingModule,
+    SharedModule
   ],
   declarations: [ConfigPage]
 })
