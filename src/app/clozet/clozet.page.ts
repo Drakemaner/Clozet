@@ -14,7 +14,7 @@ import { CameraService } from '../services/camera/camera.service';
   templateUrl: './clozet.page.html',
   styleUrls: ['./clozet.page.scss'],
 })
-export class ClozetPage {
+export class ClozetPage implements OnInit {
 
   user : IUser = {
     email: '',
@@ -27,28 +27,64 @@ export class ClozetPage {
 
   select : any[] = []
 
-  constructor(private fileSystemService : FileSystemService ,private loadingService : LoadingService, private http : HttpService, private alert : AlertController, private actionSheet : ActionSheetController, private cameraService : CameraService) { }
+  constructor(private fileSystemService : FileSystemService ,private loadingService : LoadingService, private http : HttpService, private alert : AlertController, private actionSheet : ActionSheetController, private cameraService : CameraService, private storage : StorageService) { }
+
+  ngOnInit(): void {
+    this.GetInfoUser()
+  }
+
+  GetInfoUser(){
+    this.storage.getObject('logado').then(async (a)=> {
+     this.http.GetFor("Usuario", a!).subscribe((user : IUser) => {
+        this.user = user
+      })
+    })
+  }
 
   deletarRoupa(roupaID : number){
     this.loadingService.showLoadingIndicator('Deletando Roupa Selecionada')
+    console.log(this.user.nomeUsuario)
+    console.log(roupaID)
+
     this.http.Delete("Roupa", this.user.nomeUsuario!, roupaID).subscribe(async ()=> {
-      this.fileSystemService.deleteFile(this.user.roupas?.filter(a=> a.id == roupaID)[0].nome!)
-      this.user.roupas = this.user.roupas?.filter(a => a.id != roupaID)
+      this.fileSystemService.deleteFile(this.roupas.filter(a=> a.id == roupaID)[0].nome!)
+      this.roupas.forEach((a,i)=> {
+        if(a.id == roupaID){
+          this.roupas.splice(i,1)
+        }
+      })
       this.loadingService.dismissLoadingIndicator()
 
       const alert = await this.alert.create({
         header: 'Roupa Deletada com Sucesso',
         buttons: ['Ok']
       })
+      alert.present()
+
       
     }, async (e)=> {
-      this.loadingService.dismissLoadingIndicator()
-      const alert = await this.alert.create({
-        header: 'Falha ao Deletar a Roupa',
-        message: 'Por favor verifique sua conexão com a internet ou feche e abra o aplicativo novamente',
-        buttons: ['Ok']
-      })
-      alert.present()
+
+      if(e.statusText.includes("Unknown Error")){
+        this.loadingService.dismissLoadingIndicator()
+        const alert = await this.alert.create({
+          header: 'Falha ao Deletar a Roupa',
+          message: 'Esta roupa já está salva em um outfit, não é possível deletá-la',
+          buttons: ['Ok']
+        })
+        alert.present()
+      }
+      else {
+        this.loadingService.dismissLoadingIndicator()
+        const alert = await this.alert.create({
+          header: 'Falha ao Deletar a Roupa',
+          message: 'Por favor verifique sua conexão com a internet ou feche e abra o aplicativo novamente',
+          buttons: ['Ok']
+        })
+        alert.present()
+      }
+      
+      console.log('Oi' + e)
+      console.error(e)
     })
   }
 
@@ -115,28 +151,46 @@ export class ClozetPage {
     this.loadingService.showLoadingIndicator('Deletando Roupas Selecionadas')
     this.select.forEach((a)=> {
       this.http.Delete("Roupa", this.user.nomeUsuario!, a).subscribe(async ()=> {
-        this.fileSystemService.deleteFile(this.user.roupas?.filter(b=> b.id == a)[0].nome!)
-        this.user.roupas = this.user.roupas?.filter(b => b.id != a)
+        this.fileSystemService.deleteFile(this.roupas.filter(b=> b.id == a)[0].nome!)
+        this.roupas.forEach((x,i)=> {
+          if(x.id == a){
+            this.roupas.splice(i,1)
+          }
+        })
         this.loadingService.dismissLoadingIndicator()
 
         const alert = await this.alert.create({
           header: 'Roupas Deletadas com Sucesso',
           buttons: ['Ok']
         })
-
-      }, async (e)=> {
-        this.loadingService.dismissLoadingIndicator()
-        const alert = await this.alert.create({
-          header: 'Falha ao Deletar as Roupas',
-          message: 'Por favor verifique sua conexão com a internet ou feche e abra o aplicativo novamente',
-          buttons: ['Ok']
-        })
         alert.present()
+
+        
+      }, async (e)=> {
+        if(e.statusText.includes("Unknown Error")){
+          this.loadingService.dismissLoadingIndicator()
+          const alert = await this.alert.create({
+            header: 'Falha ao Deletar as Roupas',
+            message: 'Alguma das roupas já estão salvas em um outfit, não é possível deletá-las',
+            buttons: ['Ok']
+          })
+          alert.present()
+        }
+        else {
+          this.loadingService.dismissLoadingIndicator()
+          const alert = await this.alert.create({
+            header: 'Falha ao Deletar as Roupas',
+            message: 'Por favor verifique sua conexão com a internet ou feche e abra o aplicativo novamente',
+            buttons: ['Ok']
+          })
+          alert.present()
+        }
       })
     })
   }
 
   tirarFoto(tipo : string){
+    console.log(this.user)
     this.cameraService.takePicture(this.roupas, tipo, this.user.id!)
   }
 

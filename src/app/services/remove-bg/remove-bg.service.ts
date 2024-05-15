@@ -5,6 +5,7 @@ import { LoadingService } from 'src/app/services/loading/loading.service';
 import IRoupas from 'src/app/interfaces/IRoupas';
 import { HttpService } from '../http/http.service';
 import { catchError, throwError } from 'rxjs';
+import { AlertController } from '@ionic/angular';
 
 
 @Injectable({
@@ -18,7 +19,7 @@ export class RemoveBGService {
     caminhoImagem: ''
   }
 
-  constructor(private fileSystem : FileSystemService, private loadingService : LoadingService, private httpService : HttpService) { 
+  constructor(private fileSystem : FileSystemService, private loadingService : LoadingService, private httpService : HttpService, private alert : AlertController) { 
     
   }
 
@@ -43,53 +44,71 @@ export class RemoveBGService {
           const base64String = btoa(
             [...new Uint8Array(arrayBuffer)].map((num => String.fromCharCode(num))).join('')
           );
-          const webPath = await this.saveFileReceived(fotos, nomeFoto, base64String, tipoRoupa)
+          const webPath = await this.saveFileReceived(nomeFoto, base64String, tipoRoupa)
           
-          this.saveOnSQLServer(nomeFoto, usuarioIdParameter, webPath, tipoRoupa)
+          this.saveOnSQLServer(fotos, nomeFoto, usuarioIdParameter, webPath, tipoRoupa)
         })
-    }).catch((error)=> {
+    }).catch(async (error)=> {
       this.loadingService.dismissLoadingIndicator()
+      const alert = await this.alert.create({
+        header: 'Erro ao Remover Fundo da Foto',
+        buttons: ['Ok']
+      })
+
+      alert.present()
       return console.error('Request failed:', error);
     })
 
   }
 
-  private async saveFileReceived(fotos : IRoupas[], nomeFoto : string, base64String : string, tipoRoupa : string){
+  private async saveFileReceived(nomeFoto : string, base64String : string, tipoRoupa : string){
     const savedFile = await this.fileSystem.writeFile(`${nomeFoto}.png`, base64String)
-    fotos.forEach(a=> {
-      if(a.tipo == tipoRoupa && a.display == 'display: flex'){
-        a.display = 'display: none'
-      }
-    })
-
+    
     let substring = savedFile.uri.slice(7)
     console.log("Tipo : " + tipoRoupa)
     let webPath = `capacitor://localhost/_capacitor_file_${substring}`
-    fotos.push({
-      nome: 'foto',
-      tipo: tipoRoupa,
-      caminhoImagem: webPath,
-      display: 'display: flex',
-      deleteable: false
-    })
+
     return webPath
   }
 
-  private saveOnSQLServer(nomeFoto : string, usuarioIdParameter : number, webPath : string, tipoRoupa : string){
+  private saveOnSQLServer(fotos : IRoupas[], nomeFoto : string, usuarioIdParameter : number, webPath : string, tipoRoupa : string){
+
     this.roupa.nome = nomeFoto!
-      this.roupa.usuarioId = usuarioIdParameter
-      this.roupa.caminhoImagem = webPath
-      this.roupa.tipo = tipoRoupa
-       this.httpService.Post(this.roupa, "Roupa").pipe(
-        catchError((error : any) => {
-          if(error.status == 500){
-            console.log("Servidor Caiu")
-          }
-          return throwError(error)
-        })
-      ).subscribe((a)=>{
-        console.log("Foto Cadastrada com Sucesso")
-        this.loadingService.dismissLoadingIndicator()
+    this.roupa.usuarioId = usuarioIdParameter
+    this.roupa.caminhoImagem = webPath
+    this.roupa.tipo = tipoRoupa
+    console.log(usuarioIdParameter)
+    console.log(this.roupa)
+     this.httpService.Post(this.roupa, "Roupa")
+    .subscribe(async (a)=>{
+
+      fotos.push({
+        id: a.id,
+        nome: 'foto',
+        tipo: tipoRoupa,
+        caminhoImagem: webPath,
+        display: 'display: none',
+        deleteable: false
       })
+
+      console.log("Foto Cadastrada com Sucesso")
+      this.loadingService.dismissLoadingIndicator()
+
+      const alert = await this.alert.create({
+        header: 'Foto Cadastrada com Sucesso',
+        buttons: ['Ok']
+      })
+      alert.present()
+    }, async (error) => {
+      this.loadingService.dismissLoadingIndicator()
+      
+      const alert = await this.alert.create({
+        header: 'Não foi Possível salvar a roupa no banco',
+        message: 'Por favor verifique sua conexão com a internet ou feche e abra o aplicativo novamente',
+        buttons: ['Ok']
+      })
+      alert.present()
+      console.error('Request failed:', error);
+    })
   }
 }

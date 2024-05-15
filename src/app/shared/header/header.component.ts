@@ -59,7 +59,10 @@ export class HeaderComponent {
     if(this.page == 'perfil'){
       return '/config'
     }
-    
+    else if(this.page == 'Clozet'){
+      return '/clozet'
+    }
+
     return ''
   }
 
