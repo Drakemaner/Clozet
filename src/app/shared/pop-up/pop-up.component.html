@@ -10,10 +10,10 @@
     @for (roupa of roupas; track $index) {
       @if(roupa.tipo === popUp.roupaType){
         <li class="popUp-card" (click)="selectCloth(roupa.id!)">
-          <p class="nome-item">{{roupa.nome.length > 32 ? '' : roupa.nome}}</p>
-          @if(roupa.display === 'display: flex') {<p class="status">Utilizado</p>}
+          <p class="nome-item" style="font-size: 14px;">{{roupa.nome.length > 32 ? '' : roupa.nome}}</p>
+          @if(roupa.display === 'display: flex') {<p class="status" style="font-size: 10px;">Utilizando</p>}
           <img [src]="roupa.caminhoImagem" alt="" srcset="">
-          <h3 style="font-style: 'Lato'; font-style: italic;">{{translate(popUp.roupaType)}}</h3>
+          
         </li>
       }
     }
