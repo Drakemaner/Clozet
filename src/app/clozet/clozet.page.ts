@@ -20,8 +20,11 @@ export class ClozetPage implements OnInit {
     email: '',
     senha: ''
   }
-
+  
+  
   roupas = Roupas
+  inputNameValue = ''
+  inputName = false
   
   showInputOutfit = false
 
@@ -192,6 +195,29 @@ export class ClozetPage implements OnInit {
   tirarFoto(tipo : string){
     console.log(this.user)
     this.cameraService.takePicture(this.roupas, tipo, this.user.id!)
+  }
+
+  showInputName(){
+    !this.inputName ? this.inputName = true : this.inputName = false
+  }
+
+  changeClothName(id : number){
+    let roupaEditada = this.roupas.filter(a=> a.id == id)
+
+    roupaEditada[0].nome = this.inputNameValue
+
+    this.http.Put(roupaEditada[0],"Roupas").subscribe(()=> {
+      this.roupas.forEach(a=> {
+        a.id == id ? a.nome = this.inputNameValue : null
+      })
+    }, (e)=> {
+      this.alert.create({
+        header: 'Erro ao Alterar o Nome da Roupa',
+        buttons: ['Ok']
+      })
+
+      console.error(e)
+    })
   }
 
 }

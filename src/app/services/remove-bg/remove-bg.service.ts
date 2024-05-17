@@ -32,7 +32,7 @@ export class RemoveBGService {
       crop: true
     }, {
       headers: {
-        'X-Api-Key': 'UXKJDjJEwKqftKN3VEiDB9zz'
+        'X-Api-Key': 'TYdLMMNwYGxNEBjeTBoukcrc'
       },
       responseType: 'blob'
     }).then((a)=> {
