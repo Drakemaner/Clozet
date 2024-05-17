@@ -47,14 +47,14 @@
     display: block;
     justify-content: space-between;
     flex-direction: column;
-    width: 90%;
+    width: 95%;
     
     overflow: auto;
 }
 
 .row{
     width: 100%;
-    margin-top: 15px;
+    margin-top: 10px;
     border-radius: 15px;
     background-color: #1A2131;
     padding: 20px;
@@ -62,9 +62,11 @@
 
 .row a{
     color: #bbbbbb;
-    font-size: 18px;
+    font-size: 24px;
     text-align: center;
     font-family: 'Lato';
+    font-weight: 800;
+    font-style: italic;
 }
 
 
