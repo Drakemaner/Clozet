@@ -28,8 +28,9 @@
         <div class="block">
           @defer (when user.roupas !== undefined) {
             @for (outfit of user.outfits; track $index) {
-              <div class="row">
-                <a (click)="GoTo(outfit)"><p>{{outfit.nome}}</p></a>
+              <div class="row" (click)="GoTo(outfit)">
+                <p>{{outfit.nome}}</p>
+                <button type="button" (click)="deleteOutfit(outfit.id!)"><ion-icon name="trash-outline"></ion-icon></button>
               </div>
               
             }

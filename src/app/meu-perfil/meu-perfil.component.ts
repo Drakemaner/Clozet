@@ -50,18 +50,40 @@ export class MeuPerfilComponent implements OnInit {
   }
 
   GoTo(outfit : IOutfits){
+    console.log(outfit)
+
     this.roupas.forEach((a) => {
       a.display = 'display: none'
-
-      outfit.roupasId!.forEach(b => {
+      outfit.roupas!.forEach(b => {
+        console.log(b)
         if(a.id == b.id){
           a.display = 'display: flex'
         }
       })
     })
+    this.outfit.id = outfit.id
     this.outfit.nome = outfit.nome
-    outfit.existente = true
+    this.outfit.existente = true
     this.router.navigate(['/home'])
   }
 
+
+  deleteOutfit(id: number){
+    this.http.Delete("Outfit",this.user.nomeUsuario!, id).subscribe(async ()=> {
+      const alert = await this.alert.create({
+        header: 'Outfit Deletado com Sucesso',
+        buttons: ['Ok']
+      })
+      this.user.outfits = this.user.outfits?.filter(a=> a.id != id)
+      alert.present()
+    }, async (e)=> {
+      const alert = await this.alert.create({
+        header: 'Falha a deletar o Outfit',
+        buttons: ['Ok']
+      })
+
+      alert.present()
+      console.error(e)
+    })
+  }
 }

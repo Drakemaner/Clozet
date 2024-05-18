@@ -5,6 +5,6 @@ export interface IOutfits {
     nome? : string,
     usuarioID: number,
     roupasId? : {id : number}[]
-    roupasResponse? : IRoupas[]
+    roupas? : IRoupas[]
     existente : boolean
 }

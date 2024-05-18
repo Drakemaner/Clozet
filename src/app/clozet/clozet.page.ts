@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, input } from '@angular/core';
 import { HttpService } from '../services/http/http.service';
 import IUser from '../interfaces/IUser';
 import { ActionSheetController, AlertController, Platform } from '@ionic/angular';
@@ -23,8 +23,11 @@ export class ClozetPage implements OnInit {
   
   
   roupas = Roupas
-  inputNameValue = ''
-  inputName = false
+  inputName = {
+    show: false,
+    id: 0,
+    value: ''
+  }
   
   showInputOutfit = false
 
@@ -197,25 +200,40 @@ export class ClozetPage implements OnInit {
     this.cameraService.takePicture(this.roupas, tipo, this.user.id!)
   }
 
-  showInputName(){
-    !this.inputName ? this.inputName = true : this.inputName = false
+  showInputName(id : number){
+    !this.inputName.show && this.inputName.id != 0 ? this.inputName.show = true : this.inputName.show = false
+    this.inputName.id = id
+    
   }
+
 
   changeClothName(id : number){
     let roupaEditada = this.roupas.filter(a=> a.id == id)
 
-    roupaEditada[0].nome = this.inputNameValue
+    roupaEditada[0].nome = this.inputName.value
 
-    this.http.Put(roupaEditada[0],"Roupas").subscribe(()=> {
+    this.http.Put(roupaEditada[0],"Roupa").subscribe(async ()=> {
       this.roupas.forEach(a=> {
-        a.id == id ? a.nome = this.inputNameValue : null
+        a.id == id ? a.nome = this.inputName.value : null
       })
-    }, (e)=> {
-      this.alert.create({
+
+      this.inputName.id = 0
+      const alert = await this.alert.create({
+        header: 'Nome da Roupa Alterado com Sucesso',
+        buttons: ['Ok']
+      })
+
+      alert.present()
+    }, async (e)=> {
+
+      this.inputName.id = 0
+
+      const alert = await this.alert.create({
         header: 'Erro ao Alterar o Nome da Roupa',
         buttons: ['Ok']
       })
 
+      alert.present()
       console.error(e)
     })
   }

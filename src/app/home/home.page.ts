@@ -233,10 +233,9 @@ export class HomePage implements OnInit{
   }
 
   saveOutfit(event : boolean){
-
     if(this.outfit.nome != ''){
       this.loadingService.showLoadingIndicator('Salvando Outfit')
-      let roupasId = this.roupas.forEach((a)=> {
+      this.roupas.forEach((a)=> {
         if(a.display == 'display: flex'){
           let idRoupas = {
             id : a.id!
@@ -253,6 +252,8 @@ export class HomePage implements OnInit{
             header: 'Outfit criado com Sucesso',
             buttons: ['Ok']
           })
+
+          alert.present()
         }, async (e)=> {
           this.loadingService.dismissLoadingIndicator()
           const alert = await this.alert.create({
@@ -265,7 +266,7 @@ export class HomePage implements OnInit{
         })
       }
       else{
-
+        this.outfit.id = undefined
         this.httpService.Post(this.outfit, "Outfit").subscribe(async ()=> {
           this.loadingService.dismissLoadingIndicator()
           const alert = await this.alert.create({

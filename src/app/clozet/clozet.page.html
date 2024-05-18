@@ -36,14 +36,14 @@
                 <div class="delete">
                   <a (click)="deletarRoupa(roupa.id!)"><img src="/assets/remove-white.svg" alt=""></a>
                 </div>
-                @if (inputName) {
+                @if (inputName.show && roupa.id === inputName.id) {
                   <div class="input-name">
-                    <input type="text" name="text" id="text" [(ngModel)]="inputNameValue">
-                    <button type="button" (click)="changeClothName(roupa.id!)"></button>
+                    <input type="text" name="text" id="text" [(ngModel)]="inputName.value">
+                    <button type="button" (click)="changeClothName(roupa.id!)"><ion-icon name="send"></ion-icon></button>
                   </div>
                 }
                 <div class="edit-name">
-                  <a (click)="showInputName()"><ion-icon name="create-outline"></ion-icon></a>
+                  <a (click)="showInputName(roupa.id!)"><ion-icon name="create-outline"></ion-icon></a>
                 </div>
               </nav>
               <div style="display: flex; justify-content: center; align-items: center; margin-top: 15px;">
