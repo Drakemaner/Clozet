@@ -18,7 +18,11 @@
     <app-outfit-input (Show)="closeInputOutfit($event)" type="New"></app-outfit-input>
   }
 <ion-content class="ion-content-custom">
-  <ion-input></ion-input>
+  
+  <div class="pesquisar">
+    <ion-input placeholder="pesquise uma peça"></ion-input>
+  </div>
+  
   <div class="container">
     <div class="content">
       <div class="tl">
@@ -71,4 +75,4 @@
   </div>
 </ion-content>
 
-<app-footer style="position: fixed; bottom: 0; width: 100%;"></app-footer>
+<app-footer style="position: absolute; bottom: 0; width: 100%;"></app-footer>

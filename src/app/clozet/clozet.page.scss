@@ -125,8 +125,8 @@ ion-checkbox {
     justify-content: center;
     align-items: center;
     position: absolute;
-    top: 100px;
-    left: 100px;
+    top: 60px;
+    left: 60px;
 }
 
 .vazio .block{
@@ -144,6 +144,18 @@ nav .edit-name{
 }
 
 ion-input{
-    --background: red;
+    
+    margin-top: 30px;
+    --border-radius: 10px;
+    width: 90%;
+    margin: auto;
+    border: 1px solid #D4D4D4;
+    --padding-start: 15px;
+    border-radius: 15px;
+    color: #D4D4D4;
+}
+
+.pesquisar{
+    margin-top: 10px;
 }
 
