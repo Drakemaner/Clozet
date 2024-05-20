@@ -20,13 +20,13 @@
 <ion-content class="ion-content-custom">
   
   <div class="pesquisar">
-    <ion-input placeholder="pesquise uma peça"></ion-input>
+    <ion-input placeholder="pesquise uma peça" (ionInput)="searchClothes()" [(ngModel)]="SearchInput"></ion-input>
   </div>
   
   <div class="container">
     <div class="content">
       <div class="tl">
-        @for (roupa of roupas; track $index) {
+        @for (roupa of searchClothes(); track $index) {
           <div class="block">
             <div class="roupa-card">
             

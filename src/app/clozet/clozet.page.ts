@@ -21,7 +21,7 @@ export class ClozetPage implements OnInit {
     senha: ''
   }
   
-  
+  SearchInput = ''
   roupas = Roupas
   inputName = {
     show: false,
@@ -45,6 +45,12 @@ export class ClozetPage implements OnInit {
         this.user = user
       })
     })
+  }
+
+  searchClothes(){
+    let roupas = this.roupas.filter(a=> a.nome.toUpperCase().includes(this.SearchInput.toUpperCase()) || this.SearchInput == '' ? true : false)
+
+    return roupas
   }
 
   deletarRoupa(roupaID : number){
