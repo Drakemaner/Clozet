@@ -18,6 +18,7 @@
     <app-outfit-input (Show)="closeInputOutfit($event)" type="New"></app-outfit-input>
   }
 <ion-content class="ion-content-custom">
+  <ion-input></ion-input>
   <div class="container">
     <div class="content">
       <div class="tl">
@@ -28,11 +29,13 @@
            
               <nav>
                
-                <ion-checkbox [name]="roupa.id?.toString()!" [value]="roupa.id" (ionChange)="SelectRoupas($event)"></ion-checkbox>
+                <div class="edit-name">
+                  <a (click)="showInputName(roupa.id!)"><img src="/assets/icon/edit.svg" alt=""></a>
+                </div>
               
                 
                
-                <p class="tl-roupa" style="color: #bababa;">{{roupa.tipo}}</p>
+                <p class="tl-roupa" style="color: #bababa;">{{roupa.nome}}</p>
                 <div class="delete">
                   <a (click)="deletarRoupa(roupa.id!)"><img src="/assets/remove-white.svg" alt=""></a>
                 </div>
@@ -42,9 +45,7 @@
                     <button type="button" (click)="changeClothName(roupa.id!)"><ion-icon name="send"></ion-icon></button>
                   </div>
                 }
-                <div class="edit-name">
-                  <a (click)="showInputName(roupa.id!)"><ion-icon name="create-outline"></ion-icon></a>
-                </div>
+            
               </nav>
               <div style="display: flex; justify-content: center; align-items: center; margin-top: 15px;">
                 <img [src]="roupa.caminhoImagem" [alt]="roupa.nome">
@@ -70,4 +71,4 @@
   </div>
 </ion-content>
 
-<app-footer></app-footer>
+<app-footer style="position: fixed; bottom: 0; width: 100%;"></app-footer>
