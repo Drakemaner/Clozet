@@ -32,7 +32,11 @@
                 <p>{{outfit.nome}}</p>
                 <button type="button" (click)="deleteOutfit(outfit.id!)"><ion-icon name="trash-outline"></ion-icon></button>
               </div>
-              
+              @for (roupa of outfit.roupas; track $index) {
+                <div [class]="roupa.tipo">
+                  <img [src]="roupa.caminhoImagem" alt="" style="width: 100px; height: 100px; margin: 5">
+                </div>
+              }
             }
             @empty {
               <p>Salve seus Outfits !</p>
