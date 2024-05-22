@@ -12,16 +12,33 @@
 
 
       <div class="pf">
-        <div class="block">
-          <div class="foto-pf">
-            <img src="" alt="">
+        <div class="no-flex" style="display: block; width: 100%;">
+          <div class="block">
+            <div class="foto-pf">
+              <img src="" alt="">
+            </div>
+          <div class="desc-pf">
+            <div class="text"></div>
+            <p style="font-size: 20px; color: #1A2131;text-align: center; font-family: 'Lato'; font-weight: 600;">nome do Usuário</p>
+            <span style="font-size: 12px; color: #1A2131; font-weight: 500; text-align: center; margin: auto;font-family: 'Lato';">Outfits</span>
           </div>
-        <div class="desc-pf">
-          <div class="text"></div>
-          <p style="font-size: 20px; color: #1A2131;text-align: center; font-family: 'Lato'; font-weight: 600;">nome do Usuário</p>
-          <span style="font-size: 12px; color: #1A2131; font-weight: 500; text-align: center; margin: auto;font-family: 'Lato';">Outfits</span>
+          </div>
+  
+          <div class="info">
+            <div class="info-item">
+              <div class="info-desc" style="display: flex;">
+                <span>30</span>
+                <span>Peças</span>
+              </div>
+              
+            </div>
+            <div class="info-item">
+              <span>30</span>
+              <span>Peças</span>
+            </div>
+          </div>
         </div>
-        </div>
+       
         
       </div>
       <div class="outfits">
@@ -29,9 +46,9 @@
           @defer (when user.roupas !== undefined) {
             @for (outfit of user.outfits; track $index) {
               <div class="row" (click)="GoTo(outfit)">
-                <div class="nav" style="display: flex; align-items: center; justify-content: center;">
+                <div class="nav" style="display: flex; align-items: center; justify-content: center; padding: 15px;">
                   <p>{{outfit.nome}}</p>
-                  <button style="position: absolute; right: 40px;" type="button" (click)="deleteOutfit(outfit.id!)"><img src="/assets/remove-white.svg" alt=""></button>
+                  <button style="position: absolute; right: 40px; background-color: #e7e7e7;" type="button" (click)="deleteOutfit(outfit.id!)"><img src="/assets/remove-white.svg" alt=""></button>
                 </div>
                 
                 @for (roupa of outfit.roupas; track $index) {
