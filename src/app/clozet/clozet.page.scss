@@ -133,13 +133,15 @@ ion-checkbox {
     display: block;
 }
 
-nav .edit-name{
-    
+.edit-name{
+   
     width: 25px;
     height: auto;
+    
 }
 
 .edit-name a{
+    position: absolute;
     width: 20px;
 }
 
@@ -159,3 +161,11 @@ ion-input{
     margin-top: 10px;
 }
 
+
+.input-name{
+    position: absolute;
+    top: 100px;
+    background-color: rgb(194, 194, 194);
+    padding: 50px;
+    border-radius: 15px;
+}

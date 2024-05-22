@@ -45,6 +45,7 @@
                 </div>
                 @if (inputName.show && roupa.id === inputName.id) {
                   <div class="input-name">
+                    <p style="font-size: 14px; font-family: 'Lato'; font-weight: 700; margin-bottom: 10px;">Insira o nome da peça</p>
                     <input type="text" name="text" id="text" [(ngModel)]="inputName.value">
                     <button type="button" (click)="changeClothName(roupa.id!)"><ion-icon name="send"></ion-icon></button>
                   </div>

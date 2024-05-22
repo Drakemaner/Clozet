@@ -29,11 +29,16 @@
           @defer (when user.roupas !== undefined) {
             @for (outfit of user.outfits; track $index) {
               <div class="row" (click)="GoTo(outfit)">
-                <p>{{outfit.nome}}</p>
-                <button type="button" (click)="deleteOutfit(outfit.id!)"><ion-icon name="trash-outline"></ion-icon></button>
+                <div class="nav" style="display: flex; align-items: center; justify-content: center;">
+                  <p>{{outfit.nome}}</p>
+                  <button style="position: absolute; right: 40px;" type="button" (click)="deleteOutfit(outfit.id!)"><img src="/assets/remove-white.svg" alt=""></button>
+                </div>
+                
                 @for (roupa of outfit.roupas; track $index) {
-                  <div class="outfit-perfil">
-                    <img [src]="roupa.caminhoImagem" alt="" style="width: 100px; height: 100px; margin: 5">
+                  <div class="outfits-block">
+                    <div class="outfit-perfil">
+                      <img [src]="roupa.caminhoImagem" alt="">
+                    </div>
                   </div>
                 }
               </div>

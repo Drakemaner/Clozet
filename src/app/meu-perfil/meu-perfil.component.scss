@@ -32,7 +32,7 @@
 }
 
 .outfits{
-    background-color: rgb(211, 211, 211);
+    
     width: 100%;
     height: 70%;
     margin-top: 20px;
@@ -44,24 +44,21 @@
 }
 
 .outfits .block{
-    display: block;
-    justify-content: space-between;
-    flex-direction: column;
-    width: 95%;
-    
+    width: 100%;
     overflow: auto;
+    
 }
 
 .row{
     width: 100%;
     margin-top: 10px;
     border-radius: 15px;
-    background-color: #1A2131;
+    background-color: #dadada;
     padding: 20px;
 }
 
 .row p{
-    color: #bbbbbb;
+    color: #868686;
     font-size: 24px;
     text-align: center;
     font-family: 'Lato';
@@ -87,10 +84,30 @@
 }
 
 .outfit-perfil{
-    background-color: red;
+    
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
 }
 
 .outfit-perfil img{
-    width: 30px;
-    height: auto;
+    width: 70px;
+    margin: 5px;
+    height: 70px;
+    
+    
+}
+
+.outfits-block{
+   
+    display: inline-flex;
+    
+    margin: 12px;
+}
+
+.outfit .block .nav{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
 }
