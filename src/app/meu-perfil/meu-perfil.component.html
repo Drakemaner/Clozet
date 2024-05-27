@@ -15,7 +15,7 @@
         <div class="no-flex" style="display: block; width: 100%;">
           <div class="block">
             <div class="foto-pf">
-              <img src="" alt="">
+              <img [src]="user.fotoPerfil">
             </div>
           <div class="desc-pf">
             <div class="text"></div>
@@ -27,14 +27,14 @@
           <div class="info">
             <div class="info-item">
               <div class="info-desc" style="display: flex;">
-                <span>30</span>
-                <span>Peças</span>
+                <span style="color: #1A2131;font-weight: 700; font-family: 'Lato'; font-style: italic;">30</span>
+                <span style="color: #1A2131;font-weight: 700; font-family: 'Lato'; font-style: italic;">Peças</span>
               </div>
               
             </div>
             <div class="info-item">
-              <span>30</span>
-              <span>Peças</span>
+              <span style="color: #1A2131; font-weight: 700; font-family: 'Lato'; font-style: italic;">30</span>
+              <span style="color: #1A2131; font-weight: 700; font-family: 'Lato'; font-style: italic;">Peças</span>
             </div>
           </div>
         </div>
@@ -48,7 +48,7 @@
               <div class="row" (click)="GoTo(outfit)">
                 <div class="nav" style="display: flex; align-items: center; justify-content: center; padding: 15px;">
                   <p>{{outfit.nome}}</p>
-                  <button style="position: absolute; right: 40px; background-color: #e7e7e7;" type="button" (click)="deleteOutfit(outfit.id!)"><img src="/assets/remove-white.svg" alt=""></button>
+                  <button type="button" (click)="deleteOutfit(outfit.id!)"><img src="/assets/remove-white.svg" alt=""></button>
                 </div>
                 
                 @for (roupa of outfit.roupas; track $index) {
