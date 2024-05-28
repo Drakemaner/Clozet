@@ -101,11 +101,36 @@
     margin: 12px;
 }
 
-.outfit .block .nav{
+.row .nav{
     display: flex;
-    justify-content: center;
-    align-items: center;
     
+    align-items: center;
+    padding: 10px;
+    
+    gap: 85px;
+    
+}
+
+.row .nav .delete{
+    width: 20%;
+   
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.row .nav .titulo{
+    padding: 6px;
+    border-radius: 10px;
+    background-color: #EBEBEB;
+    width: 80%;
+}
+
+.row .nav .titulo p{
+    text-align: center;
+    font-size: 16px;
+    color: #1A2131;
+    font-weight: 500;
 }
 
 .info{

@@ -46,9 +46,14 @@
           @defer (when user.roupas !== undefined) {
             @for (outfit of user.outfits; track $index) {
               <div class="row" (click)="GoTo(outfit)">
-                <div class="nav" style="display: flex; align-items: center; justify-content: center; padding: 15px;">
-                  <p>{{outfit.nome}}</p>
-                  <button type="button" (click)="deleteOutfit(outfit.id!)"><img src="/assets/remove-white.svg" alt=""></button>
+                <div class="nav">
+                  <div class="titulo">
+                    <p>{{outfit.nome}}</p>
+                  </div>
+                  <div class="delete">
+                    <button style="background-color: #fff;" type="button" (click)="deleteOutfit(outfit.id!)"><img src="/assets/remove-white.svg" alt=""></button>
+                  </div>
+                  
                 </div>
                 
                 @for (roupa of outfit.roupas; track $index) {
