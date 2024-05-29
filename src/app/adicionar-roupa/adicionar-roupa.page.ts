@@ -17,9 +17,15 @@ import { Roupas } from '../Roupas/roupas';
 export class AdicionarRoupaPage implements OnInit {
 
   roupas : IRoupas[] = Roupas
+
   user : IUser = {
     email: '',
     senha: ''
+  }
+
+  inputCloth = {
+    tipo: '',
+    show: false,
   }
 
   constructor(private httpService : HttpService, private platform : Platform, private cameraService : CameraService, private storageService : StorageService , private actionSheet : ActionSheetController, private alert : AlertController) { }
@@ -34,31 +40,31 @@ export class AdicionarRoupaPage implements OnInit {
       buttons: [
         {
           text: 'Cap',
-          handler: () => this.tirarFoto('cap')
+          handler: () => {this.inputCloth.show = true ; this.inputCloth.tipo == 'cap'}
         },
         {
           text: 'Head',
-          handler: () => this.tirarFoto('head')
+          handler: () => {this.inputCloth.show = true ; this.inputCloth.tipo == 'head'}
         },
         {
           text: 'Tee',
-          handler: () => this.tirarFoto('tee')
+          handler: () => {this.inputCloth.show = true ; this.inputCloth.tipo == 'tee'}
         },
         {
           text: 'Dress',
-          handler: () => this.tirarFoto('dress')
+          handler: () => {this.inputCloth.show = true ; this.inputCloth.tipo == 'dress'}
         },
         {
           text: 'Calça',
-          handler: () => this.tirarFoto('pants')  
+          handler: () => {this.inputCloth.show = true ; this.inputCloth.tipo == 'pants'} 
         },
         {
           text: 'Short',
-          handler: () => this.tirarFoto('short')  
+          handler: () => {this.inputCloth.show = true ; this.inputCloth.tipo == 'short'} 
         },
         {
           text: 'Tênis',
-          handler: () => this.tirarFoto('shoes')
+          handler: () => {this.inputCloth.show = true ; this.inputCloth.tipo == 'shoes'}
         },
         {
           text: 'Cancelar',
@@ -109,8 +115,16 @@ export class AdicionarRoupaPage implements OnInit {
     }
   }
 
-  tirarFoto(tipo : string){
-    this.cameraService.takePicture(this.roupas, tipo, this.user.id!)
+  createCloth(event : any){
+    this.cameraService.takePicture(this.roupas, this.inputCloth.tipo, this.user.id!, event)
+  }
+
+  ShowInputOutfit(event : any){
+    this.inputCloth.show = event
+  }
+
+  closeInputOutfit(event : any){
+    this.inputCloth.show = event
   }
 
 }

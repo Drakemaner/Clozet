@@ -29,6 +29,9 @@ export class HeaderComponent {
   @Output()
   takePhoto : EventEmitter<boolean> = new EventEmitter()
 
+  @Output()
+  shareOutfit : EventEmitter<boolean> = new EventEmitter()
+
   constructor() { }
 
   selectFunction(value : number | undefined){
@@ -51,6 +54,9 @@ export class HeaderComponent {
 
     else if(value == 4){
       this.takePhoto.emit(true)
+    }
+    else if(value == 5){
+      this.shareOutfit.emit(true)
     }
   }
 

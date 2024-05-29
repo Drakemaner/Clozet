@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { Roupas } from '../Roupas/roupas';
 import { StorageService } from '../services/storage/storage.service';
 import { HttpService } from '../services/http/http.service';
@@ -8,6 +8,10 @@ import { LoadingService } from '../services/loading/loading.service';
 import { IOutfits } from '../interfaces/IOutfits';
 import { AlertController } from '@ionic/angular';
 import { Outfit } from '../shared/outfit/outfit';
+import { ScreenshotService } from '../services/screenshot/screenshot.service';
+import { ShareService } from '../services/Share/share.service';
+import { concat } from 'rxjs';
+import { FileSystemService } from '../services/fileSystem/file-system.service';
 
 
 
@@ -35,8 +39,11 @@ export class HomePage implements OnInit{
     type: '',
     roupaType: ''
   }
+  
 
-  constructor(private storage : StorageService, private httpService : HttpService, private loadingService : LoadingService, private alert : AlertController) {}
+  @ViewChild('screen') screen! : ElementRef
+
+  constructor(private storage : StorageService, private httpService : HttpService, private loadingService : LoadingService, private alert : AlertController, private screenshot : ScreenshotService, private share : ShareService, private File : FileSystemService) {}
  
   ngOnInit(): void { 
     console.log(this.outfit)
@@ -85,6 +92,18 @@ export class HomePage implements OnInit{
     else {
       return value.slice(0,20)
     }
+  }
+
+  shareOutfit(){
+    console.log("Share Here !")
+    this.screenshot.takeScreenshot(document.getElementById('container')).then((a)=> {
+      let randomNumber: number = Math.floor(Math.random() * 1000000);
+
+      let nomeFoto = a.slice(0,10) + randomNumber
+      this.File.writeFile(`${nomeFoto}.png`,a).then((b)=> {
+        this.share.Share([b.uri])
+      })
+    })
   }
 
   verifyStaticClothes(user :IUser){

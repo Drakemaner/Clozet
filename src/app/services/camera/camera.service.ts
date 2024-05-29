@@ -43,7 +43,7 @@ export class CameraService {
     return galeria.photos;
   }
 
-  takePicture = async (fotos : IRoupas[], tipo : string, usuarioIdParameter : number) => {
+  takePicture = async (fotos : IRoupas[], tipo : string, usuarioIdParameter : number, nome : string) => {
     
     let size = this.sizeSelect(tipo)
     
@@ -57,13 +57,11 @@ export class CameraService {
       promptLabelPhoto: 'Escolher Foto da Galeria'
     }).then((image : Photo)=> {
       
-      let randomNumber: number = Math.floor(Math.random() * 1000000);
       let base64String = image.dataUrl?.slice(23)
-      let nomeFoto = base64String?.slice(25,60).replace(/\//g, '') + randomNumber.toString()
 
       this.warnUser()
 
-      this.removeBg.removeBackground(base64String!, tipo == 'head' ? 'person' : 'product', nomeFoto!, fotos, usuarioIdParameter, tipo)
+      this.removeBg.removeBackground(base64String!, tipo == 'head' ? 'person' : 'product', nome, fotos, usuarioIdParameter, tipo)
     
     }).catch((error : any) => {
        this.warnCameraPermission(error)

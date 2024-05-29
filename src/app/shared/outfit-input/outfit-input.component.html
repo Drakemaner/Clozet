@@ -1,8 +1,8 @@
 <div class="input-card">
   <div class="input-content">
     <button (click)="closeInput()"><img src="/assets/icon/close-white.svg" alt=""></button>
-    <ion-label style="color: #ffffff; font-family: 'Lato'; font-style: italic;">Digite o Nome de Seu Outfit</ion-label>
-    <input type="text" placeholder="Meu outfit" [(ngModel)]="inputName">
-    <button class="btn-nome" (click)="criarOutfit()">Criar Outfit</button>
+    <ion-label style="color: #ffffff; font-family: 'Lato'; font-style: italic;">{{label === '' ? 'Digite o Nome do Seu Outfit' : label}}</ion-label>
+    <input type="text" [placeholder]="placeholder === '' ? 'Meu Outfit' : placeholder" [(ngModel)]="inputName">
+    <button class="btn-nome" (click)="selectFunction()">Criar {{subject}}</button>
   </div>
 </div>

@@ -16,12 +16,33 @@ export class OutfitInputComponent {
   roupas = Roupas
 
   @Input()
+  label = ''
+
+  @Input()
+  placeholder = ''
+
+  @Input()
   type : string = 'New'
+  @Input()
+  subject : string = 'Outfit'
 
   @Output()
   Show : EventEmitter<boolean> = new EventEmitter()
 
+  @Output()
+  nameValue : EventEmitter<string> = new EventEmitter()
+
   constructor(private router : Router) { }
+
+  selectFunction(){
+    if(this.subject == 'Outfit'){
+      return this.criarOutfit()
+    } 
+
+    else {
+      return this.nomeRoupa()
+    }
+  }
 
   criarOutfit(){
     if(this.type == 'New'){
@@ -34,6 +55,10 @@ export class OutfitInputComponent {
     this.outfit.existente = false
     this.Show.emit(false)
     this.router.navigate(['/home'])
+  }
+
+  nomeRoupa(){
+    this.nameValue.emit(this.inputName)
   }
 
   closeInput(){

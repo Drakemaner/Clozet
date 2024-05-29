@@ -14,8 +14,14 @@
   (showInput)="ShowInputOutfit($event)"
   (takePhoto)="showActions()"
   ></app-header>
-  @if(showInputOutfit){
-    <app-outfit-input (Show)="closeInputOutfit($event)" type="New"></app-outfit-input>
+  @if(inputOutfit.show || inputCloth.show){
+    <app-outfit-input 
+    (Show)="closeInputOutfit($event)" 
+    type="New"
+    [label]="inputCloth.show ? 'Digite o Nome da sua Roupa' : ''"
+    [subject]="inputOutfit.subject"
+    (nameValue)="createCloth($event)"
+    ></app-outfit-input>
   }
 <ion-content class="ion-content-custom">
 

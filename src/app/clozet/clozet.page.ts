@@ -23,13 +23,23 @@ export class ClozetPage implements OnInit {
   
   SearchInput = ''
   roupas = Roupas
+
   inputName = {
     show: false,
     id: 0,
     value: ''
   }
   
-  showInputOutfit = false
+  inputOutfit =  {
+    show: false,
+    subject: '',
+    value: ''
+  }
+
+  inputCloth = {
+    tipo: '',
+    show: false
+  }
 
   select : any[] = []
 
@@ -106,31 +116,31 @@ export class ClozetPage implements OnInit {
       buttons: [
         {
           text: 'Cap',
-          handler: () => this.tirarFoto('cap')
+          handler: () => {this.inputCloth.show = true ; this.inputOutfit.subject = 'Cloth'; this.inputCloth.tipo == 'cap'}
         },
         {
           text: 'Head',
-          handler: () => this.tirarFoto('head')
+          handler: () => {this.inputCloth.show = true ; this.inputOutfit.subject = 'Cloth'; this.inputCloth.tipo == 'head'}
         },
         {
           text: 'Tee',
-          handler: () => this.tirarFoto('tee')
+          handler: () => {this.inputCloth.show = true ; this.inputOutfit.subject = 'Cloth'; this.inputCloth.tipo == 'tee'}
         },
         {
           text: 'Dress',
-          handler: () => this.tirarFoto('dress')
+          handler: () => {this.inputCloth.show = true ; this.inputOutfit.subject = 'Cloth'; this.inputCloth.tipo == 'dress'}
         },
         {
           text: 'Calça',
-          handler: () => this.tirarFoto('pants')  
+          handler: () => {this.inputCloth.show = true ; this.inputOutfit.subject = 'Cloth'; this.inputCloth.tipo == 'pants'}
         },
         {
           text: 'Short',
-          handler: () => this.tirarFoto('short')  
+          handler: () => {this.inputCloth.show = true ; this.inputOutfit.subject = 'Cloth'; this.inputCloth.tipo == 'short'} 
         },
         {
           text: 'Tênis',
-          handler: () => this.tirarFoto('shoes')
+          handler: () => {this.inputCloth.show = true ; this.inputOutfit.subject = 'Cloth'; this.inputCloth.tipo == 'shoes'}
         },
         {
           text: 'Cancelar',
@@ -143,11 +153,12 @@ export class ClozetPage implements OnInit {
   }
 
   ShowInputOutfit(event : any){
-    this.showInputOutfit = event
+    this.inputOutfit.show = event
+    this.inputOutfit.subject = 'Outfit'
   }
 
   closeInputOutfit(event : any){
-    this.showInputOutfit = event
+    this.inputOutfit.show = event
   }
 
   SelectRoupas(event : any){
@@ -201,19 +212,17 @@ export class ClozetPage implements OnInit {
     })
   }
 
-  tirarFoto(tipo : string){
-    console.log(this.user)
-    this.cameraService.takePicture(this.roupas, tipo, this.user.id!)
-  }
-
   showInputName(id : number){
     !this.inputName.show && this.inputName.id != 0 ? this.inputName.show = true : this.inputName.show = false
     this.inputName.id = id
-    
   }
 
+  createCloth(event : any){
+    this.cameraService.takePicture(this.roupas, this.inputCloth.tipo, this.user.id!, event)
+  }
 
-  changeClothName(id : number){
+  changeClothName(id : number | void, nome? : string){
+   if(nome == undefined){
     let roupaEditada = this.roupas.filter(a=> a.id == id)
 
     roupaEditada[0].nome = this.inputName.value
@@ -242,6 +251,27 @@ export class ClozetPage implements OnInit {
       alert.present()
       console.error(e)
     })
+   }
+  
+   else {
+    let roupaCriada = this.roupas.filter(a=> a.id == id)
+
+    roupaCriada[0].nome = this.inputName.value
+
+    this.http.Put(roupaCriada[0],"Roupa").subscribe(async ()=> {
+      this.roupas.forEach(a=> {
+        a.id == id ? a.nome = nome : null
+      })
+
+    }, async (e)=> {
+
+      this.inputName.id = 0
+
+      console.error(e)
+    })
+   }
+
+   this.inputName.value = ''
   }
 
 }

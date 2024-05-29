@@ -1,13 +1,24 @@
 <app-header 
   title="Clozet" 
   [buttons]="[{
-    image: 'assets/icon/add-clothe.svg'
+    image: 'assets/icon/add-clothe.svg',
+    function: 4
   },
   {
     image:'assets/icon/new.svg'
   }
   ]"
+  (takePhoto)="showActions()"
   ></app-header>
+  @if(inputCloth.show){
+    <app-outfit-input 
+    (Show)="closeInputOutfit($event)" 
+    type="New"
+    label="Digite o Nome da sua Roupa"
+    subject="Cloth"
+    (nameValue)="createCloth($event)"
+    ></app-outfit-input>
+  }
 <ion-content class="main" [fullscreen]="true">
  <div class="container">
   <div class="add">

@@ -1,24 +1,28 @@
-<app-header 
+<app-header
   [title]="outfit === undefined ? 'Outfit' : outfit.nome!" 
   [buttons]="[{
     image: 'assets/icon/save.svg',
     function: 3
   },{
     image: 'assets/icon/share.svg',
-    function: 1
+    function: 5
   }]"
   [roupas]="roupas"
-
+  (shareOutfit)="shareOutfit()"
   (saveOutfit)="saveOutfit($event)"
   ></app-header>
 @if (PopUp.show === true) {
-  <app-pop-up [roupas]="roupas" [popUp]="PopUp" (Show)="receivePopUp($event)"></app-pop-up>
+  <app-pop-up 
+    [roupas]="roupas" 
+    [popUp]="PopUp" 
+    (Show)="receivePopUp($event)"
+  ></app-pop-up>
 }
 @if(showInputOutfit){
   <app-outfit-input (Show)="closeInputOutfit($event)" type="Same"></app-outfit-input>
 }
 <ion-content class="ion-content-custom" [fullscreen]="true">
-  <div class="ion-content">
+  <div class="ion-content" #screen>
     <div id="container">
       
       <div class="outfit" >
