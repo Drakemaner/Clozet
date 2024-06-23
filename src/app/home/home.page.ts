@@ -12,6 +12,7 @@ import { ScreenshotService } from '../services/screenshot/screenshot.service';
 import { ShareService } from '../services/Share/share.service';
 import { concat } from 'rxjs';
 import { FileSystemService } from '../services/fileSystem/file-system.service';
+import { JimpService } from '../jimp.service';
 
 
 
@@ -43,7 +44,7 @@ export class HomePage implements OnInit{
 
   @ViewChild('screen') screen! : ElementRef
 
-  constructor(private storage : StorageService, private httpService : HttpService, private loadingService : LoadingService, private alert : AlertController, private screenshot : ScreenshotService, private share : ShareService, private File : FileSystemService) {}
+  constructor(private storage : StorageService, private httpService : HttpService, private loadingService : LoadingService, private alert : AlertController, private jimp : JimpService, private share : ShareService, private file : FileSystemService) {}
  
   ngOnInit(): void { 
     console.log(this.outfit)
@@ -96,14 +97,11 @@ export class HomePage implements OnInit{
 
   shareOutfit(){
     console.log("Share Here !")
-    this.screenshot.takeScreenshot(document.getElementById('container')).then((a)=> {
-      let randomNumber: number = Math.floor(Math.random() * 1000000);
-
-      let nomeFoto = a.slice(0,10) + randomNumber
-      this.File.writeFile(`${nomeFoto}.png`,a).then((b)=> {
-        this.share.Share([b.uri])
+    this.jimp.criarImagemCompartilharmento(this.roupas.filter(a=> a.display == 'display: flex')).then((a)=> {
+      this.share.Share([a.uri]).then(()=> {
+        this.file.deleteFile('share.png')
       })
-    })
+    })  
   }
 
   verifyStaticClothes(user :IUser){
@@ -310,14 +308,21 @@ export class HomePage implements OnInit{
     }
   }
 
-  verificacaoSalvarOutfit(){
+  async verificacaoSalvarOutfit(){
     let roupasSelecionadas = this.roupas.filter(a=> a.display == 'display: flex')
 
-    roupasSelecionadas.length == 0 ? this.alert.create({
-      header: 'Ação Não Permitida',
-      message: 'Não é possível salvar um Outfit sem nenhuma roupa',
-      buttons: ['Ok']
-    }) : undefined
+    if(roupasSelecionadas.length == 0) {
+      const alert = await this.alert.create({
+        header: 'Ação Não Permitida',
+        message: 'Não é possível salvar um Outfit sem nenhuma roupa',
+        buttons: ['Ok']
+      })
+      alert.present()
+
+      return false
+    }
+    
+    return true
   }
 
   closeInputOutfit(event : any){
