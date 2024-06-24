@@ -8,11 +8,10 @@ import { LoadingService } from '../services/loading/loading.service';
 import { IOutfits } from '../interfaces/IOutfits';
 import { AlertController } from '@ionic/angular';
 import { Outfit } from '../shared/outfit/outfit';
-import { ScreenshotService } from '../services/screenshot/screenshot.service';
 import { ShareService } from '../services/Share/share.service';
 import { concat } from 'rxjs';
 import { FileSystemService } from '../services/fileSystem/file-system.service';
-import { JimpService } from '../jimp.service';
+
 
 
 
@@ -44,7 +43,7 @@ export class HomePage implements OnInit{
 
   @ViewChild('screen') screen! : ElementRef
 
-  constructor(private storage : StorageService, private httpService : HttpService, private loadingService : LoadingService, private alert : AlertController, private jimp : JimpService, private share : ShareService, private file : FileSystemService) {}
+  constructor(private storage : StorageService, private httpService : HttpService, private loadingService : LoadingService, private alert : AlertController, private share : ShareService, private file : FileSystemService) {}
  
   ngOnInit(): void { 
     console.log(this.outfit)
@@ -96,12 +95,14 @@ export class HomePage implements OnInit{
   }
 
   shareOutfit(){
-    console.log("Share Here !")
-    this.jimp.criarImagemCompartilharmento(this.roupas.filter(a=> a.display == 'display: flex')).then((a)=> {
-      this.share.Share([a.uri]).then(()=> {
-        this.file.deleteFile('share.png')
-      })
-    })  
+    /*
+    this.share.Share([a!.uri]).then(()=> {
+      this.file.deleteFile('share.png')
+    }).catch(e => {
+      console.log("Erro Share: " + e)
+      return e
+    })
+    */
   }
 
   verifyStaticClothes(user :IUser){

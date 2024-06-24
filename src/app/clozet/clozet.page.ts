@@ -116,31 +116,31 @@ export class ClozetPage implements OnInit {
       buttons: [
         {
           text: 'Cap',
-          handler: () => {this.inputCloth.show = true ; this.inputOutfit.subject = 'Cloth'; this.inputCloth.tipo == 'cap'}
+          handler: () => {this.inputCloth.show = true ; this.inputOutfit.subject = 'Cloth'; this.inputCloth.tipo = 'cap'}
         },
         {
           text: 'Head',
-          handler: () => {this.inputCloth.show = true ; this.inputOutfit.subject = 'Cloth'; this.inputCloth.tipo == 'head'}
+          handler: () => {this.inputCloth.show = true ; this.inputOutfit.subject = 'Cloth'; this.inputCloth.tipo = 'head'}
         },
         {
           text: 'Tee',
-          handler: () => {this.inputCloth.show = true ; this.inputOutfit.subject = 'Cloth'; this.inputCloth.tipo == 'tee'}
+          handler: () => {this.inputCloth.show = true ; this.inputOutfit.subject = 'Cloth'; this.inputCloth.tipo = 'tee'}
         },
         {
           text: 'Dress',
-          handler: () => {this.inputCloth.show = true ; this.inputOutfit.subject = 'Cloth'; this.inputCloth.tipo == 'dress'}
+          handler: () => {this.inputCloth.show = true ; this.inputOutfit.subject = 'Cloth'; this.inputCloth.tipo = 'dress'}
         },
         {
           text: 'Calça',
-          handler: () => {this.inputCloth.show = true ; this.inputOutfit.subject = 'Cloth'; this.inputCloth.tipo == 'pants'}
+          handler: () => {this.inputCloth.show = true ; this.inputOutfit.subject = 'Cloth'; this.inputCloth.tipo = 'pants'}
         },
         {
           text: 'Short',
-          handler: () => {this.inputCloth.show = true ; this.inputOutfit.subject = 'Cloth'; this.inputCloth.tipo == 'short'} 
+          handler: () => {this.inputCloth.show = true ; this.inputOutfit.subject = 'Cloth'; this.inputCloth.tipo = 'short'} 
         },
         {
           text: 'Tênis',
-          handler: () => {this.inputCloth.show = true ; this.inputOutfit.subject = 'Cloth'; this.inputCloth.tipo == 'shoes'}
+          handler: () => {this.inputCloth.show = true ; this.inputOutfit.subject = 'Cloth'; this.inputCloth.tipo = 'shoes'}
         },
         {
           text: 'Cancelar',
@@ -159,6 +159,7 @@ export class ClozetPage implements OnInit {
 
   closeInputOutfit(event : any){
     this.inputOutfit.show = event
+    this.inputCloth.show = event
   }
 
   SelectRoupas(event : any){
