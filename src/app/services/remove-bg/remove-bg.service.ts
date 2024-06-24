@@ -84,7 +84,7 @@ export class RemoveBGService {
 
       fotos.push({
         id: a.id,
-        nome: 'foto',
+        nome: nomeFoto,
         tipo: tipoRoupa,
         caminhoImagem: webPath,
         display: 'display: none',
