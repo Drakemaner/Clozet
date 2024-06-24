@@ -6,6 +6,7 @@ import IUser from '../interfaces/IUser';
 import { Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { catchError, throwError } from 'rxjs';
+import { LoadingService } from '../services/loading/loading.service';
 
 @Component({
   selector: 'app-login',
@@ -22,7 +23,7 @@ export class LoginPage implements OnInit{
   formGroup! : FormGroup
   incorreto : boolean = false
 
-  constructor(private formBuilder : FormBuilder, private http : HttpService, private platform : Platform, private storageService : StorageService, private router : Router) { }
+  constructor(private formBuilder : FormBuilder, private http : HttpService, private platform : Platform, private storageService : StorageService, private router : Router, private loading : LoadingService) { }
 
 
   ngOnInit() {
@@ -35,8 +36,10 @@ export class LoginPage implements OnInit{
   logar() {
 
     if(this.formGroup.valid){
+      this.loading.showLoadingIndicator("Carregando")
       this.http.Login(this.formGroup.value).pipe(
         catchError((e) => {
+          this.loading.dismissLoadingIndicator()
           if(e.error = 'E-mail ou Senha Incorretos'){
             this.incorreto = true
           } 
@@ -44,6 +47,7 @@ export class LoginPage implements OnInit{
         })
       ).subscribe(a =>
         {
+          this.loading.dismissLoadingIndicator()
           this.storageService.setObject('logado', a.nomeUsuario!)
           localStorage.setItem('logado',a.nomeUsuario!)
           window.location.reload()

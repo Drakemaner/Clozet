@@ -24,7 +24,7 @@
             <ion-label for="senha"><span>Senha</span></ion-label>
             <ion-input id="email" type="password" formControlName="senha" placeholder="Digite Sua Senha" class="input-register"></ion-input>
           </div>
-          
+          <span class="aviso" [style]="formGroup.get('senha')?.dirty && formGroup.get('senha')?.errors ? 'display: flex' : 'display: none'">Senha precisa ter entre 6 e 16 caracteres</span>
           <div class="btn-register">
             <button (click)="Cadastrar()" [disabled]="!formGroup.valid"><span>Cadastrar</span></button>
           </div>
