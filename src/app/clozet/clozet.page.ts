@@ -220,6 +220,7 @@ export class ClozetPage implements OnInit {
 
   createCloth(event : any){
     this.cameraService.takePicture(this.roupas, this.inputCloth.tipo, this.user.id!, event)
+    this.inputCloth.show = false
   }
 
   changeClothName(id : number | void, nome? : string){
